@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "global/css/base.css" %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="page-layout">
+        <div class="siderbar-wrapper-fixed">
+            <div class="sidebar-menu">
+                <img class="sidebar-logo" src="{% static "global/imgs/logo.png" %}" alt="">
+                {% block content-sidebar %}
+                {% endblock content-sidebar %}
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header-page">
+                <div class="header-content">
+                    <div></div>
+                    <div class="user-content">
+                        <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+                        <div class="user-pic"></div>
+                        <p class="username">NomeUser</p>
+                    </div>
+                </div>
+                <div>
+                <hr class="line-divider">
+            </div>
+            <main> 
+                {% block content %}
+
+                {% endblock content %}
+            </main>
+        </div>
+    </div>
+</body>
+</html>
