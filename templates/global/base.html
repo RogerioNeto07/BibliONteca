@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "global/css/base.css" %}">
+    <link rel="stylesheet" href="{% static "global/css/global.css" %}">
+    
     <title>Document</title>
 </head>
 <body>
     <div class="page-layout">
-        <div class="siderbar-wrapper-fixed">
-            <div class="sidebar-menu">
+        <div class="siderbar-wrapper-fixed bg-dark-blue">
+            <div class="sidebar-menu bg-dark-blue">
                 <img class="sidebar-logo" src="{% static "global/imgs/logo.png" %}" alt="">
                 {% block content-sidebar %}
                 {% endblock content-sidebar %}
@@ -18,16 +20,11 @@
         </div>
         <div class="main-content">
             <div class="header-page">
-                <div class="header-content">
-                    <div></div>
-                    <div class="user-content">
-                        <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
-                        <div class="user-pic"></div>
-                        <p class="username">NomeUser</p>
-                    </div>
-                </div>
-                <div>
-                <hr class="line-divider">
+                {% block content-header %}
+                    
+                {% endblock content-header %}
+            <div>
+                <hr class="line-divider bg-dark-blue">
             </div>
             <main> 
                 {% block content %}

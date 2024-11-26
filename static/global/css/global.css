@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Variáveis */
+:root{
+    --color-white: #FFFFFF;
+    --color-dar-blue: #1D3557;
+    --color-red: #D62828;
+    --color-green: #43AA8B;
+    --color-blue-active: #457B9D;
+    --color-buttom: #F5F5F5;
+    --color-border-input: #D3D3D3;
+    --color-grey: #999999;
+    --color-title: #264653;
+    --color-primary: #4A4A4A;
+
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secudary: 'Roboto', sans-serif;
+
+    --font-size-h1: 36px;
+    --font-size-h2: 30px;
+    --font-size-h3: 20px;
+    --font-size-main: 18px;
+    --font-size-secundary: 16px;
+    
+    --button-width: 240px;
+    --button-height: 44px;
+
+    --form-width: 493px;
+    --form-height: 40px;
+
+    --border-radius: 5px;
+
+    --font-bold: 600;
+}
+
+/* Tipográfia */
+
+h1, h2, h3, p, a{
+    margin: 0;
+    text-decoration: none;
+}
+body, main{
+    font-family: var(--font-secudary);
+    background-color: var(--color-buttom);
+    margin: auto;
+    color: var(--color-primary);
+}
+.h1{
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h1);
+    color: var(--color-title);
+}
+.h2{
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h2);
+    color: var(--color-title);
+}
+.h3{
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h3);
+    color: var(--color-title);
+}
+.main-text{ font-size: var(--font-size-main) }
+.secundary-text{ font-size: var(--font-size-secundary);}
+.bold{ font-weight: var(--font-bold);}
+
+/* cores */
+.white{ color: var(--color-white);}
+.bg-dark-blue{ background-color: var(--color-dar-blue);}
+.bg-blue{ background-color: var();}
+.bg-red{ background-color: var(--color-red);}
+.bg-green{ background-color: var(--color-green);}
+
+/* botões */
+
+.bnt{
+    width: var(--button-width);
+    height: var(--button-height);
+    border-style: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-main);
+    font-weight: var(--font-bold);
+}
+.bnt-login-page{ width: 360px;}
+
+/* form */
+input{
+    height: var(--form-height);
+    width: var(--form-width);
+    border-radius: var(--border-radius);
+    border: solid 1px;
+    margin: 10px 0;
+    background-color: var(--color-white);
+    border-color: var(--color-border-input);
+    color: var(--color-grey);
+    padding-left: 10px;
+}
+.form-field{
+    display: flex;
+    flex-direction: column;
+    width: 495px;
+}
+label{ text-align: left;}
+span{ color: var(--color-red);}

@@ -1,6 +1,5 @@
-body, main{
-    margin: auto;
-    background-color: #F5F5F5;
+main{
+    margin-top: 32px;
 }
 .page-layout{
     display: grid;
@@ -8,14 +7,12 @@ body, main{
     height: 100vh;
 }
 .siderbar-wrapper-fixed{
-    background-color: #1D3557;
     width: 264px;
     height: 100vh;
     position: relative;
 }
 .sidebar-menu{
     position: fixed;
-    background-color: #1D3557;
     height: 100vh;
     top: 0;
     left: 0;
@@ -37,7 +34,6 @@ body, main{
 }
 .sidebar-link{
     font-size: 18px;
-    color: white;
     text-decoration: none;
     margin-left: 18px;
 }
@@ -52,7 +48,7 @@ body, main{
 }
 .header-page{
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 12px;
 }
 .header-content{
     display: grid;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "user/css/login.css" %}">
+    <link rel="stylesheet" href="{% static "global/css/global.css" %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-container-left bg-dark-blue">
+            <img src="{% static "global/imgs/logo.png" %}" alt="" class="logo-login">
+            <p class="h1 white">Olá! Seja bem-vindo(a) à nossa Biblioteca Virtual! :)</p>
+            <p class="margin-text secundary-text white">Esta página é destinada a bibliotecários. Se você é um usuário, faça login utilizando o botão abaixo.</p>
+            <button class="bnt bnt-login-page bg-green"><a class="white" href="">Navegar como Usuário</a></button>
+        </div>
+        <div class="login-container-rigth">
+            <p class="title-login h1 dark-blue">Login</p>
+            <form action="" class="login">
+                <div class="form-field">
+                    <label for="Email" class="form-label secundary-text bold">Login:<span>*</span></label>
+                    <input type="Email" class="secundary-text bold" id="Email" placeholder="Email">
+                </div>
+                <div class="form-field">
+                    <label for="password" class="form-label secundary-text bold">Senha:<span>*</span></label>
+                    <input type="text" class="secundary-text bold" id="password" placeholder="Senha">
+                </div>
+                <button class="bnt-login bnt bnt-login-page bg-green"><a href="" class="main-text white">Login</a></button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

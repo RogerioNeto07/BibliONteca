@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def TesteBase(request):
     return render(request, "user/index.html")
+
+def Login(request):
+    return render(request, "user/login.html")
