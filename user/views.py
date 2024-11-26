@@ -2,5 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def TesteBase(request):
-    return render(request, "user/index.html")
+def IndexReader(request):
+    return render(request, "user/indexreader.html")
+
+def IndexLibrarian(request):
+    return render(request, "user/indexlibrarian.html")
+
+def IndexLoggedOut(request):
+    return render(request, "user/indexloggedout.html")

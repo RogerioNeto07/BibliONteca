@@ -1,0 +1,52 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content-sidebar %}
+    <div class="sidebar-options">
+        <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
+            </div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Home</a></div>
+        </div>
+    </div>
+    <div class="sidebar-options">
+        <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
+            </div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Livros</a></div>
+        </div>
+    </div>
+    <div class="sidebar-options">
+        <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
+            </div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Usuários</a></div>
+        </div>
+    </div>
+    <div class="sidebar-options">
+        <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
+            </div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Empréstimos</a></div>
+        </div>
+    </div>
+    <div class="sidebar-options">
+        <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
+            </div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Logout</a></div>
+        </div>
+    </div>
+{% endblock content-sidebar %}
+
+{% block content %}
+    {% block secondary_content %}{% endblock secondary_content%}
+{% endblock content %}
+
+
+

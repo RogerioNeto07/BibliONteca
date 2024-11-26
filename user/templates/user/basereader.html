@@ -15,13 +15,21 @@
             <div class="sidebar-item-icon">
                 <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
             </div>
-            <div class="sidebar-item-link"><a href="" class="sidebar-link">Home</a></div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Empréstimos</a></div>
+        </div>
+    </div>
+    <div class="sidebar-options">
+        <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="sidebar-icon">
+            </div>
+            <div class="sidebar-item-link"><a href="" class="sidebar-link">Logout</a></div>
         </div>
     </div>
 {% endblock content-sidebar %}
 
 {% block content %}
-<p>dysgyjsbhhhhhhhsdgashjxahsxa</p>
+    {% block secondary_content %}{% endblock secondary_content%}
 {% endblock content %}
 
 
