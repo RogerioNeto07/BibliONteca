@@ -1,0 +1,22 @@
+body{
+    margin: auto;
+    padding: auto;
+}
+.login-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+.login-container-left, .login-container-rigth{
+    height: 100vh;
+    padding: 140px 76px 0 76px;
+    text-align: center;
+}
+.logo-login{
+    width: 400px;
+    height: 100px;
+    margin-bottom: 12px;
+}
+.margin-text{ margin: 32px 0;}
+.title-login{ margin-bottom: 44px;}
+.bnt-login{ margin-top: 44px;}

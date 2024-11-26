@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-
 def IndexReader(request):
     return render(request, "user/indexreader.html")
 
@@ -10,3 +9,6 @@ def IndexLibrarian(request):
 
 def IndexLoggedOut(request):
     return render(request, "user/indexloggedout.html")
+
+def Login(request):
+    return render(request, "user/login.html")
