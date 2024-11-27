@@ -1,0 +1,106 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content-sidebar %}
+    <sidebar-user></sidebar-user>
+{% endblock content-sidebar %}
+
+{% block content-header %}
+
+        <div class="header-content">
+            <div></div>
+            <div class="profile">
+            <h1>Perfil</h1>
+            </div>
+            <div class="user-content">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+            </div>
+        </div>
+{% endblock content-header %}
+{% block content %} 
+        <style>
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            padding: 20px;
+            width: 600px;
+        }
+
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 44px;
+        }
+
+        .data-col {
+            width: 45%;
+            gap: 24px;
+        }
+
+        </style>
+
+<div class="profile-card">
+    <div class="profile-image">
+        <img src="" alt="">
+    </div>
+    <div class="profile-data">
+        <h2>Dados Gerais</h2>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Nome:</h5>
+                <p>Maria Raimunda de Sousa Dias</p>
+            </div>
+            <div class="data-col">
+                <h5>CPF:</h5>
+                <p>000.000.000-00</p>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Email:</h5>
+                <p>raimumaria@gmail.com</p>
+            </div>
+            <div class="data-col">
+                <h5>Telefone:</h5>
+                <p>(84) 99999-9999</p>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Data de Nascimento:</h5>
+                <p>10/11/1977</p>
+            </div>
+        </div>
+        <h2>Endereço</h2>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Rua:</h5>
+                <p>Rua Fulano Ciclano</p>
+            </div>
+            <div class="data-col">
+                <h5>Bairro:</h5>
+                <p>Centro</p>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Cidade:</h5>
+                <p>Pau dos Ferros - RN</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

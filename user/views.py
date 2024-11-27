@@ -9,3 +9,6 @@ def IndexGuest(request):
 
 def Login(request):
     return render(request, "user/login.html")
+
+def Perfil(request):
+    return render(request, "user/profile.html")
