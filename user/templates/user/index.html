@@ -1,0 +1,20 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content-sidebar %}
+    <sidebar-user></sidebar-user>
+{% endblock content-sidebar %}
+
+{% block content-header %}
+        <div class="header-content">
+            <div></div>
+            <div class="user-content">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+                <div class="user-pic"></div>
+                <p class="username secundary-text">NomeUser</p>
+            </div>
+        </div>
+{% endblock content-header %}
+{% block content %} 
+    
+{% endblock content %}
