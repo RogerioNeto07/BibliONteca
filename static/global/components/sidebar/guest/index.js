@@ -1,0 +1,1 @@
+//Arquivo para criar uma tag que possua os elementos da sidebar de guest

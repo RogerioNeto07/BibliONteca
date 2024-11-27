@@ -28,6 +28,7 @@ main{
 .sidebar-item{
     display: grid;
     grid-template-columns: 24px 1fr;
+    margin: 18px;
 }
 .sidebar-icon{
     height: 24px;
