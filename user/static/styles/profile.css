@@ -1,0 +1,28 @@
+.header-content{
+    text-align: center;
+}
+.profile-container {
+    display: flex;
+    border-radius: 8px;
+    padding: 20px;
+    width: 600px;
+}
+
+.profile-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 44px;
+}
+
+.data-col {
+    gap: 24px;
+}

@@ -1,6 +1,10 @@
 {% extends "global/base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+{% endblock %}
+
 {% block content-sidebar %}
     <sidebar-user></sidebar-user>
 {% endblock content-sidebar %}
@@ -8,7 +12,6 @@
 {% block content-header %}
 
         <div class="header-content">
-            <div></div>
             <div class="profile">
             <h1>Perfil</h1>
             </div>
@@ -18,44 +21,13 @@
         </div>
 {% endblock content-header %}
 {% block content %} 
-        <style>
 
-        .profile-card {
-            display: flex;
-            align-items: center;
-            border-radius: 8px;
-            padding: 20px;
-            width: 600px;
-        }
-
-        .profile-image img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-        }
-
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            gap: 44px;
-        }
-
-        .data-col {
-            width: 45%;
-            gap: 24px;
-        }
-
-        </style>
-
-<div class="profile-card">
+<div class="profile-container">
     <div class="profile-image">
-        <img src="" alt="">
+        <img src="static\img\avamax.jpg" alt="maria Raimunda">
     </div>
     <div class="profile-data">
-        <h2>Dados Gerais</h2>
+        <h2>Dados Gerais <i class="fa-regular fa-pen-to-square" style="color: #F77F00;"></i></h2>
         <div class="data-row">
             <div class="data-col">
                 <h5>Nome:</h5>
