@@ -69,7 +69,7 @@ body, main{
 /* cores */
 .white{ color: var(--color-white);}
 .bg-dark-blue{ background-color: var(--color-dar-blue);}
-.bg-blue{ background-color: var();}
+.bg-blue { background-color: var(--color-blue-active); } 
 .bg-red{ background-color: var(--color-red);}
 .bg-green{ background-color: var(--color-green);}
 
@@ -107,7 +107,7 @@ input{
     width: 495px;
 }
 label{ text-align: left;}
-span{ color: var(--color-red);}
+span.alert{ color: var(--color-red);}
 .input-search{
     width: 400px;
 }

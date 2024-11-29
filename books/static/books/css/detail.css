@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+}
+
+.content-detail {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    padding-bottom: 32px;
+}
+
+.book-detail {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.book-detail p {
+    color: #555;
+    line-height: 1.5;
+}
+
+.book-detail h1 {
+    font-weight: normal;
+}
+
+.book-detail h3 {
+    margin-bottom: 8px;
+}
+
+.book-detail h5 {
+    color: #828282;
+    margin-bottom: 12px;
+}
+
+.categorias {
+    display: flex;
+    gap: 10px;
+    padding-top: 4px;
+}
+
+.categorias button {
+    padding: 12px;
+    font-size: 16px;
+    width: 140px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.book-cover {
+    width: 180px;
+    height: 250px;
+    margin-right: 16px;
+}
+
+hr {
+    margin: 8px 0 10px 0;
+    width: 80%;
+}
+
+.text-synopsis p {
+    text-align: justify;
+    line-height: 1.5;
+    width: 80%;
+}
+
+.text-synopsis {
+    padding-bottom: 32px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 8px;
+    justify-content: space-between;
+}
+
+.comment-author-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.comment-author {
+    font-size: 16px;
+    color: #333;
+    margin-right: 10px;
+}
+
+.comment-rating {
+    font-size: 12px;
+    color: #f4b400 !important;
+    margin-left: 20px;
+}
+.star-rating{
+    font-size: 16px;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0 12px 60px;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: #828282;
+    margin-left: auto;
+}
