@@ -15,7 +15,7 @@ export class SidebarLibrary extends HTMLElement{
                 </div>
                 <div class="sidebar-item">
                     <div class="sidebar-item-icon">
-                        <img src="static/global/imgs/icon-home.png" alt="" class="sidebar-icon">
+                        <i class="fa-solid fa-book" style="color: #ffffff;">
                     </div>
                     <div class="sidebar-item-link">
                         <button href="" id="toggle-book" class="sidebar-button main-text white bold">Livros</button>
@@ -26,19 +26,19 @@ export class SidebarLibrary extends HTMLElement{
                             <a href="" class="sub-menu-item secundary-text white">Empréstar</a>
                         </div>
                         <div class="sub-menu-item">
-                            <img src="">
+                            <i class="fa-solid fa-book" style="color: #ffffff;">
                             <a href="" class="sub-menu-item secundary-text white">Devolver</a>
                         </div>
                         <div class="sub-menu-item">
-                            <img src="">
+                            <i class="fa-solid fa-book" style="color: #ffffff;">
                             <a href="" class="sub-menu-item secundary-text white">Renovar</a>
                         </div>
                         <div class="sub-menu-item">
-                            <img src="">
+                            <i class="fa-solid fa-book" style="color: #ffffff;">
                             <a href="" class="sub-menu-item secundary-text white">Adicionar</a>
                         </div>
                         <div class="sub-menu-item">
-                            <img src="">
+                            <i class="fa-solid fa-book" style="color: #ffffff;">
                             <a href="" class="sub-menu-item secundary-text white">Listar</a>
                         </div>
                     </div>

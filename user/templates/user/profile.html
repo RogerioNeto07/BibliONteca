@@ -1,0 +1,85 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+
+{% endblock %}
+
+{% block content-sidebar %}
+    <sidebar-user></sidebar-user>
+{% endblock content-sidebar %}
+
+{% block content-header %}
+
+        <div class="header-content">
+            <div class="profile">
+            <h1>Perfil</h1>
+            </div>
+            <div class="user-content">
+                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+            </div>
+        </div>
+{% endblock content-header %}
+{% block content %} 
+
+<div class="profile-container">
+    <div class="profile-image">
+        <img src="static\img\avamax.jpg" alt="maria Raimunda">
+    </div>
+    <div class="profile-data">
+        <div class="general-data-container">
+        <div class="general-data">
+            <h2>Dados Gerais <i class="fa-regular fa-pen-to-square" style="color: #F77F00;"></i></h2>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Nome:</h5>
+                <p>Maria Raimunda de Sousa Dias</p>
+            </div>
+            <div class="data-col">
+                <h5>CPF:</h5>
+                <p>000.000.000-00</p>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Email:</h5>
+                <p>raimumaria@gmail.com</p>
+            </div>
+            <div class="data-col">
+                <h5>Telefone:</h5>
+                <p>(84) 99999-9999</p>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Data de Nascimento:</h5>
+                <p>10/11/1977</p>
+            </div>
+        </div>
+    </div>
+        <div class="adress">
+            <h2>Endereço</h2>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Rua:</h5>
+                <p>Rua Fulano Ciclano</p>
+            </div>
+            <div class="data-col">
+                <h5>Bairro:</h5>
+                <p>Centro</p>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+                <h5>Cidade:</h5>
+                <p>Pau dos Ferros - RN</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

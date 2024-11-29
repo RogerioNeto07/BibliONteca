@@ -1,0 +1,62 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/notification.css' %}">
+
+{% endblock %}
+
+{% block content-sidebar %}
+    <sidebar-user></sidebar-user>
+{% endblock content-sidebar %}
+
+{% block content-header %}
+
+    <div class="header-content">
+        <div></div>
+        <div class="user-content">
+            <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+            <div class="user-pic"></div>
+            <p class="username secundary-text">NomeUser</p>
+        </div>
+    </div>
+{% endblock content-header %}
+
+{% block content %} 
+<div class="notif-container">
+<h1>Notificações</h1>
+<div class="notif-filter">
+    <p id="general">Geral</p><p id="pending">Pendências</p><p id="news">Novidades</p>
+</div>
+</div>
+<div class="notif-item">
+    <h4><span class="blue-circle">•</span>O Livro Harry Potter e o Prisioneiro de Azkabam entrará em pendência amanhã</h4>
+    <div class="sent">
+        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i><p>Recebida 13 horas atrás</p>
+    </div>
+</div>
+<div class="notif-item">
+    <div class="notif-title">
+        <h4><span class="blue-circle">•</span>O Livro Harry Potter e o Prisioneiro de Azkabam entrará em pendência amanhã</h4>
+    </div>
+    <div class="sent">
+        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i><p>Recebida 13 horas atrás</p>
+    </div>
+</div>
+<div class="notif-item">
+    <div class="notif-title">
+        <h4><span class="blue-circle">•</span>Novidade: O livro A Culpa É Das Estrelas entrou em nosso catálogo</h4>
+    </div>
+    <div class="sent">
+        <i class="fa-regular fa-star" style="color: #43AA8B;"></i><p>Recebida 13 horas atrás</p>
+    </div>
+</div>
+<div class="notif-item">
+    <div class="notif-title">
+        <h4><span class="blue-circle">•</span>Novidade: O livro A Culpa É Das Estrelas entrou em nosso catálogo</h4>
+    </div>
+    <div class="sent">
+        <i class="fa-regular fa-star" style="color: #43AA8B;"></i><p>Recebida 13 horas atrás</p>
+    </div>
+</div>
+{% endblock content %}
