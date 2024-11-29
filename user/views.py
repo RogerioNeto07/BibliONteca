@@ -12,3 +12,6 @@ def Login(request):
 
 def Perfil(request):
     return render(request, "user/profile.html")
+
+def Notifications(request):
+    return render(request, "user/notifications.html")

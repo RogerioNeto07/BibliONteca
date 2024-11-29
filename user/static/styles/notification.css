@@ -1,0 +1,26 @@
+.notif-filter{
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+#general{
+    border-bottom: 5px solid #457B9D;
+}
+.notif-container{
+    border-bottom: 1px solid;
+}
+.notif-item{
+    border-bottom: 1px solid;
+    padding-bottom: 25px;
+}
+.blue-circle{
+    color: #457B9D;
+}
+.sent{
+    display: flex;
+    gap: 12px;
+}
+.notif-title{
+    display: flex;
+    gap: 8px;
+}
