@@ -13,7 +13,7 @@ export class SidebarGuest extends HTMLElement {
                 </div>
                 <div class="sidebar-item">
                     <div class="sidebar-item-icon">
-                        <img src="static/global/imgs/icon-home.png" alt="" class="sidebar-icon">
+                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>
                     </div>
                     <div class="sidebar-item-link">
                         <a href="" class="sidebar-link main-text white bold">Sair</a>
