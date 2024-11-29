@@ -36,9 +36,10 @@
 
 /* Tipográfia */
 
-h1, h2, h3, p, a{
+h1, h2, h3, p, a, ul{
     margin: 0;
     text-decoration: none;
+    list-style: none;
 }
 body, main{
     font-family: var(--font-secudary);

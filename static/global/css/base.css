@@ -30,13 +30,22 @@ main{
     grid-template-columns: 24px 1fr;
     margin: 18px;
 }
+.sub-menu-item{
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    margin: 4px;
+}
 .sidebar-icon{
     height: 24px;
 }
 .sidebar-link{
-    font-size: 18px;
     text-decoration: none;
     margin-left: 18px;
+}
+.sidebar-button{
+    all: unset;
+    margin-left: 18px;
+    cursor: pointer;
 }
 .sidebar-item-link, .sidebar-item-icon{
     display: flex;
