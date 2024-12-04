@@ -6,7 +6,7 @@ export class HeaderHome extends HTMLElement{
             <div class="header-content">
                 <div></div>
                 <div class="user-content">
-                    <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+                    <i class="fas fa-search"></i>
                     <div class="user-pic"></div>
                     <p class="username secundary-text">NomeUser</p>
                 </div>
