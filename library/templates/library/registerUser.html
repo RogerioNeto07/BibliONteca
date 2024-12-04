@@ -5,11 +5,11 @@
 
 {% block content-header %} <header-home></header-home>{% endblock content-header %}
 
+{% block extra_css %}<link rel="stylesheet" href="{% static 'library/css/register.css' %}">{% endblock extra_css %}
+
 {% block content %}
-<head>
-    <link rel="stylesheet" href="{% static 'library/css/register.css' %}">
-</head>
-    <h1 class="h1 regular tx-center marg-title">Cadastrar Usuário</h1>
+
+    <h1 class="h1 regular tx-center">Cadastrar Usuário</h1>
     <div class="form-register-row">
         <form class="form-register">
             <div class="column-left-form-register" >

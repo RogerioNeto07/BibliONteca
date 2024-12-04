@@ -69,6 +69,7 @@ body, main{
 
 /* cores */
 .white{ color: var(--color-white);}
+.red{ color: var(--color-red);}
 .bg-dark-blue{ background-color: var(--color-dar-blue);}
 .bg-blue { background-color: var(--color-blue-active); } 
 .bg-red{ background-color: var(--color-red);}

@@ -2,14 +2,14 @@
 export class SidebarLibrary extends HTMLElement{
     constructor(){
         super();
-        this.innerHTML=` 
+        this.innerHTML=`
             <div class="sidebar-options">
                 <div class="sidebar-item">
                     <div class="sidebar-item-icon">
                         <span class="material-icons icon">grid_view</span>
                     </div>
                     <div class="sidebar-item-link">
-                        <a href="/library/home" class="sidebar-link main-text white bold">Tela Inicial</a>
+                        <a href="" class="sidebar-link main-text white bold">Tela Inicial</a>
                     </div>
                 </div>
                 <div class="sidebar-item">
@@ -22,11 +22,11 @@ export class SidebarLibrary extends HTMLElement{
                     <div class="dropdown-sub-menu" id="dropdown-book" style="display: none;">
                         <div class="sub-menu-item">
                             <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="" class="sub-menu-item secundary-text white">Empréstar</a>
+                            <a href="/library/loan/book" class="sub-menu-item secundary-text white">Empréstar</a>
                         </div>
                         <div class="sub-menu-item">                     
                             <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="" class="sub-menu-item secundary-text white">Devolver</a>
+                            <a href="library/return/book" class="sub-menu-item secundary-text white">Devolver</a>
                         </div>
                         <div class="sub-menu-item">
                             <span class="material-icons sub-icon">subdirectory_arrow_right</span>
@@ -92,9 +92,9 @@ export class SidebarLibrary extends HTMLElement{
                 </div>
             </div>
         `;
-        
-        const content = document.getElementById('dropdown-book');
+
         const toggle = document.getElementById('toggle-book');
+        const content = document.getElementById('dropdown-book');
 
         toggle.addEventListener('click', () => {
          if (content.style.display === 'none'){
@@ -148,4 +148,5 @@ export class SidebarLibrary extends HTMLElement{
             loanState==='open' ? contentLoan.style.display = 'block': contentLoan.style.display = 'none';
         });
     }
+    
 }

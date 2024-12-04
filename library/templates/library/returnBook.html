@@ -1,0 +1,38 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content-sidebar %}<sidebar-library></sidebar-library>{% endblock content-sidebar %}
+
+{% block content-header %}<header-home></header-home>{% endblock content-header %}
+
+{% block extra_css %}<link rel="stylesheet" href="{% static 'library/css/form.css' %}">{% endblock extra_css %}
+
+{% block content %}
+
+    <h1 class="h1 regular tx-center marg-title">Empréstar Livro</h1>
+
+    <div class="form-columns">
+        <div class="column-left-form">
+            <div class="form-field">
+                <label for="cpf" class="form-label secundary-text bold">CPF:<span>*</span></label>
+                <input type="text" class="input secundary-text bold" id="cpf" placeholder="999.999.999-99">
+                <p class="secundary-text p-mrg">Nome do User deste CPF</p>
+            </div>
+            <div class="form-field">
+                <label for="isbn" class="form-label secundary-text bold">ISBN:<span>*</span></label>
+                <input type="text" class="input secundary-text bold" id="isbn" placeholder="999.999.999-99">
+            </div>
+            <div class="buttons-form">
+                <button class="bnt bg-red white">Cancelar</button>
+                <button class="bnt bg-green white">Cadastrar</button>
+            </div>
+        </div>
+        <div class="column-right-form">
+            <p class="secundary-text">Título do Livro</p>
+            <div class="img-book">
+                <p class="text-img secundary-text white">Capa do Livro</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
