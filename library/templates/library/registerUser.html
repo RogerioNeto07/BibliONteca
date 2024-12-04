@@ -1,0 +1,72 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content-sidebar %}<sidebar-library></sidebar-library>{% endblock content-sidebar %}
+
+{% block content-header %} <header-home></header-home>{% endblock content-header %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'library/css/register.css' %}">
+</head>
+    <h1 class="h1 regular tx-center marg-title">Cadastrar Usuário</h1>
+    <div class="form-register-row">
+        <form class="form-register">
+            <div class="column-left-form-register" >
+                <div class="login-container-rigth">
+                    <div class="form-field">
+                        <label for="name" class="form-label secundary-text bold">Nome:<span>*</span></label>
+                        <input type="name" class="input-form secundary-text bold" id="name" placeholder="Nome">
+                    </div>
+                    <div class="form-field">
+                        <label for="cpf" class="form-label secundary-text bold">CPF:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="cpf" placeholder="999.999.999-99">
+                    </div>
+                    <div class="form-field">
+                        <label for="Email" class="form-label secundary-text bold">Email:<span>*</span></label>
+                        <input type="Email" class="input-form secundary-text bold" id="Email" placeholder="exemple@email.com">
+                    </div>
+                    <div class="form-field">
+                        <label for="password" class="form-label secundary-text bold">Senha:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="password" placeholder="Senha">
+                    </div>
+                    <div class="form-field">
+                        <label for="confirm-password" class="form-label secundary-text bold">Confirmar senha:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="confirm-password" placeholder="Confirmar senha">
+                    </div>
+                </div>
+            </div>
+            <div class="column-rigth-form-register">
+                <div class="login-container-rigth">
+                    <div class="form-field">
+                        <label for="phone" class="form-label secundary-text bold">Telefone:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="phone" placeholder="(99) 99999-9999">
+                    </div>
+                    <div class="form-field">
+                        <label for="date" class="form-label secundary-text bold">Data de Nascimento:<span>*</span></label>
+                        <input type="date" class="input-form secundary-text bold" id="date" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="form-field">
+                        <label for="addrees" class="form-label secundary-text bold">Bairro:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="addres" placeholder="Bairro">
+                    </div>
+                    <div class="form-field-two">
+                        <div class="form-field f-width-one">
+                            <label for="road" class="form-label secundary-text bold">Rua:<span>*</span></label>
+                            <input type="text" class="input-form secundary-text bold width-one" id="road" placeholder="Rua">
+                        </div>
+                        <div class="form-field f-width-two">
+                            <label for="number-house" class="form-label secundary-text bold">Número:<span>*</span></label>
+                            <input type="number" class="input-form secundary-text bold width-two" id="number-house" placeholder="9999">
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </form>
+        <div class="buttons-form">
+            <button class="bnt bg-red white">Cancelar</button>
+            <button class="bnt bg-green white">Cadastrar</button>
+        </div>
+    </div>
+
+{% endblock content %}

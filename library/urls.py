@@ -3,4 +3,6 @@ from library import views
 
 urlpatterns = [
     path('home', views.home, name="libraryHome"),
+    path('register', views.register),
+    path('register/book', views.registerBook),
 ]

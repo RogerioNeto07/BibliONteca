@@ -8,22 +8,14 @@
     <link rel="stylesheet" href="{% static "global/css/global.css" %}">
     <link rel="stylesheet" href="{% static "user/css/index.css" %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
     {% block extra_css %}
     {% endblock %}
     
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div></div>
-            <div class="user-content">
-                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
-                <div class="user-pic"></div>
-                <p class="username secundary-text">NomeUser</p>
-            </div>
-        </div>
-    </header>
     <div class="page-layout">
         <div class="siderbar-wrapper-fixed bg-dark-blue">
             <div class="sidebar-menu bg-dark-blue">
@@ -35,7 +27,6 @@
         <div class="main-content">
             <div class="header-page">
                 {% block content-header %}
-                    
                 {% endblock content-header %}
             <div>
                 <hr class="line-divider bg-dark-blue">
@@ -43,9 +34,9 @@
             <main> 
                 {% block content %}
                 {% endblock content %}
-
             </main>
         </div>
     </div>
+    <script type="module" src="{% static "global/components/lib.js" %}"></script>
 </body>
 </html>

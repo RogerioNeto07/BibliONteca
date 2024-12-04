@@ -75,7 +75,6 @@ body, main{
 .bg-green{ background-color: var(--color-green);}
 
 /* botões */
-
 .bnt{
     width: var(--button-width);
     height: var(--button-height);
@@ -84,6 +83,7 @@ body, main{
     font-family: var(--font-primary);
     font-size: var(--font-size-main);
     font-weight: var(--font-bold);
+    cursor: pointer;
 }
 .bnt-login-page{ width: 360px;}
 .bnt-filter{
@@ -91,7 +91,7 @@ body, main{
     width: 120px;
 }
 /* form */
-input{
+input, textarea{
     height: var(--form-height);
     width: var(--form-width);
     border-radius: var(--border-radius);
@@ -112,3 +112,8 @@ span.alert{ color: var(--color-red);}
 .input-search{
     width: 400px;
 }
+span{ color: var(--color-red);}
+
+.input-search{ width: 400px;}
+.input-form{ width: 460px;}
+.tx-center{ text-align: center;}

@@ -1,0 +1,36 @@
+.form-register{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.width-one{ width: 318px;}
+.f-width-one{ width: 340px;}
+.width-two{ width: 120px;}
+.f-width-two{ width: 134px;}
+.form-field-two{
+    display: grid;
+    grid-template-columns: 340px 134px;
+    position: relative;
+}
+.form-register-row{
+    display: grid;
+    grid-template-rows: 1fr 60px;
+    text-align: center;
+}
+.form-field-three{
+    display: grid;
+    grid-template-columns: 164px 164px 164px;
+}
+.width-three{ width: 142px;}
+.f-width-three{ width: 142px;}
+button{ margin: 44px 16px;}
+h1{ margin: 44px 0 32px 0;}
+#description{ height: 204px;}
+
+textarea::placeholder{
+    font-family: var(--font-secudary);
+    padding-top: 4px;
+}
+input::placeholder{
+    align-items: center;
+    margin-top: 4px;
+}
