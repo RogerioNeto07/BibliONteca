@@ -18,3 +18,6 @@ def returnBook(request):
 
 def renewBook(request):
     return render(request, "library/renewBook.html")
+
+def listBooks(request):
+    return render(request, 'library/listBook.html')

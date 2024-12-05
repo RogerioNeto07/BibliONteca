@@ -8,4 +8,5 @@ urlpatterns = [
     path('emprestarLivro', views.loanBook, name="loanBook"),
     path('devolverLivro', views.returnBook, name="returnBook"),
     path('renovarLivro', views.renewBook, name="renewBook"),
+    path('listarLivros', views.listBooks, name="listBooks"),
 ]

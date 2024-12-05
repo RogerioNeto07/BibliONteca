@@ -39,7 +39,6 @@ main{
     display: flex;
     align-items: center;
 }
-
 .sidebar-link, .sidebar-button{
     text-decoration: none;
     margin-left: 8px;
@@ -102,4 +101,7 @@ main{
 .sub-menu-item:hover .sub-menu-item,
 .sub-menu-item:hover .sub-icon{
     color: #457B9D;
+}
+main{
+    width: 1000px;
 }

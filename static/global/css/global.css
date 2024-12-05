@@ -12,6 +12,7 @@
     --color-grey: #999999;
     --color-title: #264653;
     --color-primary: #4A4A4A;
+    --color-yellow: #F77F00;
 
     --font-primary: 'Montserrat', sans-serif;
     --font-secudary: 'Roboto', sans-serif;
@@ -70,6 +71,8 @@ body, main{
 /* cores */
 .white{ color: var(--color-white);}
 .red{ color: var(--color-red);}
+.yellow{ color: var(--color-yellow);}
+.blue{ color: var(--color-blue-active); } 
 .bg-dark-blue{ background-color: var(--color-dar-blue);}
 .bg-blue { background-color: var(--color-blue-active); } 
 .bg-red{ background-color: var(--color-red);}
@@ -90,6 +93,10 @@ body, main{
 .bnt-filter{
     height: 40px;
     width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
 }
 /* form */
 input, textarea{
@@ -114,7 +121,9 @@ span.alert{ color: var(--color-red);}
 
 .input-search{
     width: 400px;
+    border-radius: 12px;
 }
+
 span{ color: var(--color-red);}
 
 .input-search{ width: 400px;}
