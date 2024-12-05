@@ -1,0 +1,92 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content-sidebar %}<sidebar-library></sidebar-library>{% endblock content-sidebar %}
+
+{% block content-header %} <header-home></header-home>{% endblock content-header %}
+
+{% block extra_css %}<link rel="stylesheet" href="{% static 'library/css/register.css' %}">{% endblock extra_css %}
+
+{% block content %}
+
+    <h1 class="h1 regular tx-center">Cadastrar Livro</h1>
+    <div class="form-register-row">
+        <form class="form-register">
+            <div class="column-left-form-register" >
+                <div class="login-container-rigth">
+                    <div class="form-field">
+                        <label for="title" class="form-label secundary-text bold">Título:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="title" placeholder="Título">
+                    </div>
+                    <div class="form-field">
+                        <label for="sub-title" class="form-label secundary-text bold">Sub-Título:</label>
+                        <input type="text" class="input-form secundary-text bold" id="sub-title" placeholder="Sub-Título">
+                    </div>
+                    <div class="form-field-two">
+                        <div class="form-field f-width-one">
+                            <label for="publisher" class="form-label secundary-text bold">Editora:<span>*</span></label>
+                            <input type="text" class="input-form secundary-text bold width-one" id="publisher" placeholder="Editora">
+                        </div>
+                        <div class="form-field f-width-two">
+                            <label for="volume" class="form-label secundary-text bold">Volume:<span>*</span></label>
+                            <input type="text" class="input-form secundary-text bold width-two" id="volume" placeholder="Volume">
+                        </div>
+                    </div>
+                    <div class="form-field-two">
+                        <div class="form-field f-width-one">
+                            <label for="publisher" class="form-label secundary-text bold">ISBN:<span>*</span></label>
+                            <input type="text" class="input-form secundary-text bold width-one" id="publisher" placeholder="999-99-99-99999-9">
+                        </div>
+                        <div class="form-field f-width-two">
+                            <label for="amount" class="form-label secundary-text bold">Quantidade:<span>*</span></label>
+                            <input type="Number" class="input-form secundary-text bold width-two" id="amount" placeholder="Quantidade">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="category" class="form-label secundary-text bold">Categoria:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="category" placeholder="Categoria">
+                    </div>
+                </div>
+                <div class="form-field-three">
+                    <div class="form-field f-width-three">
+                        <label for="number-house" class="form-label secundary-text bold">Páginas:<span>*</span></label>
+                        <input type="number" class="input-form secundary-text bold width-three" id="number-house" placeholder="Quantidade">
+                    </div>
+                    <div class="form-field f-width-three">
+                        <label for="number-house" class="form-label secundary-text bold">Publicação:<span>*</span></label>
+                        <input type="number" class="input-form secundary-text bold width-three" id="number-house" placeholder="Ano">
+                    </div>
+                    <div class="form-field f-width-three">
+                        <label for="number-house" class="form-label secundary-text bold">Faixa Etária:<span>*</span></label>
+                        <input type="number" class="input-form secundary-text bold width-three" id="number-house" placeholder="Idade">
+                    </div>
+                </div>
+            </div>
+            <div class="column-rigth-form-register">
+                <div class="login-container-rigth">
+                    <div class="form-field">
+                        <label for="author" class="form-label secundary-text bold">Autor:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="author" placeholder="Autor">
+                    </div>
+                    <div class="form-field">
+                        <label for="language" class="form-label secundary-text bold">Idioma:<span>*</span></label>
+                        <input type="text" class="input-form secundary-text bold" id="language" placeholder="Autor">
+                    </div>
+                    <div class="form-field">
+                        <label for="image" class="form-label secundary-text bold">Imagem:<span>*</span></label>
+                        <input type="file" class="input-form secundary-text bold " style="line-height: 40px;" id="image">
+                    </div>
+                    <div class="form-field">
+                        <label for="description" class="form-label secundary-text bold">Descrição:<span>*</span></label>
+                        <textarea type="text" class="input-form secundary-text bold" id="description" placeholder="Descrição"></textarea>
+                    </div>
+                </div>  
+            </div>
+        </form>
+        <div class="buttons-form">
+            <button class="bnt bg-red white">Cancelar</button>
+            <button class="bnt bg-green white">Cadastrar</button>
+        </div>
+    </div>
+
+{% endblock content %}

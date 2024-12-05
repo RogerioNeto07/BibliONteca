@@ -5,18 +5,10 @@ export class SidebarGuest extends HTMLElement {
             <div class="sidebar-options">
                 <div class="sidebar-item">
                     <div class="sidebar-item-icon">
-                        <img src="static/global/imgs/icon-home.png" alt="" class="sidebar-icon">
+                        <span class="material-icons icon">grid_view</span>
                     </div>
                     <div class="sidebar-item-link">
                         <a href="" class="sidebar-link main-text white bold">Tela Inicial</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <a href="" class="sidebar-link main-text white bold">Sair</a>
                     </div>
                 </div>
             </div>

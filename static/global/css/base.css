@@ -23,12 +23,12 @@ main{
     padding: 40px 57px;
 }
 .sidebar-options{
-    padding: 0 48px 20px 48px;
+    padding: 0 44px 20px 44px;
 }
 .sidebar-item{
     display: grid;
     grid-template-columns: 24px 1fr;
-    margin: 18px;
+    margin: 10px;
 }
 .sub-menu-item{
     display: grid;
@@ -80,4 +80,15 @@ main{
     width: 100%;
     height: 1px;
     background-color: #457B9D;
+}
+.material-icons{ color: var(--color-white);}
+
+.sidebar-item:hover .icon,
+.sidebar-item:hover .sidebar-link,
+.sidebar-item:hover .sidebar-button{
+    color: #457B9D;
+}
+.sub-menu-item:hover .sub-menu-item,
+.sub-menu-item:hover .sub-icon{
+    color: #457B9D;
 }
