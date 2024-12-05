@@ -1,0 +1,61 @@
+.book-section {
+    margin-bottom: 2rem;
+    margin-top: 0.75rem;
+}
+
+.book-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.book-carousel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas uniformes */
+    gap: 1rem; /* Espaçamento entre os cards */
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o container na página */
+    padding: 1rem;
+}
+
+.book-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    max-width: 100%; /* Remove o width fixo para que o grid controle */
+}
+
+.book-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.book-card h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.book-card .status {
+    font-size: 0.875rem;
+    margin: 0.5rem 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.book-card .status.available {
+    background-color: #60f8ca;
+    color: #205243;
+}
+
+.book-card .status.unavailable {
+    background-color: #f8d7da;
+    color: #D62828;
+}
+
+.rating {
+    font-size: 0.875rem;
+    color: #ffc107;
+}

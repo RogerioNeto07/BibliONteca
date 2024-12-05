@@ -20,3 +20,6 @@ def Perfil(request):
 def Notifications(request):
     return render(request, "user/notifications.html")
     return render(request, "user/login.html")
+
+def Search(request):
+    return render(request, "user/search.html")
