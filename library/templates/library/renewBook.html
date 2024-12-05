@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    <h1 class="h1 regular tx-center marg-title">Devolver Livro</h1>
+    <h1 class="h1 regular tx-center marg-title">Renovar Livro</h1>
 
     <div class="form-columns">
         <div class="column-left-form">
@@ -21,6 +21,7 @@
                 <input type="text" class="input secundary-text bold" id="isbn" placeholder="999.999.999-99">
             </div>
             <div class="buttons-form">
+                <p class="main-text date-delivery red">Novo prazo para devolução - <span class="date"></span></p>
                 <button class="bnt bg-red white">Cancelar</button>
                 <button class="bnt bg-green white">Cadastrar</button>
             </div>
@@ -32,6 +33,8 @@
             </div>
         </div>
     </div>
-    
+
+    <script src="{% static "library/js/deliveryDate.js" %}"></script>
     <script> const userType = "library"; </script>
+
 {% endblock content %}

@@ -1,8 +1,6 @@
 {% extends "global/base.html" %}
 {% load static %}
 
-{% block content-sidebar %}<sidebar-library></sidebar-library>{% endblock content-sidebar %}
-
 {% block content-header %}<header-home></header-home>{% endblock content-header %}
 
 {% block extra_css %}<link rel="stylesheet" href="{% static 'library/css/form.css' %}">{% endblock extra_css %}
@@ -10,7 +8,6 @@
 {% block content %}
 
     <h1 class="h1 regular tx-center marg-title">Empréstar Livro</h1>
-
     <div class="form-columns">
         <div class="column-left-form">
             <div class="form-field">
@@ -37,5 +34,6 @@
     </div>
 
     <script src="{% static "library/js/deliveryDate.js" %}"></script>
+    <script> const userType = "library"; </script>
 
 {% endblock content %}

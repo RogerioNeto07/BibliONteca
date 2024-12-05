@@ -1,8 +1,6 @@
 {% extends "global/base.html" %}
 {% load static %}
 
-{% block content-sidebar %}<sidebar-library></sidebar-library>{% endblock content-sidebar %}
-
 {% block content-header %} <header-home></header-home>{% endblock content-header %}
 
 {% block extra_css %}<link rel="stylesheet" href="{% static 'library/css/register.css' %}">{% endblock extra_css %}
@@ -88,5 +86,6 @@
             <button class="bnt bg-green white">Cadastrar</button>
         </div>
     </div>
-
+    
+    <script> const userType = "library"; </script>
 {% endblock content %}
