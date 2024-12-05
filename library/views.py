@@ -15,3 +15,6 @@ def loanBook(request):
 
 def returnBook(request):
     return render(request, 'library/returnBook.html')
+
+def renewBook(request):
+    return render(request, "library/renewBook.html")

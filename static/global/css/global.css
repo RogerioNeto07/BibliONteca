@@ -2,7 +2,7 @@
 
 /* Variáveis */
 :root{
-    --color-white: #FFFFFF;
+    --color-white: #F1FAEE;
     --color-dar-blue: #1D3557;
     --color-red: #D62828;
     --color-green: #43AA8B;
@@ -30,8 +30,8 @@
 
     --border-radius: 5px;
 
-    --font-bold: 600;
-    --font-regular: 400;
+    --font-bold: 500;
+    --font-regular: 300;
 }
 
 /* Tipográfia */
@@ -109,7 +109,9 @@ input, textarea{
     width: 495px;
 }
 label{ text-align: left;}
+
 span.alert{ color: var(--color-red);}
+
 .input-search{
     width: 400px;
 }
@@ -118,3 +120,8 @@ span{ color: var(--color-red);}
 .input-search{ width: 400px;}
 .input-form{ width: 460px;}
 .tx-center{ text-align: center;}
+
+input:focus, textarea:focus{
+    border-color: var(--color-dar-blue);
+    outline: none;
+}
