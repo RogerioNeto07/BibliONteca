@@ -9,4 +9,8 @@ urlpatterns = [
     path('devolverLivro', views.returnBook, name="returnBook"),
     path('renovarLivro', views.renewBook, name="renewBook"),
     path('listarLivros', views.listBooks, name="listBooks"),
+    path('listarUsuarios', views.listUser, name="listUser"),
+    path('pendenciasUsuarios', views.pendenceUser, name="pendenceUser"),
+    path('todosEmprestimos', views.allLoans, name="allLoans"),
+    path('emprestimosPendentes', views.pendences_book, name="pendencesBook"),
 ]
