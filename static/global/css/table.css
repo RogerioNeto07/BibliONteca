@@ -100,6 +100,6 @@ input::placeholder{
     flex-direction: row;
     align-items: center;
 }
-.table-img{
+.table-img, .table-img-loans{
     height: 48px;
 }

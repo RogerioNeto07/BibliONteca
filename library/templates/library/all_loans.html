@@ -1,0 +1,66 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="header-content-filter">
+    <h1 class="h1 regular">Usúarios com Pendências</h1>
+    <div class="content-filter-right">
+        <button class="bnt bnt-filter bg-dark-blue white">Filtrar<i class="material-icons">filter_alt</i>
+        </button>
+        <div class="input-coat">
+            <input type="text" placeholder="Pesquisar" class="input-search">
+            <i class="material-icons blue search-icon">search</i>
+        </div>
+    </div>
+</div>
+<table class="table-list loan bg-blue" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Situação</th>
+            <th>Livro</th>
+            <th>Usuário</th>
+            <th>Empréstimo</th>
+            <th>Dias em Atraso</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Regular</td>
+            <td>É Assim que Acaba</td>
+            <td>999.999.999-99</td>
+            <td>05/11/2024</td>
+            <td>20 dias</td>
+            <td>
+                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
+                <a href=""><span class="material-icons green tab-icon">edit_note</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>Regular</td>
+            <td>É Assim que Acaba</td>
+            <td>999.999.999-99</td>
+            <td>05/11/2024</td>
+            <td>20 dias</td>
+            <td>
+                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
+                <a href=""><span class="material-icons green tab-icon">edit_note</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>Regular</td>
+            <td>É Assim que Acaba</td>
+            <td>999.999.999-99</td>
+            <td>05/11/2024</td>
+            <td>20 dias</td>
+            <td>
+                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
+                <a href=""><span class="material-icons green tab-icon">edit_note</span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script> const userType = "library"; </script>
+
+{% endblock content %}

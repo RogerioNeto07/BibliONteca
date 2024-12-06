@@ -28,3 +28,9 @@ def listUser(request):
 
 def pendenceUser(request):
     return render(request, 'library/pendence_user.html')
+
+def allLoans(request):
+    return render(request, 'library/all_loans.html')
+
+def pendences_book(request):
+    return render(request, 'library/pendences_book.html')
