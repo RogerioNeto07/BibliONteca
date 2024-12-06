@@ -1,9 +1,6 @@
-* {
-    margin: 0;
-}
-
 .content-detail {
     display: flex;
+    margin-top: 34px;
     align-items: stretch;
     gap: 20px;
     padding-bottom: 32px;
@@ -56,6 +53,7 @@
     width: 180px;
     height: 250px;
     margin-right: 16px;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
 }
 
 hr {
@@ -95,16 +93,13 @@ hr {
     margin-right: 10px;
 }
 
-.comment-rating {
-    font-size: 12px;
-    color: #f4b400 !important;
-    margin-left: 20px;
-}
-
 .star-rating {
     font-size: 16px;
+    color: #f4b400;
 }
-
+span .main-text{
+    color: #f4b400;
+}
 .comment-text {
     font-size: 14px;
     color: #555;

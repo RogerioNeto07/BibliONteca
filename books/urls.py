@@ -3,4 +3,5 @@ from books import views
 
 urlpatterns = [
     path('detalhe/', views.ViewDetailBook, name="detail-books"),
+    path('feedback/', views.ViewFeedbackBook, name='feedback-book'),
     ]
