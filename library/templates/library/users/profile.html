@@ -1,0 +1,86 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "library/css/pendences_details.css" %}">
+{% endblock extra_css %}
+{% block content %}
+
+    <h1 class="h1 regular tx-center">Perfil</h1>
+    <div class="content-pendences-details-columns">
+        <div class="column-left-details">
+            <img class="img-details-pendences-user" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1SBbmMqfSTqnrUozfpkZkmj8kcBO3NW8GY-8wx0u3-7LSZGs7CG23S_pNN0j7LhhadTQ&usqp=CAU" alt="">
+        </div>
+        <div class="column-left-details">
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <div class="row-flex">
+                        <h1 class="h3 dark-grey bold">Dados do Usuário</h1>
+                        <i class="material-icons icon blue">edit_note</i>
+                    </div>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Nome: </p>
+                            <p class="main-text bold dark-grey">Maria Raimunda de Sousa Dias</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Email: </p>
+                            <p class="main-text bold dark-grey">raimumaria@gmail.com</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Data de Nascimento: </p>
+                            <p class="main-text bold dark-grey">20/04/2003</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">CPF: </p>
+                            <p class="main-text bold dark-grey">999.999.999-99</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Telefone: </p>
+                            <p class="main-text bold dark-grey">(99) 99999-9999</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="column-right-details">
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <h1 class="h3 dark-grey bold">Endereço</h1>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Endereço: </p>
+                            <p class="main-text bold dark-grey">Rua Fulana de Tal, n° 56</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Cidade: </p>
+                            <p class="main-text bold dark-grey">Pau dos Ferros</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Bairro: </p>
+                            <p class="main-text bold dark-grey">Centro</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script> const userType = "library"; </script>
+
+{% endblock content %}

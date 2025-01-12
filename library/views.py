@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return render(request, "library/books/index.html")
+    return render(request, "library/index.html")
 
 def register(request):
     return render(request, "library/users/register_user.html")
@@ -31,5 +31,14 @@ def pendenceUser(request):
 def allLoans(request):
     return render(request, 'library/loans/all_loans.html')
 
-def pendences_book(request):
+def pendencesBook(request):
     return render(request, 'library/loans/pendences_book.html')
+
+def detailsPendencesUser(request):
+    return render(request, 'library/details/details_pendences_user.html')
+
+def detailsPendencesBook(request):
+    return render(request, 'library/details/details_pendences_books.html')
+
+def profile(request):
+    return render(request, 'library/users/profile.html')

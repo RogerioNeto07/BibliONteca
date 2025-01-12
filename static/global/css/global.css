@@ -9,7 +9,7 @@
     --color-blue-active: #457B9D;
     --color-buttom: #F5F5F5;
     --color-border-input: #D3D3D3;
-    --color-grey: #999999;
+    --color-grey: #828282;
     --color-title: #264653;
     --color-primary: #4A4A4A;
     --color-yellow: #F77F00;
@@ -45,7 +45,6 @@ h1, h2, h3, p, a, ul{
 body, main{
     font-family: var(--font-secudary);
     background-color: var(--color-buttom);
-    margin: auto;
     color: var(--color-primary);
 }
 .h1{
@@ -74,6 +73,9 @@ body, main{
 .yellow{ color: var(--color-yellow);}
 .green{ color: var(--color-green);}
 .blue{ color: var(--color-blue-active); } 
+.grey{ color: var(--color-grey); }
+.dark-grey{ color: var(--color-primary);} 
+.bg-dark-grey{ background-color: var(--color-primary);} 
 .bg-dark-blue{ background-color: var(--color-dar-blue);}
 .bg-blue { background-color: var(--color-blue-active); } 
 .bg-red{ background-color: var(--color-red);}

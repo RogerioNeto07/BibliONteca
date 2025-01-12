@@ -1,3 +1,6 @@
+table{
+    border-style: none;
+}
 .table-list{
    width: 100%;
    border-top-left-radius: 12px;

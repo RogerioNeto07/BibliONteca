@@ -3,10 +3,9 @@
 
 {% block content %}
 <div class="header-content-filter">
-    <h1 class="h1 regular">Usuários com Pendências</h1>
+    <h1 class="h1 regular">Empréstimos Pendentes</h1>
     <div class="content-filter-right">
-        <button class="bnt bnt-filter bg-dark-blue white">Filtrar<i class="material-icons">filter_alt</i>
-        </button>
+        <button class="bnt bnt-filter bg-dark-blue white">Filtrar<i class="material-icons">filter_alt</i></button>
         <div class="input-coat">
             <input type="text" placeholder="Pesquisar" class="input-search">
             <i class="material-icons blue search-icon">search</i>
@@ -32,7 +31,7 @@
             <td>05/12/2024</td>
             <td>20 dias</td>
             <td>
-                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
+                <a href="{% url "detailsPendencesBook" %}"><span class="material-icons blue tab-icon">visibility</span></a>
                 <a href=""><span class="material-icons yellow tab-icon">notifications</span></a>
             </td>
         </tr>
@@ -43,7 +42,7 @@
             <td>05/12/2024</td>
             <td>20 dias</td>
             <td>
-                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
+                <a href="{% url "detailsPendencesUser" %}"><span class="material-icons blue tab-icon">visibility</span></a>
                 <a href=""><span class="material-icons yellow tab-icon">notifications</span></a>
             </td>
         </tr>

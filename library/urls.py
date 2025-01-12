@@ -12,5 +12,8 @@ urlpatterns = [
     path('listarUsuarios', views.listUser, name="listUser"),
     path('pendenciasUsuarios', views.pendenceUser, name="pendenceUser"),
     path('todosEmprestimos', views.allLoans, name="allLoans"),
-    path('emprestimosPendentes', views.pendences_book, name="pendencesBook"),
+    path('emprestimosPendentes', views.pendencesBook, name="pendencesBook"),
+    path('detalhesPendenciasUsuarios', views.detailsPendencesUser, name="detailsPendencesUser"),
+    path('detalhesPendenciasLivros', views.detailsPendencesBook, name="detailsPendencesBook"),
+    path('perfil', views.profile, name='profile'),
 ]

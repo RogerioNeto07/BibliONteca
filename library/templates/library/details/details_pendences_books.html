@@ -1,0 +1,75 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "library/css/pendences_details.css" %}">
+{% endblock extra_css %}
+{% block content %}
+
+    <h1 class="h1 regular tx-center">Pendências do Livro</h1>
+    <div class="content-pendences-details-columns">
+        <div class="column-left-details">
+            <img class="img-details-pendences" src="https://m.media-amazon.com/images/I/81ibfYk4qmL._AC_UF1000,1000_QL80_.jpg" alt="">
+        </div>
+        <div class="column-right-details">
+            <div class="row-column-top-details">
+                <div class="main-informations-book">
+                    <h1 class="h2 bold">Harry Potter</h1> 
+                    <h1 class="h3 bold">Harry Potter e a Pedra Filosofal</h1>
+                    <h1 class="h3 bold grey">J.K. Rowling</h1>     
+                </div>  
+                <div class="general-informations-book">
+                    <p class="secundary-text bold dark-grey">Páginas: 352, PT-BR</p>
+                    <p class="secundary-text bold dark-grey">ISBN: 9780751565362</p>
+                    <p class="secundary-text bold dark-grey">Ano de Publicação: 2017</p>
+                </div>        
+            </div>
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <h1 class="h3">Dados do Empréstimo</h1>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Empréstado para: </p>
+                            <p class="main-text bold dark-grey">Maria Raimunda de Sousa Dias</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Email: </p>
+                            <p class="main-text bold dark-grey">raimumaria@gmail.com</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Data de Empréstimo: </p>
+                            <p class="main-text bold dark-grey">06/12/2024</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">CPF: </p>
+                            <p class="main-text bold dark-grey">999.999.999-99</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Telefone: </p>
+                            <p class="main-text bold dark-grey">(99) 99999-9999</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Quantidade de dias em Atraso:</p>
+                            <p class="main-text bold dark-grey">16 dias</p>
+                            <hr class="line-content-column bg-dark-grey">
+                    </div>
+                </div>
+            </div>
+            <div class="row-buttons">
+                <button class="bnt bnt-blue">Detalhar</button>
+                <button class="bnt bnt-green">Notificar</button>
+            </div>
+        </div>
+    </div>
+<script> const userType = "library"; </script>
+
+{% endblock content %}
