@@ -23,3 +23,6 @@ def Notifications(request):
 
 def Search(request):
     return render(request, "user/search.html")
+
+def Bookhistory(request):
+    return render(request, "user/bookhistory.html")
