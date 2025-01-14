@@ -1,112 +1,110 @@
-.form-columns{
+.form-columns {
     display: grid;
-    grid-template-columns: 75% 25%;
-    width: 100%;
+    grid-template-columns: 38rem 16rem;
+    gap: 2rem;
 }
-h1{ margin: 5% 0 3% 0;}
-.input{ width: 95%;}
-.form-field{ width: 100%;}
-.column-right-form, .buttons-form{ 
+
+h1 {
+    margin: 2.75rem 0 2rem 0;
+}
+
+.input {
+    width: 38rem;
+}
+
+.column-right-form,
+.buttons-form {
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
-.img-book{
+
+.img-book {
     background-color: gray;
-    width: 100%;
-    height: 290px;
+    width: 15.625rem;
+    height: 18.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5% 0;
+    margin: 0.75rem 0;
 }
-button{ margin: 3% 2%;}
-.date-delivery{ margin-top: 5%;}
-.p-mrg{ margin-bottom: 2%;}
 
-@media (max-width: 1200px){
-    .form-columns{
-        grid-template-columns: 75% 25%;
-        width: 90%;
-        margin: auto;
-    } 
+button {
+    margin: 2rem 1rem;
 }
+
+.date-delivery {
+    margin-top: 2rem;
+}
+
+.p-mrg {
+    margin-bottom: 0.625rem;
+}
+.form-field{
+    width: 38rem;
+}
+
 @media (max-width: 1024px) {
-    .form-columns{
-        grid-template-columns: 75% 25%;
-        width: 90%;
-        margin: auto;
-    } 
-}
-@media (max-width: 800px) {
-    .form-columns{
-        grid-template-columns: 1fr;
-        width: 90%;
-        margin: auto;
+    .form-columns {
+        grid-template-columns: 65% 35%;
     }
-    .img-book{
-        width: 25%;
-        margin: 2%;
-        order: 1;
-    }
-    .title-loanBook{
-        margin: 2%;
-        font-size: 32px;
-        order: 2;
-    }
-    button{
-        margin: 2% 1%;
-    }
-    .column-right-form{
-        display: flex;
-        flex-direction: row;
-    }
-}
-@media (max-width: 600px) {
-    .form-columns{
-        grid-template-columns: 1fr;
+
+    .form-field {
         width: 95%;
-        margin: auto;
     }
-    .img-book{
-        width: 25%;
-        margin: 2%;
-        order: 1;
+    .input{
+        width: 100%;
     }
-    .title-loanBook{
-        margin: 2%;
-        font-size: 32px;
-        order: 2;
-    }
-    button{
-        margin: 2% 1%;
-    }
-    .column-right-form{
-        display: flex;
-        flex-direction: row;
+
+    button {
+        margin: 1.5rem 0.5rem;
     }
 }
-@media (max-width: 400px) {
-    .form-columns{
+
+@media (max-width: 768px) {
+    .form-columns {
         grid-template-columns: 1fr;
-        width: 90%;
-        margin: auto;
     }
-    .img-book{
-        width: 30%;
-        margin: 2%;
-        order: 1;
+
+    .input {
+        width: 95%;
     }
-    .title-loanBook{
-        margin: 2%;
-        font-size: 28px;
-        order: 2;
-    }
-    button{
-        margin: 2% 1%;
-    }
-    .column-right-form{
+
+    .img-book {
         width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        margin: 2rem 0 1.5rem 0;
+    }
+
+    button {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-columns {
         display: flex;
         flex-direction: column;
-        align-items: center;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .img-book {
+        width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    button {
+        margin: 1rem auto;
     }
 }

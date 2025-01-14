@@ -21,140 +21,142 @@
 <body>
     <!--Adicionar um IF para filtrar qual sidebar mostrar-->
     <div id='sidebar-menu' class="sidebar-menu bg-dark-blue">
-        <img class="sidebar-logo" src="{% static "global/imgs/logo.png" %}" alt="">
+        <div class="fixo" style="position: fixed;">
+            <img class="sidebar-logo" src="{% static "global/imgs/logo.png" %}" alt="">
 
-        <div id="sidebar-guest">
-            <div class="sidebar-options">
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">grid_view</span>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <a href="" class="sidebar-link main-text white bold">Tela Inicial</a>
+            <div id="sidebar-guest">
+                <div class="sidebar-options">
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">grid_view</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <a href="" class="sidebar-link main-text white bold">Tela Inicial</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="sidebar-user">
-            <div class="sidebar-options">
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">grid_view</span>
+            <div id="sidebar-user">
+                <div class="sidebar-options">
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">grid_view</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <a href="{% url "home" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
+                        </div>
                     </div>
-                    <div class="sidebar-item-link">
-                        <a href="{% url "home" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">menu_book</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <a href="" class="sidebar-link main-text white bold">Empréstimos</a>
+                        </div>
                     </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">menu_book</span>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <a href="" class="sidebar-link main-text white bold">Empréstimos</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <i class="material-icons icon">logout</i>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <a href="" class="sidebar-link main-text white bold">Sair</a>
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <i class="material-icons icon">logout</i>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <a href="" class="sidebar-link main-text white bold">Sair</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="sidebar-library">
-            <div class="sidebar-options">
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">grid_view</span>
+            <div id="sidebar-library">
+                <div class="sidebar-options">
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">grid_view</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <a href="{% url "home" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
+                        </div>
                     </div>
-                    <div class="sidebar-item-link">
-                        <a href="{% url "home" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">menu_book</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <button id="toggle-book" class="sidebar-button main-text white bold">Livros</button>
+                        </div>
+                        <div class="dropdown-sub-menu" id="dropdown-book" style="display: none;">
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "loanBook" %}" class="sub-menu-link secundary-text white">Empréstar</a>
+                            </div>
+                            <div class="sub-menu-item">                     
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "returnBook" %}" class="sub-menu-link secundary-text white">Devolver</a>
+                            </div>
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "renewBook" %}" class="sub-menu-link secundary-text white">Renovar</a>
+                            </div>
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "regirterBook" %}" class="sub-menu-link secundary-text white">Adicionar</a>
+                            </div>
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "listBooks" %}" class="sub-menu-link secundary-text white">Listar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">person</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <button id="toggle-user" class="sidebar-button main-text white bold">Usuários</button>
+                        </div>
+                        <div class="dropdown-sub-menu" id="dropdown-user" style="display: none;">
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "registerUser" %}" class="sub-menu-link secundary-text white">Cadastro</a>
+                            </div>
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "listUser" %}" class="sub-menu-link secundary-text white">Listagem</a>
+                            </div>
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "pendenceUser" %}" class="sub-menu-link secundary-text white">Pendências</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <span class="material-icons icon">menu_book</span>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <button href="" id="toggle-loan" class="sidebar-button main-text white bold">Empréstimos</button>
+                        </div>
+                        <div class="dropdown-sub-menu" id="dropdown-loan" style="display: none;">
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "allLoans" %}" class="sub-menu-link secundary-text white">Todos</a>
+                            </div>
+                            <div class="sub-menu-item">
+                                <span class="material-icons sub-icon">subdirectory_arrow_right</span>
+                                <a href="{% url "pendencesBook" %}" class="sub-menu-link secundary-text white">Pendentes</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-icon">
+                            <i class="material-icons icon">logout</i>
+                        </div>
+                        <div class="sidebar-item-link">
+                            <a href="" class="sidebar-link main-text white bold">Sair</a>
+                        </div>
                     </div>
                 </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">menu_book</span>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <button id="toggle-book" class="sidebar-button main-text white bold">Livros</button>
-                    </div>
-                    <div class="dropdown-sub-menu" id="dropdown-book" style="display: none;">
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "loanBook" %}" class="sub-menu-link secundary-text white">Empréstar</a>
-                        </div>
-                        <div class="sub-menu-item">                     
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "returnBook" %}" class="sub-menu-link secundary-text white">Devolver</a>
-                        </div>
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "renewBook" %}" class="sub-menu-link secundary-text white">Renovar</a>
-                        </div>
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "regirterBook" %}" class="sub-menu-link secundary-text white">Adicionar</a>
-                        </div>
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "listBooks" %}" class="sub-menu-link secundary-text white">Listar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">person</span>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <button id="toggle-user" class="sidebar-button main-text white bold">Usuários</button>
-                    </div>
-                    <div class="dropdown-sub-menu" id="dropdown-user" style="display: none;">
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "registerUser" %}" class="sub-menu-link secundary-text white">Cadastro</a>
-                        </div>
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "listUser" %}" class="sub-menu-link secundary-text white">Listagem</a>
-                        </div>
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "pendenceUser" %}" class="sub-menu-link secundary-text white">Pendências</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <span class="material-icons icon">menu_book</span>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <button href="" id="toggle-loan" class="sidebar-button main-text white bold">Empréstimos</button>
-                    </div>
-                    <div class="dropdown-sub-menu" id="dropdown-loan" style="display: none;">
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "allLoans" %}" class="sub-menu-link secundary-text white">Todos</a>
-                        </div>
-                        <div class="sub-menu-item">
-                            <span class="material-icons sub-icon">subdirectory_arrow_right</span>
-                            <a href="{% url "pendencesBook" %}" class="sub-menu-link secundary-text white">Pendentes</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-icon">
-                        <i class="material-icons icon">logout</i>
-                    </div>
-                    <div class="sidebar-item-link">
-                        <a href="" class="sidebar-link main-text white bold">Sair</a>
-                    </div>
-                </div>
-            </div>
-        </div>           
+            </div>      
+        </div>     
     </div>
 
     <div class="button-wrapper">
@@ -184,7 +186,7 @@
                 <img class="sidebar-logo-footer" src="{% static 'global/imgs/logoBibliONteca.png' %}" alt="">
             </div>
             <hr class="line-footer bg-dark-blue">
-            <p style="text-align: center;">@Copyright - Biblionteca</p>
+            <p class="copyright" style="text-align: center;">@Copyright - Biblionteca</p>
         </footer>
     </div>
 

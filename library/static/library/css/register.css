@@ -1,37 +1,49 @@
-.form-register{
+.form-register {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 27rem 27rem;
+    gap: 2rem;
 }
-.width-one{ width: 318px;}
-.f-width-one{ width: 340px;}
-.width-two{ width: 120px;}
-.f-width-two{ width: 134px;}
-.form-field-two{
+
+.width-one { width: 17rem; }
+.f-width-one { width: 20rem; }
+.width-two { width: 7rem; }
+.f-width-two { width: 8rem; }
+
+.form-field-two {
     display: grid;
-    grid-template-columns: 340px 134px;
+    grid-template-columns: 17rem 8rem;
+    gap: 2rem;
     position: relative;
 }
-.form-register-row{
+
+.form-register-row {
     display: grid;
-    grid-template-rows: 1fr 60px;
+    grid-template-rows: auto auto;
     text-align: center;
 }
-.form-field-three{
-    display: grid;
-    grid-template-columns: 164px 164px 164px;
-}
-.width-three{ width: 142px;}
-.f-width-three{ width: 142px;}
-button{ margin: 44px 16px;}
-h1{ margin: 44px 0 32px 0;}
-#description{ height: 204px;}
 
-textarea::placeholder{
+.form-field-three {
+    display: grid;
+    grid-template-columns: 8rem 8rem 8rem;
+    gap: 1.4rem;
+}
+
+.width-three { width: 7.2rem; }
+.f-width-three { width: 8rem; }
+
+button { margin: 2.75rem 1rem; }
+h1 { margin: 2.75rem 0 2rem 0; }
+
+#description { height: 12.75rem; }
+
+textarea::placeholder {
     font-family: var(--font-secudary);
-    padding-top: 4px;
+    padding-top: 0.25rem;
 }
-input::placeholder{
+
+input::placeholder {
     align-items: center;
-    margin-top: 4px;
+    margin-top: 0.25rem;
 }
-.sidebarLibrary{ display: block;}
+
+.sidebarLibrary { display: block; }
