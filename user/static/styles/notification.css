@@ -15,6 +15,7 @@
 }
 .blue-circle{
     color: #457B9D;
+    margin-right: 5px;
 }
 .sent{
     display: flex;

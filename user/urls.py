@@ -9,6 +9,7 @@ urlpatterns = [
     path('profile', views.Perfil),
     path('notifications', views.Notifications),
     path('pesquisa', views.Search),
+    path('history', views.Bookhistory),
 ]
 
 

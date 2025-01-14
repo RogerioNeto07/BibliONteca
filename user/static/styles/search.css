@@ -7,55 +7,74 @@
     font-size: 1.25rem;
     margin-bottom: 1rem;
 }
-
-.book-carousel {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 colunas uniformes */
-    gap: 1rem; /* Espaçamento entre os cards */
-    max-width: 1200px;
-    margin: 0 auto; /* Centraliza o container na página */
-    padding: 1rem;
-}
-
 .book-card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    padding: 0.6875rem;
     text-align: center;
-    max-width: 100%; /* Remove o width fixo para que o grid controle */
+    width: 137.5px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.34375rem;
 }
 
 .book-card img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    max-height: 178.75px;
+    object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 0.5rem;
 }
 
 .book-card h3 {
-    font-size: 1rem;
-    margin: 0.5rem 0;
+    font-size: 0.6875rem;
+    margin: 0.34375rem 0;
+    line-height: 1.2;
+    text-align: center;
 }
 
 .book-card .status {
-    font-size: 0.875rem;
-    margin: 0.5rem 0;
-    padding: 0.25rem 0.5rem;
+    font-size: 0.55rem;
+    margin: 0.34375rem 0;
+    padding: 0.1375rem 0.34375rem;
     border-radius: 4px;
-}
-
-.book-card .status.available {
-    background-color: #60f8ca;
-    color: #205243;
-}
-
-.book-card .status.unavailable {
-    background-color: #f8d7da;
-    color: #D62828;
+    white-space: nowrap;
 }
 
 .rating {
-    font-size: 0.875rem;
+    font-size: 0.55rem;
     color: #ffc107;
+}
+
+.stars {
+    color: gold;
+    font-size: 15px;
+}
+
+.book-carousel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.6875rem;
+    max-width: 825px;
+    margin: 0 auto;
+    padding: 0.6875rem;
+}
+
+@media (max-width: 1024px) {
+    .book-carousel {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .book-carousel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.515625rem;
+    }
+
+    .book-card {
+        width: 123.75px;
+    }
 }
