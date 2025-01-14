@@ -46,7 +46,8 @@ button {
 
 @media (max-width: 1024px) {
     .form-columns {
-        grid-template-columns: 65% 35%;
+        grid-template-columns: 70% 30%;
+        gap: 0;
     }
 
     .form-field {
@@ -55,19 +56,29 @@ button {
     .input{
         width: 100%;
     }
-
-    button {
-        margin: 1.5rem 0.5rem;
+    .img-book{
+        width: 12rem;
+        height: 15rem;
+    }
+    .bnt {
+        margin: 1rem;
+        width: 12rem;
     }
 }
 
 @media (max-width: 768px) {
     .form-columns {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
-
-    .input {
+    .h1{
+        font-size: 1.6rem;
+    }
+    .form-field {
         width: 95%;
+    }
+    .input {
+        width: 100%;
     }
 
     .img-book {
@@ -79,9 +90,17 @@ button {
         margin: 2rem 0 1.5rem 0;
     }
 
-    button {
-        margin: 1rem 0;
+    .bnt {
+        margin: 1rem;
+        width: 12rem;
     }
+    .buttons-form{
+        order: 2;
+    }
+    .column-right-form{
+        order: 1;
+    }
+    
 }
 
 @media (max-width: 480px) {
