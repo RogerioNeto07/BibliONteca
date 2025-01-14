@@ -1,82 +1,86 @@
 {% extends "global/base.html" %}
 {% load static %}
-
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <link rel="stylesheet" href="{% static "library/css/pendences_details.css" %}">
+{% endblock extra_css %}
+{% block content %}
 
-{% endblock %}
-{% block content-sidebar %}
-    <sidebar-user></sidebar-user>
-{% endblock content-sidebar %}
-{% block content-header %}
-        <div class="header-content">
-            <div class="profile">
-            <h1>Perfil</h1>
+    <h1 class="h1 regular tx-center">Perfil</h1>
+    <div class="content-pendences-details-columns">
+        <div class="column-left-details">
+            <img class="img-details-pendences-user" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1SBbmMqfSTqnrUozfpkZkmj8kcBO3NW8GY-8wx0u3-7LSZGs7CG23S_pNN0j7LhhadTQ&usqp=CAU" alt="">
+        </div>
+        <div class="column-left-details">
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <div class="row-flex">
+                        <h1 class="h3 dark-grey bold">Dados do Usuário</h1>
+                        <i class="material-icons icon blue">edit_note</i>
+                    </div>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Nome: </p>
+                            <p class="main-text bold dark-grey">Maria Raimunda de Sousa Dias</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Email: </p>
+                            <p class="main-text bold dark-grey">raimumaria@gmail.com</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Data de Nascimento: </p>
+                            <p class="main-text bold dark-grey">20/04/2003</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">CPF: </p>
+                            <p class="main-text bold dark-grey">999.999.999-99</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Telefone: </p>
+                            <p class="main-text bold dark-grey">(99) 99999-9999</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="user-content">
-                <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+        <div class="column-right-details">
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <h1 class="h3 dark-grey bold">Endereço</h1>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Endereço: </p>
+                            <p class="main-text bold dark-grey">Rua Fulana de Tal, n° 56</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Cidade: </p>
+                            <p class="main-text bold dark-grey">Pau dos Ferros</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Bairro: </p>
+                            <p class="main-text bold dark-grey">Centro</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-{% endblock content-header %}
-{% block content %} 
-
-<div class="profile-container">
-    <div class="profile-image">
-        <img src="static\img\avamax.jpg" alt="maria Raimunda">
     </div>
-    <div class="profile-data">
-        <div class="general-data-container">
-        <div class="general-data">
-            <h2>Dados Gerais <i class="fa-regular fa-pen-to-square" style="color: #F77F00;"></i></h2>
-        </div>
-        <div class="data-row">
-            <div class="data-col">
-                <h5>Nome:</h5>
-                <p>Maria Raimunda de Sousa Dias</p>
-            </div>
-            <div class="data-col">
-                <h5>CPF:</h5>
-                <p>000.000.000-00</p>
-            </div>
-        </div>
-        <div class="data-row">
-            <div class="data-col">
-                <h5>Email:</h5>
-                <p>raimumaria@gmail.com</p>
-            </div>
-            <div class="data-col">
-                <h5>Telefone:</h5>
-                <p>(84) 99999-9999</p>
-            </div>
-        </div>
-        <div class="data-row">
-            <div class="data-col">
-                <h5>Data de Nascimento:</h5>
-                <p>10/11/1977</p>
-            </div>
-        </div>
-    </div>
-        <div class="adress">
-            <h2>Endereço</h2>
-        </div>
-        <div class="data-row">
-            <div class="data-col">
-                <h5>Rua:</h5>
-                <p>Rua Fulano Ciclano</p>
-            </div>
-            <div class="data-col">
-                <h5>Bairro:</h5>
-                <p>Centro</p>
-            </div>
-        </div>
-        <div class="data-row">
-            <div class="data-col">
-                <h5>Cidade:</h5>
-                <p>Pau dos Ferros - RN</p>
-            </div>
-        </div>
-    </div>
-</div>
-
+<script> const userType = "library"; </script>
 
 {% endblock content %}
