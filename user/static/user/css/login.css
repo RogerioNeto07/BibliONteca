@@ -1,22 +1,63 @@
-body{
+body {
     margin: auto;
     padding: auto;
 }
-.login-container{
+
+.login-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
 }
-.login-container-left, .login-container-rigth{
-    height: 100vh;
+
+.login-container-left, .login-container-rigth {
     padding: 140px 76px 0 76px;
     text-align: center;
 }
-.logo-login{
-    width: 400px;
-    height: 100px;
+
+.logo-login {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
     margin-bottom: 12px;
 }
-.margin-text{ margin: 32px 0;}
-.title-login{ margin-bottom: 44px;}
-.bnt-login{ margin-top: 44px;}
+
+.margin-text {
+    margin: 32px 0;
+}
+
+.title-login {
+    margin-bottom: 44px;
+}
+
+.bnt-login {
+    margin-top: 44px;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .login-container-left, .login-container-rigth {
+        padding: 40px 20px;
+    }
+
+    .logo-login {
+        max-width: 200px;
+    }
+
+    .margin-text {
+        margin: 16px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container-left, .login-container-rigth {
+        padding: 20px;
+    }
+
+    .logo-login {
+        max-width: 150px;
+    }
+}
