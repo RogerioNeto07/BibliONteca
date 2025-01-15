@@ -147,3 +147,36 @@ button {
         font-size: 0.8rem;
     }
 }
+@media (max-width: 320px){
+    .h1 {
+        font-size: 1.3rem;
+    }
+
+    .form-field {
+        width: 100%;
+    }
+
+    .input {
+        width: 16rem;
+        margin: 0.4rem 0;
+    }
+    input::placeholder{
+        font-size: 0.8rem;
+    }
+    .main-text{
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+    }
+
+    h1 {
+        margin: 2rem 0 1.5rem 0;
+    }
+
+    .bnt {
+        margin: 0.5rem;
+        width: 12rem;
+    }
+    .secundary-text{
+        font-size: 0.8rem;
+    }
+}

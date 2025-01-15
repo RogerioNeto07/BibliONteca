@@ -173,16 +173,16 @@ input::placeholder {
         text-align: center;
     }
     .form-register, .form-register-row, .column-left-form-register, .login-container-rigth{
-        width: 15.5rem;
+        width: 14rem;
     }
     .form-field, .input-form{
-        width: 15.5rem;
+        width: 14rem;
     }
     .form-field-three, .form-field-two{
         display: block;
     }
     .h1 {
-        font-size: 1.6rem;
+        font-size: 0.4rem;
         margin: 2rem 0 1.5rem 0;
     }
     .form-label, input::placeholder{
@@ -190,7 +190,7 @@ input::placeholder {
     }
     .bnt {
         margin: 0.5rem;
-        width: 14rem;
+        width: 8rem;
         font-size: 0.8rem;
     }
 }
