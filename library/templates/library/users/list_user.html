@@ -1,11 +1,15 @@
 {% extends "global/base.html" %}
 {% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'library/css/filter/filter_all_loan.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="header-content-filter">
     <h1 class="h1 regular">Listagem dos Usuários</h1>
     <div class="content-filter-right">
-        <button class="bnt bnt-filter bg-dark-blue white">Filtrar<i class="material-icons">filter_alt</i>
+        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">
+            Filtrar<i class="material-icons">filter_alt</i>
         </button>
         <div class="input-coat">
             <input type="text" placeholder="Pesquisar" class="input-search">
@@ -13,6 +17,31 @@
         </div>
     </div>
 </div>
+<div id="filterOverlay" class="filter-overlay hidden">
+    <div class="filter-content">
+        <button id="closeFilterBtn" class="close-btn">&times;</button>
+        <h2 class="filter-title">Encontre o Usuário!</h2>
+        <form id="filterForm">
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="userName">Nome:</label>
+                    <input type="text" id="userName" class="input-field" placeholder="Digite o nome do usuário">
+                </div>
+            </div>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="userCPF">CPF:</label>
+                    <input type="text" id="cpf" class="input-field" maxlength="14"
+                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Digite o CPF" />
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white">Filtrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <table class="table-list user bg-blue" style="width: 100%;">
     <thead>
         <tr>
@@ -25,7 +54,8 @@
     </thead>
     <tbody>
         <tr>
-            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjWCY4hikCACscdujj13Irhv4BD3czpz5ecDKLy8OAUp_LVWxV3d=s75-c" alt="" class="table-img"></td>
+            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjWCY4hikCACscdujj13Irhv4BD3czpz5ecDKLy8OAUp_LVWxV3d=s75-c"
+                    alt="" class="table-img"></td>
             <td>Irlan Arley Targino Moreira</td>
             <td>999.999.999-99</td>
             <td>Rua Manoel Gomes de Sousa, n° 00</td>
@@ -36,7 +66,8 @@
             </td>
         </tr>
         <tr>
-            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjVMwH3UXnZv_W61p1KL69Z8Nk7ACC5_MBnxtLr0Bh4vgXqh4vo=s75-c" alt="" class="table-img"></td>
+            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjVMwH3UXnZv_W61p1KL69Z8Nk7ACC5_MBnxtLr0Bh4vgXqh4vo=s75-c"
+                    alt="" class="table-img"></td>
             <td>Thiago Henrique Freire de Oliveira</td>
             <td>999.999.999-99</td>
             <td>Rua Manoel Gomes de Sousa, n° 000</td>
@@ -47,7 +78,8 @@
             </td>
         </tr>
         <tr>
-            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjU5Jisxsv1E6tmpxUKSJLO5jevUXf634HZ4abR2HO8kfBo5rBR5=s75-c" alt="" class="table-img"></td>
+            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjU5Jisxsv1E6tmpxUKSJLO5jevUXf634HZ4abR2HO8kfBo5rBR5=s75-c"
+                    alt="" class="table-img"></td>
             <td>Raphael de Carvalho Muniz</td>
             <td>999.999.999-99</td>
             <td>Rua Manoel Gomes de Sousa, n° 000</td>
@@ -60,6 +92,9 @@
     </tbody>
 </table>
 
+<script src="{% static 'js/filter.js' %}"></script>
+
 <script> const userType = "library"; </script>
+
 
 {% endblock content %}

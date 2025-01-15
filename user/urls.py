@@ -2,14 +2,9 @@ from django.urls import path
 from user import views
 
 urlpatterns = [
-    path('', views.Login), 
-    path('home', views.home),
-    path('', views.index),
-    path('login', views.login),
-    path('profile', views.Perfil),
-    path('notifications', views.Notifications),
-    path('pesquisa', views.Search),
-    path('history', views.Bookhistory),
+    path('', views.Login, name='login'),  # Tela de login
+    path('home/', views.home, name='home'),  # Página principal
+    path('profile/', views.Perfil, name='profile'),  # Perfil do usuário
+    path('notifications/', views.Notifications, name='notifications'),  # Notificações
+    path('pesquisa/', views.Search, name='search'),  # Pesquisa
 ]
-
-
