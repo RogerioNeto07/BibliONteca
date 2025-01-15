@@ -1,8 +1,9 @@
 from django.urls import path
 from library import views
 
+
 urlpatterns = [
-    path('pagina-inicial/', views.home, name="home"),
+    path('pagina-inicial/', views.home, name="home-lib"),
     path('cadastrar-usuario/', views.register, name="registerUser"),
     path('cadastrar-livro/', views.registerBook, name="regirterBook"),
     path('emprestar-livro/', views.loanBook, name="loanBook"),
