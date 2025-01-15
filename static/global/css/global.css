@@ -3,7 +3,7 @@
 /* Variáveis */
 :root {
     --color-white: #F1FAEE;
-    --color-dar-blue: #1D3557;
+    --color-dark-blue: #1D3557;
     --color-red: #D62828;
     --color-green: #43AA8B;
     --color-blue-active: #457B9D;
@@ -80,7 +80,7 @@ body, main {
 .grey { color: var(--color-grey); }
 .dark-grey { color: var(--color-primary); }
 .bg-dark-grey { background-color: var(--color-primary); }
-.bg-dark-blue { background-color: var(--color-dar-blue); }
+.bg-dark-blue { background-color: var(--color-dark-blue); }
 .bg-blue { background-color: var(--color-blue-active); }
 .bg-red { background-color: var(--color-red); }
 .bg-green { background-color: var(--color-green); }
@@ -138,7 +138,7 @@ span.alert { color: var(--color-red); }
 span { color: var(--color-red); }
 
 .input-search { width: 21.875rem; margin: 0; }
-.input-form { width: 28.75rem; }
+.input-form { width: 26rem; }
 .tx-center { text-align: center; }
 
 input:focus, textarea:focus {

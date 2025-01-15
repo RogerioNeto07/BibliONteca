@@ -40,7 +40,8 @@ button {
 .p-mrg {
     margin-bottom: 0.625rem;
 }
-.form-field{
+
+.form-field {
     width: 38rem;
 }
 
@@ -53,13 +54,16 @@ button {
     .form-field {
         width: 95%;
     }
-    .input{
+
+    .input {
         width: 100%;
     }
-    .img-book{
+
+    .img-book {
         width: 12rem;
         height: 15rem;
     }
+
     .bnt {
         margin: 1rem;
         width: 12rem;
@@ -68,10 +72,10 @@ button {
 
 @media (max-width: 768px) {
     .form-columns {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
     }
-    .h1{
+    .h1 {
         font-size: 1.6rem;
     }
     .form-field {
@@ -81,11 +85,6 @@ button {
         width: 100%;
     }
 
-    .img-book {
-        width: 100%;
-        height: auto;
-    }
-
     h1 {
         margin: 2rem 0 1.5rem 0;
     }
@@ -93,17 +92,16 @@ button {
     .bnt {
         margin: 1rem;
         width: 12rem;
+        font-size: 0.8rem;
     }
-    .buttons-form{
-        order: 2;
+
+    .column-right-form {
+        display: none;
     }
-    .column-right-form{
-        order: 1;
-    }
-    
+
 }
 
-@media (max-width: 480px) {
+@media (max-width: 550px) {
     .form-columns {
         display: flex;
         flex-direction: column;
@@ -112,18 +110,73 @@ button {
     .input {
         width: 100%;
     }
+    .bnt{
+        width: 20rem;
+    }
+}
+@media (max-width: 400px){
+    .h1 {
+        font-size: 1.3rem;
+    }
 
-    .img-book {
+    .form-field {
         width: 100%;
-        height: auto;
+    }
+
+    .input {
+        width: 95%;
+        margin: 0.4rem 0;
+    }
+    input::placeholder{
+        font-size: 0.8rem;
+    }
+    .main-text{
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
     }
 
     h1 {
-        font-size: 1.5rem;
-        margin: 1.5rem 0 1rem 0;
+        margin: 2rem 0 1.5rem 0;
     }
 
-    button {
-        margin: 1rem auto;
+    .bnt {
+        margin: 0.5rem;
+        width: 12rem;
+    }
+    .secundary-text{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 320px){
+    .h1 {
+        font-size: 1.3rem;
+    }
+
+    .form-field {
+        width: 100%;
+    }
+
+    .input {
+        width: 16rem;
+        margin: 0.4rem 0;
+    }
+    input::placeholder{
+        font-size: 0.8rem;
+    }
+    .main-text{
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+    }
+
+    h1 {
+        margin: 2rem 0 1.5rem 0;
+    }
+
+    .bnt {
+        margin: 0.5rem;
+        width: 12rem;
+    }
+    .secundary-text{
+        font-size: 0.8rem;
     }
 }
