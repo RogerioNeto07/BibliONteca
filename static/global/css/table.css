@@ -172,6 +172,9 @@ input:focus::placeholder {
     gap: 12px;
     flex-wrap: wrap;
 }
+.main-content{
+    width: 950px;
+}
 
 @media (max-width: 768px) {
     .header-content-filter {
