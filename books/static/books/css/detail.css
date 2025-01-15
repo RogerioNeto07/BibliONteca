@@ -1,15 +1,19 @@
 .content-detail {
     display: flex;
-    margin-top: 34px;
+    margin-top: 2.125rem;
     align-items: stretch;
-    gap: 20px;
-    padding-bottom: 32px;
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .book-detail {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .book-detail p {
@@ -22,92 +26,255 @@
 }
 
 .book-detail h3 {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 .book-detail h5 {
     color: #828282;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
 }
 
 .categorias {
     display: flex;
-    gap: 10px;
-    padding-top: 4px;
+    gap: 0.625rem;
+    padding-top: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .categorias button {
-    padding: 12px;
-    font-size: 16px;
-    width: 140px;
-    height: 30px;
-    border-radius: 20px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    min-width: 8.75rem;
+    height: 1.875rem;
+    border-radius: 1.25rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-bottom: 0.75rem;
 }
 
 .book-cover {
-    width: 180px;
-    height: 250px;
-    margin-right: 16px;
+    width: 100%;
+    max-width: 11.25rem;
+    height: auto;
+    margin-right: 1rem;
     filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
 }
 
 hr {
-    margin: 8px 0 10px 0;
+    margin: 0.5rem 0 0.625rem 0;
     width: 80%;
+    align-self: flex-start;
 }
 
 .text-synopsis p {
     text-align: justify;
     line-height: 1.5;
     width: 80%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .text-synopsis {
-    padding-bottom: 32px;
+    padding-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .comment-header {
     display: flex;
     align-items: center;
     width: 80%;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     justify-content: space-between;
 }
 
 .comment-author-image {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .comment-author {
-    font-size: 16px;
+    font-size: 1rem;
     color: #333;
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .star-rating {
-    font-size: 16px;
+    font-size: 1rem;
     color: #f4b400;
 }
-span .main-text{
+
+span .main-text {
     color: #f4b400;
 }
+
 .comment-text {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #555;
-    margin: 5px 0 12px 60px;
+    margin: 0.3125rem 0 0.75rem 3.75rem;
 }
 
 .comment-time {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #828282;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .content-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+    }
+
+    .text-synopsis p {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .categorias {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .categorias button {
+        min-width: 8.75rem;
+        font-size: 1rem;
+    }
+
+    .book-cover {
+        margin-right: 0;
+        margin-bottom: 1.25rem;
+        width: 100%;
+        max-width: 9.375rem;
+        height: auto;
+    }
+
+    .book-cover {
+        width: 100%;
+        max-width: 16rem;
+        height: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .text-synopsis {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    .comment-header {
+        width: 100%;
+    }
+
+    .comments-section {
+        width: 100%;
+    }
+
+    hr {
+        width: 100%;
+    }
+
+    .text-synopsis h3 {
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+    }
+
+    .book-detail {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .comments-section {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .book-cover {
+        width: 100%;
+        max-width: 20.8rem;
+        height: auto;
+        margin-bottom: 1.2rem;
+    }
+
+    .categorias button {
+        min-width: 9.6rem;
+        font-size: 1.44rem;
+        padding: 1.6rem;
+    }
+
+    .book-detail h1 {
+        font-size: 2.4rem;
+    }
+
+    .book-detail h3 {
+        font-size: 1.76rem;
+    }
+
+    .book-detail h5 {
+        font-size: 1.44rem;
+    }
+
+    .comment-author {
+        font-size: 1.76rem;
+    }
+
+    .star-rating {
+        font-size: 2rem;
+    }
+
+    .main-text {
+        font-size: 1.6rem;
+    }
+
+    .comment-text {
+        font-size: 1.44rem;
+        margin-left: 96px;
+    }
+
+    .comments-section h3 {
+        font-size: 1.6rem;
+    }
+
+    .comment-rating {
+        margin-bottom: 8px;
+    }
+
+    .comment-time {
+        font-size: 1.44rem;
+    }
+
+    .comment-author-image {
+        width: 5.6rem;
+        height: 5.6rem;
+    }
+
+    .text-synopsis h3 {
+        font-size: 2rem;
+        padding-top: 8px;
+    }
+
+    .h3.bold {
+        font-size: 2.4rem;
+    }
 }

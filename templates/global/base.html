@@ -31,7 +31,7 @@
                             <span class="material-icons icon">grid_view</span>
                         </div>
                         <div class="sidebar-item-link">
-                            <a href="" class="sidebar-link main-text white bold">Tela Inicial</a>
+                            <a href="{% url "home" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             <span class="material-icons icon">menu_book</span>
                         </div>
                         <div class="sidebar-item-link">
-                            <a href="" class="sidebar-link main-text white bold">Empréstimos</a>
+                            <a href="{% url "history" %}" class="sidebar-link main-text white bold">Empréstimos</a>
                         </div>
                     </div>
                     <div class="sidebar-item">
@@ -60,7 +60,7 @@
                             <i class="material-icons icon">logout</i>
                         </div>
                         <div class="sidebar-item-link">
-                            <a href="" class="sidebar-link main-text white bold">Sair</a>
+                            <a href="{% url "login" %}" class="sidebar-link main-text white bold">Sair</a>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                             <span class="material-icons icon">grid_view</span>
                         </div>
                         <div class="sidebar-item-link">
-                            <a href="{% url "home" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
+                            <a href="{% url "home-lib" %}" class="sidebar-link main-text white bold">Tela Inicial</a>
                         </div>
                     </div>
                     <div class="sidebar-item">
@@ -151,7 +151,7 @@
                             <i class="material-icons icon">logout</i>
                         </div>
                         <div class="sidebar-item-link">
-                            <a href="" class="sidebar-link main-text white bold">Sair</a>
+                            <a href="{% url "login" %}" class="sidebar-link main-text white bold">Sair</a>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
             <div class="header-content">
                 <div></div>
                 <div class="user-content">
-                    <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
+                    <a href="{% url "notifications" %}"><i class="header-icon-notifications fa-solid fa-bell" style="color: grey;"></i></a>
                     <a href="{% url "profile" %}"><div class="user-pic"></div></a>
                     <p class="username secundary-text">NomeUser</p>
                 </div>
@@ -192,6 +192,9 @@
 
     <script type="module" src="{% static "global/js/dropdown_sidebar.js" %}"></script>
     <script type="module" src="{% static "global/js/toggle_sidebar.js" %}"></script>
+    <script src="{% static 'global/js/masks.js' %}"></script>
+
+    
     <script>    
         //gambiarra por enquanto não temos usuários
         if (userType === "guest") {

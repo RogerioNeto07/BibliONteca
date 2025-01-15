@@ -2,6 +2,7 @@
 {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+<link rel="stylesheet" href="{% static 'styles/filter.css' %}">
 
 {% endblock %}
 
@@ -18,7 +19,7 @@
         </button>
         <div class="input-coat">
             <input type="text" placeholder="Pesquisar" class="input-search">
-            <i class="material-icons blue search-icon">search</i>
+            <a href="{% url "pesquisa" %}"><i class="material-icons blue search-icon">search</i></a>
         </div>
     </div>
 </div>
@@ -66,7 +67,7 @@
                 </div>
             </div>
             <div class="form-buttons">
-                <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white">Filtrar</button>
+                <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white"><a href="{% url "pesquisa" %}">Filtrar</a></button>
             </div>
         </form>
     </div>
