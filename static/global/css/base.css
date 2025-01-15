@@ -160,7 +160,7 @@ footer{
         grid-template-columns: 24px auto;
     }
     .main-content{
-        position: absolute;
+        position: absolute;      
         left: 5%;
         right: 5%;
         grid-template-rows: 90px auto auto;
@@ -186,6 +186,12 @@ footer{
     }
     .copyright{
         font-size: 12px;
+    }
+}
+@media (max-width: 500px){
+    .main-content{
+        display: block;
+        margin: 0 15px;
     }
 }
 @media (max-width: 350px){

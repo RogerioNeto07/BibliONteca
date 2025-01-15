@@ -3,7 +3,9 @@
     grid-template-columns: 27rem 27rem;
     gap: 2rem;
 }
-
+.form-field{
+    width: auto;
+}
 .width-one { width: 17rem; }
 .f-width-one { width: 20rem; }
 .width-two { width: 7rem; }
@@ -47,3 +49,148 @@ input::placeholder {
 }
 
 .sidebarLibrary { display: block; }
+
+@media (max-width: 1024px) {
+    .bnt {
+        margin: 1rem;
+        width: 12rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-register {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 0;
+    }
+    .form-register, .form-register-row, .column-left-form-register, .login-container-rigth{
+        width: 35rem;
+    }
+    .form-field, .input-form{
+        width: 35rem;
+    }
+    .form-field-three, .form-field-two{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1.5rem 0;
+    }
+    .bnt {
+        margin: 1rem;
+        width: 12rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .form-register {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .form-register, .form-register-row, .column-left-form-register, .login-container-rigth{
+        width: 22rem;
+    }
+    .form-field, .input-form{
+        width: 22rem;
+    }
+    .form-field-three, .form-field-two{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1.5rem 0;
+    }
+    .bnt {
+        margin: 1rem;
+        width: 20rem;
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 425px){
+    .form-register {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .form-register, .form-register-row, .column-left-form-register, .login-container-rigth{
+        width: 21rem;
+    }
+    .form-field, .input-form{
+        width: 21rem;
+    }
+    .form-field-three, .form-field-two{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1.5rem 0;
+    }
+    .form-label, input::placeholder{
+        font-size: 0.8rem;
+    }
+    .bnt {
+        margin: 0.5rem;
+        width: 12rem;
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 375px){
+    .form-register {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .form-register, .form-register-row, .column-left-form-register, .login-container-rigth{
+        width: 19rem;
+    }
+    .form-field, .input-form{
+        width: 19rem;
+    }
+    .form-field-three, .form-field-two{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1.5rem 0;
+    }
+    .form-label, input::placeholder{
+        font-size: 0.8rem;
+    }
+    .bnt {
+        margin: 1rem;
+        width: 12rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 320px){
+    .form-register {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .form-register, .form-register-row, .column-left-form-register, .login-container-rigth{
+        width: 15.5rem;
+    }
+    .form-field, .input-form{
+        width: 15.5rem;
+    }
+    .form-field-three, .form-field-two{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1.5rem 0;
+    }
+    .form-label, input::placeholder{
+        font-size: 0.8rem;
+    }
+    .bnt {
+        margin: 0.5rem;
+        width: 14rem;
+        font-size: 0.8rem;
+    }
+}
