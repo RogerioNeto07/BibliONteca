@@ -143,7 +143,9 @@
 p {
     color: #828282;
 }
-
+.main-content{
+    width: 900px;
+}
 @media (max-width: 768px) {
     .book-card {
         min-width: 240px;
