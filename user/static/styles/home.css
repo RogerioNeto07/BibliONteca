@@ -35,7 +35,7 @@
     margin-top: 8px;
     margin-bottom: 4px;
     width: 80%;
-    height: 180px;
+    height: 170px;
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
@@ -136,7 +136,7 @@
 }
 
 .h3 {
-    font-size: 20px;
+    font-size: 16px !important;
     font-weight: 600;
 }
 
