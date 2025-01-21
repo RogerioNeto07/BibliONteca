@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import LivroForm
+from books.models import Livro
 
-# Create your views here.
 def home(request):
     return render(request, "library/index.html")
 
@@ -8,7 +9,14 @@ def register(request):
     return render(request, "library/users/register_user.html")
 
 def registerBook(request):
-    return render(request, "library/books/register_book.html")
+    if request.method == 'POST':
+        form = LivroForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('listBooks')
+    else:
+        form = LivroForm()
+    return render(request, "library/books/register_book.html", {'form': form})
 
 def loanBook(request):
     return render(request, 'library/books/loan_book.html')
@@ -20,8 +28,23 @@ def renewBook(request):
     return render(request, "library/books/renew_book.html")
 
 def listBooks(request):
-    return render(request, 'library/books/list_book.html')
+    titulo = request.GET.get("titulo", "")
+    autor = request.GET.get("autor", "")
+    categoria = request.GET.get("categoria", "")
+    ano = request.GET.get("ano", "")
 
+    livros = Livro.objects.all()
+
+    if titulo:
+        livros = livros.filter(titulo__icontains=titulo)
+    if autor:
+        livros = livros.filter(autor__icontains=autor)
+    if categoria:
+        livros = livros.filter(categoria__icontains=categoria)
+    if ano:
+        livros = livros.filter(ano_publicacao=ano)
+
+    return render(request, "library/books/list_book.html", {"livros": livros})
 def listUser(request):
     return render(request, 'library/users/list_user.html')
 

@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    <h1 class="h1 regular tx-center">Cadastrar Livro</h1>
+    <!-- <h1 class="h1 regular tx-center">Cadastrar Livro</h1>
     <div class="form-register-row">
         <form class="form-register">
             <div class="column-left-form-register" >
@@ -86,5 +86,17 @@
             <button class="bnt bg-green white">Cadastrar</button>
         </div>
     </div>
-    <script> const userType = "library"; </script>
+    <script> const userType = "library"; </script> -->
+    <h1 class="h1 regular tx-center">Cadastrar Livro</h1>
+<div class="form-register-row">
+    <form class="form-register" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="buttons-form">
+            <button type="button" class="bnt bg-red white" onclick="window.history.back()">Cancelar</button>
+            <button type="submit" class="bnt bg-green white">Cadastrar</button>
+        </div>
+    </form>
+</div>
+<script> const userType = "library"; </script>
 {% endblock content %}
