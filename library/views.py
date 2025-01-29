@@ -1,12 +1,22 @@
 from django.shortcuts import render, redirect
 from .forms import LivroForm
 from books.models import Livro
+from user.forms import LeitorForm
+from user.models import Leitor
 
 def home(request):
     return render(request, "library/index.html")
 
 def register(request):
-    return render(request, "library/users/register_user.html")
+    if request.method == "POST":
+        form = LeitorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("listUser")
+    else:
+        form = LeitorForm()
+    
+    return render(request, "library/users/register_user.html", {"form": form})
 
 def registerBook(request):
     if request.method == 'POST':
