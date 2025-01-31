@@ -58,41 +58,29 @@
         </tr>
     </thead>
     <tbody>
+        {% for leitor in leitores %}
         <tr>
-            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjWCY4hikCACscdujj13Irhv4BD3czpz5ecDKLy8OAUp_LVWxV3d=s75-c"
-                    alt="" class="table-img"></td>
-            <td>Irlan Arley Targino Moreira</td>
-            <td>999.999.999-99</td>
-            <td>Rua Manoel Gomes de Sousa, n° 00</td>
+            <td>
+                {% if leitor.foto_perfil %}
+                    <img src="{{ leitor.foto_perfil.url }}" alt="" class="table-img">
+                {% else %}
+                    <span>Sem fotooo</span>
+                {% endif %}
+            </td>
+            <td>{{ leitor.nome }}</td>
+            <td>{{ leitor.cpf }}</td>
+            <td>{{ leitor.rua }}</td>
             <td>
                 <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
                 <a href=""><span class="material-icons yellow tab-icon">edit_note</span></a>
                 <a href=""><span class="material-icons red tab-icon">delete</span></a>
             </td>
         </tr>
+        {% empty %}
         <tr>
-            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjVMwH3UXnZv_W61p1KL69Z8Nk7ACC5_MBnxtLr0Bh4vgXqh4vo=s75-c"
-                    alt="" class="table-img"></td>
-            <td>Thiago Henrique Freire de Oliveira</td>
-            <td>999.999.999-99</td>
-            <td>Rua Manoel Gomes de Sousa, n° 000</td>
-            <td>
-                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href=""><span class="material-icons yellow tab-icon">edit_note</span></a>
-                <a href=""><span class="material-icons red tab-icon">delete</span></a>
-            </td>
+            <td colspan="5" class="tx-center">Nenhum usuário encontrado.</td>
         </tr>
-        <tr>
-            <td><img src="https://lh3.googleusercontent.com/a-/ALV-UjU5Jisxsv1E6tmpxUKSJLO5jevUXf634HZ4abR2HO8kfBo5rBR5=s75-c"
-                    alt="" class="table-img"></td>
-            <td>Raphael de Carvalho Muniz</td>
-            <td>999.999.999-99</td>
-            <td>Rua Manoel Gomes de Sousa, n° 000</td>
-            <td>
-                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href=""><span class="material-icons yellow tab-icon">edit_note</span></a>
-                <a href=""><span class="material-icons red tab-icon">delete</span></a>
-            </td>
+        {% endfor %}
         </tr>
     </tbody>
 </table>

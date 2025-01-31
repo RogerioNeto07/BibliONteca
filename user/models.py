@@ -10,6 +10,7 @@ class Leitor(AbstractUser):
     rua = models.CharField(max_length=100, null=False, blank=False)
     numero = models.IntegerField(null=False, blank=False)
     nome = models.CharField(max_length=255)
+    foto_perfil = models.ImageField(upload_to='perfil/', blank=True, null=True)
 
     def __str__(self):
         return self.nome

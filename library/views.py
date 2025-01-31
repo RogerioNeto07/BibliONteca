@@ -55,8 +55,11 @@ def listBooks(request):
         livros = livros.filter(ano_publicacao=ano)
 
     return render(request, "library/books/list_book.html", {"livros": livros})
+
 def listUser(request):
-    return render(request, 'library/users/list_user.html')
+    leitores = Leitor.objects.all()
+    context = {'leitores' : leitores}
+    return render(request, 'library/users/list_user.html', context)
 
 def pendenceUser(request):
     return render(request, 'library/users/pendence_user.html')
