@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import LivroForm
+from .forms import EmprestimoForm
 from books.models import Livro
 from user.forms import LeitorForm
 from user.models import Leitor
+from .models import Emprestimo
 
 def home(request):
     return render(request, "library/index.html")
@@ -29,7 +31,16 @@ def registerBook(request):
     return render(request, "library/books/register_book.html", {'form': form})
 
 def loanBook(request):
-    return render(request, 'library/books/loan_book.html')
+    if request.method == "POST":
+        form = EmprestimoForm(request.POST)
+        if form.is_valid():
+            emprestimo = form.save(commit=False)
+            emprestimo.save()
+            return redirect('allLoans')
+    else:
+        form = EmprestimoForm()
+
+    return render(request, 'library/books/loan_book.html', {'form': form})
 
 def returnBook(request):
     return render(request, 'library/books/return_book.html')
@@ -65,7 +76,9 @@ def pendenceUser(request):
     return render(request, 'library/users/pendence_user.html')
 
 def allLoans(request):
-    return render(request, 'library/loans/all_loans.html')
+    emprestimos = Emprestimo.objects.all()
+    context = {'emprestimos' : emprestimos}
+    return render(request, 'library/loans/all_loans.html', context)
 
 def pendencesBook(request):
     return render(request, 'library/loans/pendences_book.html')
