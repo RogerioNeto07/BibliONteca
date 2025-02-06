@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LivroForm
 from .forms import EmprestimoForm
-from books.models import Livro
+from books.models import Livro, Categoria
 from user.forms import LeitorForm
 from user.models import Leitor
 from .models import Emprestimo
@@ -28,7 +28,9 @@ def registerBook(request):
             return redirect('listBooks')
     else:
         form = LivroForm()
-    return render(request, "library/books/register_book.html", {'form': form})
+
+    categorias = Categoria.objects.all()
+    return render(request, "library/books/register_book.html", {'form': form, "categorias" : categorias})
 
 def loanBook(request):
     if request.method == "POST":

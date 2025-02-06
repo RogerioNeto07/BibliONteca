@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from books.models import Livro
+from datetime import date
 
 class Leitor(AbstractUser):
     cpf = models.CharField(max_length=14, unique=True, null=False, blank=False)
@@ -25,3 +27,13 @@ class Leitor(AbstractUser):
         related_name='leitor_permissions',
         blank=True,
     )
+
+class Avaliacao(models.Model):
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE, null=False, blank=False, related_name="avaliacoes")
+    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE, null=False, blank=False, related_name="avaliacoes")
+    data_emprestimo = models.DateField(default=date.today)
+    nota = models.IntegerField(null=False, blank=False)
+    comentario = models.CharField(max_length=2500, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.leitor.nome} - {self.livro.titulo}"
