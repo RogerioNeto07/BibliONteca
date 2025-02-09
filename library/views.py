@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from .forms import LivroForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import *
 from .forms import EmprestimoForm
 from books.models import Livro, Categoria
 from user.forms import LeitorForm
 from user.models import Leitor
 from .models import Emprestimo
+from django.utils.timezone import now, timedelta
 
 def home(request):
     return render(request, "library/index.html")
@@ -45,10 +46,40 @@ def loanBook(request):
     return render(request, 'library/books/loan_book.html', {'form': form})
 
 def returnBook(request):
-    return render(request, 'library/books/return_book.html')
+    if request.method == 'POST':
+        form = DevolucaoForm(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data.get('nome')
+            isbn = form.cleaned_data.get('isbn')
+            leitor = get_object_or_404(Leitor, nome=nome)
+            livro = get_object_or_404(Livro, isbn=isbn)
+            emprestimo = get_object_or_404(Emprestimo, livro=livro, leitor=leitor, status_ativo=True)
+            emprestimo.status_ativo = False
+            emprestimo.data_devolucao = now().date()
+            emprestimo.save()
+            return redirect("allLoans")
+    else:
+        form = DevolucaoForm()
+
+
+    return render(request, 'library/books/return_book.html', {"form" : form})
 
 def renewBook(request):
-    return render(request, "library/books/renew_book.html")
+    if request.method == 'POST':
+        form = RenovarForm(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data.get('nome')
+            isbn = form.cleaned_data.get('isbn')
+            leitor = get_object_or_404(Leitor, nome=nome)
+            livro = get_object_or_404(Livro, isbn=isbn)
+            emprestimo = get_object_or_404(Emprestimo, livro=livro, leitor=leitor, status_ativo=True)
+            emprestimo.previsao_devolucao += timedelta(days=15)
+            emprestimo.save()
+            return redirect("allLoans")
+    else:
+        form = DevolucaoForm()
+
+    return render(request, "library/books/renew_book.html", {"form" : form})
 
 def listBooks(request):
     titulo = request.GET.get("titulo", "")

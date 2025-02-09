@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Leitor
+from .models import Leitor, Avaliacao
 
 class LeitorForm(UserCreationForm):
     class Meta:
@@ -17,3 +17,9 @@ class LeitorForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("As senhas não são iguais.")
         return password2
+
+class AvaliacaoForm(forms.ModelForm):
+    class Meta:
+        model = Avaliacao
+        fields = ['nota', 'comentario']
+        
