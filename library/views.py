@@ -6,6 +6,7 @@ from user.forms import LeitorForm
 from user.models import Leitor
 from .models import Emprestimo
 from django.utils.timezone import now, timedelta
+from django.utils import timezone
 
 def home(request):
     return render(request, "library/index.html")
@@ -114,7 +115,9 @@ def allLoans(request):
     return render(request, 'library/loans/all_loans.html', context)
 
 def pendencesBook(request):
-    return render(request, 'library/loans/pendences_book.html')
+    emprestimos = Emprestimo.objects.filter(previsao_devolucao__lt=timezone.now(), status_ativo = True)
+    context = {'emprestimos' : emprestimos}
+    return render(request, 'library/loans/pendences_book.html', context)
 
 def detailsPendencesUser(request):
     return render(request, 'library/details/details_pendences_user.html')

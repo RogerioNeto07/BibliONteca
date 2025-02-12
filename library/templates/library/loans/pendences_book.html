@@ -12,9 +12,11 @@
     }
 </style>
 <div class="header-content-filter">
-    <h1 class="h1 regular">Empréstimos Pendentes</h1>
+    <h1 class="h1 regular">Listagem dos Empréstimos</h1>
     <div class="content-filter-right">
-        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">Filtrar<i class="material-icons">filter_alt</i></button>
+        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">
+            Filtrar<i class="material-icons">filter_alt</i>
+        </button>
         <div class="input-coat">
             <input type="text" placeholder="Pesquisar" class="input-search">
             <i class="material-icons blue search-icon">search</i>
@@ -62,55 +64,49 @@
         </form>
     </div>
 </div>
-<table class="table-list loan bg-red" style="width: 100%;">
+
+<table class="table-list loan bg-blue" style="width: 100%;">
     <thead>
         <tr>
-            <th>Foto</th>
+            <th>Status</th>
             <th>Livro</th>
             <th>Usuário</th>
-            <th>Data</th>
+            <th>Empréstimo</th>
             <th>Dias em Atraso</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
+        {% for emprestimo in emprestimos %}
         <tr>
-            <td><img src="https://m.media-amazon.com/images/I/91r5G8RxqfL._SY425_.jpg" alt="" class="table-img-loans"></td>
-            <td>É Assim que Acaba</td>
-            <td>999.999.999-99</td>
-            <td>05/12/2024</td>
-            <td>20 dias</td>
-            <td>
-                <a href="{% url "detailsPendencesBook" %}"><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href=""><span class="material-icons yellow tab-icon">notifications</span></a>
-            </td>
-        </tr>
-        <tr>
-            <td><img src="https://m.media-amazon.com/images/I/91r5G8RxqfL._SY425_.jpg" alt="" class="table-img-loans"></td>
-            <td>É Assim que Acaba</td>
-            <td>999.999.999-99</td>
-            <td>05/12/2024</td>
-            <td>20 dias</td>
-            <td>
-                <a href="{% url "detailsPendencesUser" %}"><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href=""><span class="material-icons yellow tab-icon">notifications</span></a>
-            </td>
-        </tr>
-        <tr>
-            <td><img src="https://m.media-amazon.com/images/I/91r5G8RxqfL._SY425_.jpg" alt="" class="table-img-loans"></td>
-            <td>É Assim que Acaba</td>
-            <td>999.999.999-99</td>
-            <td>05/12/2024</td>
-            <td>20 dias</td>
+            {% if emprestimo.status_ativo %}
+            <td>Ativo</td>
+            {% else %}
+            <td>Finalizado</td>
+            {% endif %}
+            <td> {{ emprestimo.livro }} </td>
+            <td> {{ emprestimo.leitor }} </td>
+            <td> {{ emprestimo.data_emprestimo }}</td>
+            <td> - </td>
             <td>
                 <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href=""><span class="material-icons yellow tab-icon">notifications</span></a>
+                <a href=""><span class="material-icons green tab-icon">edit_note</span></a>
             </td>
         </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="tx-center">Nenhum empréstimo encontrado.</td>
+            <td>
+                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
+                <a href=""><span class="material-icons green tab-icon">edit_note</span></a>
+            </td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
 <script> const userType = "library"; </script>
 <script src="{% static 'js/filter.js' %}"></script>
+
 
 {% endblock content %}
