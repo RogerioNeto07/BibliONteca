@@ -37,7 +37,6 @@ toggleLoan.addEventListener('click', () => {
  }
 });
 
-//Pra manter aberto mesmo ao carregar, fehcar apenas com clique
 window.addEventListener('load', ()=> {
     const bookState = localStorage.getItem('bookState');
     const contentBook = document.getElementById('dropdown-book');

@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "user/css/login.css" %}">
-    <link rel="stylesheet" href="{% static "global/css/global.css" %}">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
+    <title>Login - Biblioteca Virtual</title>
 </head>
+
 <body>
     <div class="login-container">
         <div class="login-container-left bg-dark-blue">
-            <img src="{% static "global/imgs/logo.png" %}" alt="" class="logo-login">
+            <img src="{% static 'global/imgs/logo.png' %}" alt="Logo" class="logo-login">
             <p class="h1 white">Olá! Seja bem-vindo(a) à nossa Biblioteca Virtual! :)</p>
-            <p class="margin-text secundary-text white">Esta página é destinada a bibliotecários. Se você é um usuário, faça login utilizando o botão abaixo.</p>
-            <button class="bnt bnt-login-page bg-green"><a class="white" href="{% url "home" %}">Navegar como Usuário</a></button>
+            <p class="margin-text secundary-text white">Esta página é destinada a bibliotecários. Se você é um usuário,
+                faça login utilizando o botão abaixo.</p>
+            <button class="bnt bnt-login-page bg-green">
+                <a class="white" href="{% url 'user:home' %}">Navegar como Visitante</a>
+            </button>
         </div>
-        <div class="login-container-rigth">
+        <div class="login-container-right">
             <p class="title-login h1 dark-blue">Login</p>
-            <form action="" class="login">
+            <form action="{% url 'user:login' %}" method="POST" class="login">
+                {% csrf_token %}
                 <div class="form-field">
-                    <label for="Email" class="form-label secundary-text bold">Login:<span>*</span></label>
-                    <input type="Email" class="secundary-text bold" id="Email" placeholder="Email">
+                    <label for="email" class="form-label secundary-text bold">Login:<span>*</span></label>
+                    <input type="email" name="username" class="secundary-text bold" id="email" placeholder="Email"
+                        required>
                 </div>
                 <div class="form-field">
                     <label for="password" class="form-label secundary-text bold">Senha:<span>*</span></label>
-                    <input type="text" class="secundary-text bold" id="password" placeholder="Senha">
+                    <input type="password" name="password" class="secundary-text bold" id="password" placeholder="Senha"
+                        required>
                 </div>
-                <button class="bnt-login bnt bnt-login-page bg-green"><a href="{% url "home-lib" %}" class="main-text white">Login</a></button>
+                <button type="submit" class="bnt-login bnt bnt-login-page bg-green">
+                    <span class="main-text white">Login</span>
+                </button>
             </form>
         </div>
     </div>
 </body>
+
 </html>

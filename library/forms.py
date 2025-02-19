@@ -1,6 +1,6 @@
 from django import forms
 from books.models import Livro, Categoria
-from user.models import Leitor
+
 from .models import Emprestimo
 
 class LivroForm(forms.ModelForm):
@@ -19,7 +19,7 @@ class LivroForm(forms.ModelForm):
 class EmprestimoForm(forms.ModelForm):
     class Meta:
         model = Emprestimo
-        fields = ['leitor', 'livro']
+        fields = ['usuario', 'livro']
 
 class DevolucaoForm(forms.Form):
     nome = forms.CharField(label="Usuário", max_length=200, required=True)
