@@ -1,10 +1,14 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Livro
+from django.shortcuts import render
+from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-def ViewDetailBook(request, id):
-    livro = get_object_or_404(Livro, id=id)
-    context = {"livro" : livro}
-    return render(request, "books/detail.html", context)
+from django.views.generic import TemplateView
+from django.urls import reverse_lazy
 
-def ViewFeedbackBook(request):
-    return render(request, "books/feedback.html")
+class ViewFeedbackBook(TemplateView):
+    login_url = reverse_lazy('user:login')
+    template_name = "books/feedback.html"
+
+class ViewDetailBook(TemplateView):
+    login_url = reverse_lazy('user:login')
+    template_name = "books/detail.html"
