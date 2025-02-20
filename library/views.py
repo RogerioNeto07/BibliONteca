@@ -6,11 +6,11 @@ from django.contrib.auth.models import Group
 from django.utils.timezone import now, timedelta
 from django.utils import timezone
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, View
+from django.views.generic import TemplateView, ListView, CreateView
 from django.views.generic.edit import FormView
 
 from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
-from books.models import Livro, Categoria
+from .models import Livro, Categoria
 from .models import Emprestimo
 from user.forms import UserRegisterForm
 from .permissions import GroupRequiredMixin
@@ -20,6 +20,15 @@ User = get_user_model()
 
 class HomeView(TemplateView):
     template_name = "library/index.html"
+
+
+class ViewFeedbackBook(TemplateView):
+    login_url = reverse_lazy('user:login')
+    template_name = "library/books/feedback.html"
+
+class ViewDetailBook(TemplateView):
+    login_url = reverse_lazy('user:login')
+    template_name = "library/books/detail.html"
 
 class RegisterView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     group_required = 'Bibliotecario'

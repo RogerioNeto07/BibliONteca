@@ -1,12 +1,12 @@
 {% extends "global/base.html" %}
 {% load static %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'books/css/detail.css' %}">
-<link rel="stylesheet" href="{% static 'books/css/feedback.css' %}">
+<link rel="stylesheet" href="{% static 'library/css/detail.css' %}">
+<link rel="stylesheet" href="{% static 'library/css/feedback.css' %}">
 {% endblock %}
 {% block content %}
 <div class="content-detail">
-    <img src="{% static 'books/img/capa-harry-potter.png' %}" alt="Capa do livro Harry Potter" class="book-cover">
+    <img src="{% static 'library/img/capa-harry-potter.png' %}" alt="Capa do livro Harry Potter" class="book-cover">
     <div class="book-detail">
         <h1 class="h1">Harry Potter</h1>
         <h3 class="h3 bold">HARRY POTTER E O PRISIONEIRO DE AZKABAN</h3>
@@ -33,13 +33,13 @@
         <span class="star" data-rating="5">&#9733;</span>
     </div>
     <p class="main-text comment">Comentário (Opcional):</p>
-        <div class="textarea-button-wrapper">
-            <textarea name="user-comment" id="add-comment" placeholder="Escreva um comentário sobre o livro..."></textarea>
-            <button class="rate">Avaliar</button>
-        </div>
+    <div class="textarea-button-wrapper">
+        <textarea name="user-comment" id="add-comment" placeholder="Escreva um comentário sobre o livro..."></textarea>
+        <button class="rate">Avaliar</button>
+    </div>
 </div>
 
 
-<script src="{% static 'books/js/feedback.js' %}"></script>
+<script src="{% static 'library/js/feedback.js' %}"></script>
 <script> const userType = "user"; </script>
 {% endblock %}

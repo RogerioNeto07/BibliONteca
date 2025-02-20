@@ -1,5 +1,5 @@
 from django import forms
-from books.models import Livro, Categoria
+from .models import Livro, Categoria
 
 from .models import Emprestimo
 

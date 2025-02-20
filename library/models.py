@@ -1,7 +1,34 @@
 from django.db import models
 from user.models import MyUser 
-from books.models import Livro
 from datetime import date, timedelta
+    
+
+class Categoria(models.Model):
+    nome = models.CharField(max_length=50, null=False, blank=False)
+
+    def __str__(self):
+        return self.nome
+
+
+class Livro(models.Model):
+    titulo = models.CharField(max_length=200, null=False, blank=False)
+    subtitulo = models.CharField(max_length=200)
+    editora = models.CharField(max_length=50)
+    autor = models.CharField(max_length=100, null=False, blank=False)
+    volume = models.IntegerField(null=False, blank=False)
+    idioma = models.CharField(max_length=20, null=False, blank=False)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default="")
+    qntd_paginas = models.IntegerField(null=False, blank=False)
+    classificacao = models.IntegerField(null=False, blank=False)
+    descricao = models.CharField(max_length=500, null=False, blank=False)
+    isbn = models.CharField(max_length=13, unique=True, null=False, blank=False)
+    ano_publicacao = models.IntegerField(null=False, blank=False)
+    capa = models.ImageField(upload_to="capas/", null=False, blank=False)
+
+
+    def __str__(self):
+        return self.titulo
+    
 
 class Emprestimo(models.Model):
     usuario = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="emprestimos")  
@@ -18,3 +45,5 @@ class Emprestimo(models.Model):
 
     def __str__(self):
         return f"{self.usuario.email} - {self.livro.titulo}"  
+
+
