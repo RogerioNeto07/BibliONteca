@@ -15,6 +15,7 @@ from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
 from .models import Livro, Categoria, Comentarios
 from .models import Emprestimo
 from user.forms import UserRegisterForm
+from user.models import MyUser
 from .permissions import GroupRequiredMixin
 from django.shortcuts import render, get_object_or_404
 
@@ -39,7 +40,7 @@ class RegisterView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         return super().form_valid(form)
     
 class ListUserView(GroupRequiredMixin, LoginRequiredMixin, ListView):
-    model = User
+    model = MyUser
     group_required = 'Bibliotecario'
     template_name = "library/users/list_user.html"
     context_object_name = "usuarios"
@@ -78,7 +79,7 @@ class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         nome = form.cleaned_data["nome"]
         isbn = form.cleaned_data["isbn"]
 
-        usuario = get_object_or_404(User, nome=nome)
+        usuario = get_object_or_404(MyUser, nome=nome)
         livro = get_object_or_404(Livro, isbn=isbn)
 
         emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
@@ -98,7 +99,7 @@ class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         nome = form.cleaned_data["nome"]
         isbn = form.cleaned_data["isbn"]
 
-        usuario = get_object_or_404(User, nome=nome)
+        usuario = get_object_or_404(MyUser, nome=nome)
         livro = get_object_or_404(Livro, isbn=isbn)
 
         emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
@@ -158,7 +159,13 @@ class DetailsPendencesBookView(GroupRequiredMixin, LoginRequiredMixin, TemplateV
     template_name = "library/details/details_pendences_books.html"
 
 class ProfileView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
-    template_name = "library/users/profile.html"
+    group_required = 'Bibliotecario'
+    template_name = "user/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["usuario"] = self.request.user
+        return context
 
 
 def ViewDetailBook(request, pk):

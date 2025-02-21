@@ -102,9 +102,19 @@ main {
 }
 
 .user-pic {
-    background-color: grey;
-    height: 40px;
     width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-pic-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 50%;
 }
 
