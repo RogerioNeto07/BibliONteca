@@ -34,7 +34,11 @@
     {% for comentario in comentarios %}
     <div class="comment">
         <div class="comment-header">
-            <img class="comment-author-image" src="{% static 'library/static/img/perfil.png' %}" alt="Imagem do autor">
+            {% if comentario.usuario.foto_perfil %}
+                <img class="comment-author-image" src="{{ comentario.usuario.foto_perfil.url }}" alt="Foto de perfil">
+            {% else %}
+                <img class="comment-author-image" src="{% static 'global/imgs/transferir.jpg' %}" alt="Foto padrão">
+            {% endif %}
             <p class="comment-author main-text bold">{{ comentario.usuario.nome }}</p>
             <span class="comment-rating">
                 <span class="main-text bold">{{ comentario.estrela }}</span>

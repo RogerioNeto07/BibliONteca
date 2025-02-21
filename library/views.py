@@ -38,8 +38,7 @@ class RegisterView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         user = form.save()
         grupo, _ = Group.objects.get_or_create(name="Usuarios")
         user.groups.add(grupo)
-        messages.success(self.request, "Cadastro realizado com sucesso! Faça login para continuar.")
-        login(self.request, user)
+        messages.success(self.request, "Cadastro realizado com sucesso!")
         return super().form_valid(form)
     
 class ListUserView(GroupRequiredMixin, LoginRequiredMixin, ListView):
@@ -67,6 +66,10 @@ class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = "library/books/register_book.html"
     success_url = reverse_lazy("library:listBooks")
 
+    def form_valid(self, form):
+        messages.success(self.request, "Cadastro realizado com sucesso!")
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categorias"] = Categoria.objects.all()
@@ -80,8 +83,8 @@ class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         emprestimo = form.save(commit=False)
-        emprestimo.usuario = self.request.user
         emprestimo.save()
+        messages.success(self.request, "Cadastro realizado com sucesso!")
         return super().form_valid(form)
 
 class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
