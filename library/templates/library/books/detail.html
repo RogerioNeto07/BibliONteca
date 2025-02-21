@@ -28,37 +28,34 @@
 </div>
 
 <div class="comments-section">
-    <h3 class="h3">Comentários (3)</h3>
+    <h3 class="h3">Comentários ({{ comentarios.count }})</h3>
     <hr>
 
+    {% for comentario in comentarios %}
     <div class="comment">
         <div class="comment-header">
             <img class="comment-author-image" src="{% static 'library/static/img/perfil.png' %}" alt="Imagem do autor">
-            <p class="comment-author main-text bold">Gustavo Torres de Almeida</p>
+            <p class="comment-author main-text bold">{{ comentario.usuario.nome }}</p>
             <span class="comment-rating">
-                <span class="main-text bold">4.0</span>
-                <span class="star-rating">★★★★☆</span>
+                <span class="main-text bold">{{ comentario.estrela }}</span>
+                <span class="star-rating">
+                    {% for estrela in comentario.estrelas_preenchidas %}
+                    {{ estrela }}
+                    {% endfor %}
+                    {% for estrela in comentario.estrelas_vazias %}
+                    {{ estrela }}
+                    {% endfor %}
+                </span>
             </span>
-            <span class="comment-time secundary-text regular">2 meses atrás</span>
+            <span class="comment-time secundary-text regular">{{ comentario.data_criacao|date:"d M Y" }}</span>
         </div>
         <p class="comment-text main-text">
-            Esse livro me fez sentir um mestre na investigação.
+            {{ comentario.comentario }}
         </p>
         <hr>
     </div>
-
-    <div class="comment">
-        <div class="comment-header">
-            <img class="comment-author-image" src="{% static 'library/static/img/perfil.png' %}" alt="Imagem do autor">
-            <p class="comment-author main-text bold">Gustavo Torres de Almeida</p>
-            <span class="comment-rating">
-                <span class="main-text bold">4.0</span>
-                <span class="star-rating">★★★★☆</span>
-            </span>
-            <span class="comment-time secundary-text regular">2 meses atrás</span>
-        </div>
-        <hr>
-    </div>
+    {% endfor %}
 </div>
+
 <script> const userType = "user"; </script>
 {% endblock %}

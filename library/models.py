@@ -47,3 +47,9 @@ class Emprestimo(models.Model):
         return f"{self.usuario.email} - {self.livro.titulo}"  
 
 
+class Comentarios(models.Model):
+    comentario = models.TextField(null=False, blank=True)
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE, related_name="comentarios")
+    usuario = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="comentarios")
+    estrela = models.PositiveBigIntegerField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
