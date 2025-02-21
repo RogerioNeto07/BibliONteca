@@ -10,6 +10,9 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect
+from django.db.models import Count, Q
+from django.db.models import F, ExpressionWrapper, fields
+from django.db.models.functions import Now
 
 from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
 from .models import Livro, Categoria, Comentarios
@@ -44,6 +47,18 @@ class ListUserView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = 'Bibliotecario'
     template_name = "library/users/list_user.html"
     context_object_name = "usuarios"
+
+    def get_queryset(self):
+        nome = self.request.GET.get('nome', '')
+        cpf = self.request.GET.get('cpf', '')
+        queryset = super().get_queryset()
+
+        if nome:
+            queryset = queryset.filter(nome__icontains=nome)
+        if cpf:
+            queryset = queryset.filter(cpf__icontains=cpf)
+        
+        return queryset
 
 class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     model = Livro
@@ -142,13 +157,46 @@ class AllLoansView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     template_name = "library/loans/all_loans.html"
     context_object_name = "emprestimos"
 
+    def get_queryset(self):
+        titulo = self.request.GET.get('titulo', '')
+        usuario = self.request.GET.get('usuario', '')
+
+        queryset = Emprestimo.objects.all()
+
+        if titulo:
+            queryset = queryset.filter(livro__titulo__icontains=titulo)
+        if usuario:
+            queryset = queryset.filter(usuario__nome__icontains=usuario)
+
+        return queryset
+
 class PendencesBookView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = 'Bibliotecario'
-    template_name = "library/loans/pendences_book.html"
+    template_name = "library/loans/all_loans.html"
     context_object_name = "emprestimos"
 
     def get_queryset(self):
-        return Emprestimo.objects.filter(previsao_devolucao__lt=timezone.now(), status_ativo=True)
+        queryset = Emprestimo.objects.filter(status_ativo=True)
+
+        queryset = queryset.filter(previsao_devolucao__lt=timezone.now())
+
+        queryset = queryset.annotate(
+            dias_atraso=ExpressionWrapper(
+                F('previsao_devolucao') - Now(),
+                output_field=fields.DurationField()
+            )
+        )
+
+        nome_livro = self.request.GET.get('nome_livro', '')
+        nome_usuario = self.request.GET.get('nome_usuario', '')
+        
+        if nome_livro:
+            queryset = queryset.filter(livro__titulo__icontains=nome_livro)
+        
+        if nome_usuario:
+            queryset = queryset.filter(usuario__nome__icontains=nome_usuario)
+
+        return queryset
 
 class DetailsPendencesUserView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     group_required = 'Bibliotecario'
