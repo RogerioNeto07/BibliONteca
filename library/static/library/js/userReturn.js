@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let cpfInput = document.querySelector('input[name="leitor"]');
+    let cpfInput = document.querySelector('input[name="usuario"]');
 
     if (cpfInput) {
         cpfInput.addEventListener("change", function () {
             let cpf = this.value.trim();
 
             if (cpf) {
-                fetch(`/biblioteca/buscar-usuario/?leitor=${cpf}`, { method: "GET" })
+                fetch(`/biblioteca/buscar-usuario/?usuario=${cpf}`, { method: "GET" })
                     .then(response => response.json())
                     .then(data => {
                         console.log("Resposta da API:", data);

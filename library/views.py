@@ -72,7 +72,7 @@ class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
 def searchUser(request):
     if request.method == "GET": 
-        cpf = request.GET.get("leitor", "").strip()
+        cpf = request.GET.get("usuario", "").strip()
         
         if not cpf:
             return JsonResponse({"erro": "CPF não fornecido"}, status=400)

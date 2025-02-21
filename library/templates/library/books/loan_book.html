@@ -11,11 +11,11 @@
     <h1 class="h1 regular tx-center marg-title">Emprestar Livro</h1>
     <div class="form-columns">
         <div class="column-left-form">
-            <form method="POST" action="{% url 'loanBook' %}" class="form-container">
+            <form method="POST" class="form-container">
                 {% csrf_token %}
                 <div class="form-field">
-                    <label for="{{ form.leitor.id_for_label }}" class="form-label secundary-text bold">Leitor:<span>*</span></label>
-                    {{ form.leitor }}
+                    <label for="{{ form.usuario.id_for_label }}" class="form-label secundary-text bold">Leitor:<span>*</span></label>
+                    {{ form.usuario }}
                     <p class="secundary-text p-mrg">Nome do Usuário: <span id="nome"> </p>
                 </div>
                 <div class="form-field">
