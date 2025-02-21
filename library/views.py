@@ -163,9 +163,17 @@ class ProfileView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
 
 def ViewDetailBook(request, pk):
     livro = get_object_or_404(Livro, id=pk)
-    context = {"livro" : livro}
-    return render(request, "library/books/detail.html", context)
+    comentarios = Comentarios.objects.filter(livro=livro)
 
+    for comentario in comentarios:
+        comentario.estrelas_preenchidas = ['★'] * comentario.estrela
+        comentario.estrelas_vazias = ['☆'] * (5 - comentario.estrela)
+        
+    context = {
+        "livro": livro,
+        "comentarios": comentarios
+    }
+    return render(request, "library/books/detail.html", context)
 
 def ViewFeedbackBook(request, pk):
     livro = get_object_or_404(Livro, id=pk)
