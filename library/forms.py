@@ -1,12 +1,13 @@
 from django import forms
-from books.models import Livro, Categoria
-from user.models import Leitor
-from .models import Emprestimo
+from .models import Livro, Categoria, Emprestimo
+from user.models import MyUser
 
 class LivroForm(forms.ModelForm):
-    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
+    categoria = forms.ModelChoiceField(
+        queryset=Categoria.objects.all(),
         empty_label="Selecione uma categoria",
-        widget=forms.Select(attrs={'class': 'input-form'}))
+        widget=forms.Select(attrs={'class': 'input-form'})
+    )
 
     class Meta:
         model = Livro
@@ -16,24 +17,26 @@ class LivroForm(forms.ModelForm):
             'ano_publicacao', 'capa'
         ]
 
+
 class EmprestimoForm(forms.ModelForm):
     class Meta:
         model = Emprestimo
         fields = ['leitor', 'livro']
         widgets = {
-            'leitor' : forms.TextInput(attrs={
-                'class' : 'input secundary-text bold',
-                'placeholder' : '999.999.999-99'
+            'leitor': forms.TextInput(attrs={
+                'class': 'input secundary-text bold',
+                'placeholder': '999.999.999-99'
             }),
-            'livro' : forms.TextInput(attrs={
-                'class' : 'input secundary-text bold',
-                'placeholder' : 'teste'
+            'livro': forms.TextInput(attrs={
+                'class': 'input secundary-text bold',
+                'placeholder': 'Código do livro'
             })
         }
 
+
 class RenovarForm(forms.Form):
     usuario = forms.ModelChoiceField(
-        queryset=Leitor.objects.all(),
+        queryset=MyUser.objects.all(),
         label="Usuário",
         required=True
     )
@@ -53,7 +56,7 @@ class RenovarForm(forms.Form):
 
 class DevolucaoForm(forms.Form):
     usuario = forms.ModelChoiceField(
-        queryset=Leitor.objects.all(),
+        queryset=MyUser.objects.all(),
         label="Usuário",
         required=True
     )
@@ -67,4 +70,3 @@ class DevolucaoForm(forms.Form):
         emprestimo = self.cleaned_data['emprestimo']
         emprestimo.devolver_livro()
         emprestimo.save()
-

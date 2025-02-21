@@ -1,42 +1,75 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 from .forms import *
 from .forms import EmprestimoForm
 from books.models import Livro, Categoria
-from user.forms import LeitorForm
-from user.models import Leitor
+from user.models import MyUser
 from .models import Emprestimo
 from django.utils.timezone import now, timedelta
 from django.utils import timezone
 import re
+from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.contrib.auth.models import Group
+from django.utils.timezone import now, timedelta
+from django.utils import timezone
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic.edit import FormView
+
+from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
+from .models import Livro, Categoria
+from .models import Emprestimo
+from user.forms import UserRegisterForm
+from .permissions import GroupRequiredMixin
 
 
-def home(request):
-    return render(request, "library/index.html")
+User = get_user_model()
 
-def register(request):
-    if request.method == "POST":
-        form = LeitorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("listUser")
-    else:
-        form = LeitorForm()
+class HomeView(TemplateView):
+    template_name = "library/index.html"
+
+
+class ViewFeedbackBook(TemplateView):
+    login_url = reverse_lazy('user:login')
+    template_name = "library/books/feedback.html"
+
+class ViewDetailBook(TemplateView):
+    login_url = reverse_lazy('user:login')
+    template_name = "library/books/detail.html"
+
+class RegisterView(GroupRequiredMixin, LoginRequiredMixin, FormView):
+    group_required = 'Bibliotecario'
+    template_name = "library/users/register_user.html"
+    form_class = UserRegisterForm
+    success_url = reverse_lazy("library:listUser")
+
+    def form_valid(self, form):
+        user = form.save()
+        grupo, _ = Group.objects.get_or_create(name="Usuarios")
+        user.groups.add(grupo)
+        messages.success(self.request, "Cadastro realizado com sucesso! Faça login para continuar.")
+        login(self.request, user)
+        return super().form_valid(form)
     
-    return render(request, "library/users/register_user.html", {"form": form})
+class ListUserView(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    model = User
+    group_required = 'Bibliotecario'
+    template_name = "library/users/list_user.html"
+    context_object_name = "usuarios"
 
-def registerBook(request):
-    if request.method == 'POST':
-        form = LivroForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('listBooks')
-    else:
-        form = LivroForm()
+class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    model = Livro
+    group_required = 'Bibliotecario'
+    form_class = LivroForm
+    template_name = "library/books/register_book.html"
+    success_url = reverse_lazy("library:listBooks")
 
-    categorias = Categoria.objects.all()
-    return render(request, "library/books/register_book.html", {'form': form, "categorias" : categorias})
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categorias"] = Categoria.objects.all()
+        return context
 
 def searchUser(request):
     if request.method == "GET": 
@@ -47,7 +80,7 @@ def searchUser(request):
         
         cpf = re.sub(r'\D', '', cpf)
 
-        usuario = Leitor.objects.filter(cpf=cpf).first()
+        usuario = MyUser.objects.filter(cpf=cpf).first()
         if usuario:
             return JsonResponse({"nome": usuario.nome})
         else:
@@ -75,95 +108,106 @@ def searchBook(request):
     return JsonResponse({"erro": "Método não permitido"}, status=405)
 
 
-def loanBook(request):        
-    if request.method == "POST":
-        form = EmprestimoForm(request.POST)
-        if form.is_valid():
-            emprestimo = form.save(commit=False)
-            emprestimo.previsao_devolucao = now().date() + timedelta(days=15)
-            emprestimo.save()
-            return redirect('allLoans')
-    else:
-        form = EmprestimoForm()
+class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    form_class = EmprestimoForm
+    group_required = 'Bibliotecario'
+    template_name = "library/books/loan_book.html"
+    success_url = reverse_lazy("library:allLoans")
 
-    return render(request, 'library/books/loan_book.html', {'form': form})
+    def form_valid(self, form):
+        emprestimo = form.save(commit=False)
+        emprestimo.usuario = self.request.user
+        emprestimo.save()
+        return super().form_valid(form)
 
-def returnBook(request):
-    if request.method == 'POST':
-        form = DevolucaoForm(request.POST)
-        if form.is_valid():
-            nome = form.cleaned_data.get('nome')
-            isbn = form.cleaned_data.get('isbn')
-            leitor = get_object_or_404(Leitor, nome=nome)
-            livro = get_object_or_404(Livro, isbn=isbn)
-            emprestimo = get_object_or_404(Emprestimo, livro=livro, leitor=leitor, status_ativo=True)
-            emprestimo.devolver_livro()  
-            emprestimo.data_devolucao = now().date()
-            emprestimo.save()
-            return redirect("allLoans")
-    else:
-        form = DevolucaoForm()
-    
-    return render(request, 'library/books/return_book.html', {"form" : form})
+class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
+    template_name = "library/books/return_book.html"
+    group_required = 'Bibliotecario'
+    form_class = DevolucaoForm
+    success_url = reverse_lazy("library:allLoans")
 
-def renewBook(request):
-    if request.method == 'POST':
-        form = RenovarForm(request.POST)
-        if form.is_valid():
-            nome = form.cleaned_data.get('nome')
-            isbn = form.cleaned_data.get('isbn')
-            leitor = get_object_or_404(Leitor, nome=nome)
-            livro = get_object_or_404(Livro, isbn=isbn)
-            emprestimo = get_object_or_404(Emprestimo, livro=livro, leitor=leitor, status_ativo=True)
-            if emprestimo.renovar(): 
-                return redirect("allLoans")
-    else:
-        form = RenovarForm()
-    
-    return render(request, "library/books/renew_book.html", {"form" : form})
+    def form_valid(self, form):
+        nome = form.cleaned_data["nome"]
+        isbn = form.cleaned_data["isbn"]
 
-def listBooks(request):
-    titulo = request.GET.get("titulo", "")
-    autor = request.GET.get("autor", "")
-    categoria = request.GET.get("categoria", "")
-    ano = request.GET.get("ano", "")
+        usuario = get_object_or_404(User, nome=nome)
+        livro = get_object_or_404(Livro, isbn=isbn)
 
-    livros = Livro.objects.all()
+        emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
+        emprestimo.status_ativo = False
+        emprestimo.data_devolucao = now().date()
+        emprestimo.save()
 
-    if titulo:
-        livros = livros.filter(titulo__icontains=titulo)
-    if autor:
-        livros = livros.filter(autor__icontains=autor)
-    if categoria:
-        livros = livros.filter(categoria__icontains=categoria)
-    if ano:
-        livros = livros.filter(ano_publicacao=ano)
+        return super().form_valid(form)
 
-    return render(request, "library/books/list_book.html", {"livros": livros})
+class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
+    template_name = "library/books/renew_book.html"
+    group_required = 'Bibliotecario'
+    form_class = RenovarForm
+    success_url = reverse_lazy("library:allLoans")
 
-def listUser(request):
-    leitores = Leitor.objects.all()
-    context = {'leitores' : leitores}
-    return render(request, 'library/users/list_user.html', context)
+    def form_valid(self, form):
+        nome = form.cleaned_data["nome"]
+        isbn = form.cleaned_data["isbn"]
 
-def pendenceUser(request):
-    return render(request, 'library/users/pendence_user.html')
+        usuario = get_object_or_404(User, nome=nome)
+        livro = get_object_or_404(Livro, isbn=isbn)
 
-def allLoans(request):
-    emprestimos = Emprestimo.objects.all()
-    context = {'emprestimos' : emprestimos}
-    return render(request, 'library/loans/all_loans.html', context)
+        emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
+        emprestimo.previsao_devolucao += timedelta(days=15)
+        emprestimo.save()
 
-def pendencesBook(request):
-    emprestimos = Emprestimo.objects.filter(previsao_devolucao__lt=timezone.now(), status_ativo = True)
-    context = {'emprestimos' : emprestimos}
-    return render(request, 'library/loans/pendences_book.html', context)
+        return super().form_valid(form)
 
-def detailsPendencesUser(request):
-    return render(request, 'library/details/details_pendences_user.html')
+class ListBooksView(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    model = Livro
+    group_required = 'Bibliotecario'
+    template_name = "library/books/list_book.html"
+    context_object_name = "livros"
 
-def detailsPendencesBook(request):
-    return render(request, 'library/details/details_pendences_books.html')
+    def get_queryset(self):
+        queryset = Livro.objects.all()
+        titulo = self.request.GET.get("titulo", "")
+        autor = self.request.GET.get("autor", "")
+        categoria = self.request.GET.get("categoria", "")
+        ano = self.request.GET.get("ano", "")
 
-def profile(request):
-    return render(request, 'library/users/profile.html')
+        if titulo:
+            queryset = queryset.filter(titulo__icontains=titulo)
+        if autor:
+            queryset = queryset.filter(autor__icontains=autor)
+        if categoria:
+            queryset = queryset.filter(categoria__nome__icontains=categoria)
+        if ano:
+            queryset = queryset.filter(ano_publicacao=ano)
+
+        return queryset
+
+class PendenceUserView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
+    group_required = 'Bibliotecario'
+    template_name = "library/users/pendence_user.html"
+
+class AllLoansView(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    model = Emprestimo
+    group_required = 'Bibliotecario'
+    template_name = "library/loans/all_loans.html"
+    context_object_name = "emprestimos"
+
+class PendencesBookView(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = 'Bibliotecario'
+    template_name = "library/loans/pendences_book.html"
+    context_object_name = "emprestimos"
+
+    def get_queryset(self):
+        return Emprestimo.objects.filter(previsao_devolucao__lt=timezone.now(), status_ativo=True)
+
+class DetailsPendencesUserView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
+    group_required = 'Bibliotecario'
+    template_name = "library/details/details_pendences_user.html"
+
+class DetailsPendencesBookView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
+    group_required = 'Bibliotecario'
+    template_name = "library/details/details_pendences_books.html"
+
+class ProfileView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
+    template_name = "library/users/profile.html"

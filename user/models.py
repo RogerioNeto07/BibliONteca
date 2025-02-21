@@ -1,39 +1,44 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from books.models import Livro
-from datetime import date
 
-class Leitor(AbstractUser):
-    cpf = models.CharField(max_length=14, unique=True, null=False, blank=False)
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('O email deve ser fornecido')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser precisa ter is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser precisa ter is_superuser=True.')
+        return self.create_user(email, password, **extra_fields)
+
+class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, null=False, blank=False)
-    data_nascimento = models.DateField(null=False, blank=False)
-    telefone = models.CharField(max_length=15, null=False, blank=False)
-    bairro = models.CharField(max_length=100, null=False, blank=False)
-    rua = models.CharField(max_length=100, null=False, blank=False)
-    numero = models.IntegerField(null=False, blank=False)
-    nome = models.CharField(max_length=255)
+    
+    nome = models.CharField(max_length=100, null=False, blank=False)
+    cpf = models.CharField(max_length=14, unique=True, null=False, blank=False)
+    data_nascimento = models.DateField(null=True, blank=True)
+    telefone = models.CharField(max_length=15, null=True, blank=True)
+    bairro = models.CharField(max_length=100, null=True, blank=True)
+    rua = models.CharField(max_length=100, null=True, blank=True)
+    numero = models.IntegerField(null=True, blank=True)
     foto_perfil = models.ImageField(upload_to='perfil/', blank=True, null=True)
 
-    def __str__(self):
-        return self.cpf + " - " + self.nome
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='leitor',
-        blank=True,
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='leitor_permissions',
-        blank=True,
-    )
+    objects = MyUserManager()
 
-class Avaliacao(models.Model):
-    livro = models.ForeignKey(Livro, on_delete=models.CASCADE, null=False, blank=False, related_name="avaliacoes")
-    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE, null=False, blank=False, related_name="avaliacoes")
-    data_emprestimo = models.DateField(default=date.today)
-    nota = models.IntegerField(null=False, blank=False)
-    comentario = models.CharField(max_length=2500, null=True, blank=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []  
 
     def __str__(self):
-        return f"{self.leitor.nome} - {self.livro.titulo}"
+        return self.email

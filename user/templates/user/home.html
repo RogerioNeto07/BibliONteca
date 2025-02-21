@@ -6,9 +6,6 @@
 
 {% endblock %}
 
-{% block content-sidebar %}<sidebar-user></sidebar-user>{% endblock content-sidebar %}
-
-{% block content-header %} <header-home></header-home>{% endblock content-header %}
 
 {% block content %}
 <div class="content-width">
@@ -20,7 +17,7 @@
             </button>
             <div class="input-coat">
                 <input type="text" placeholder="Pesquisar" class="input-search">
-                <a href="{% url "pesquisa" %}"><i class="material-icons blue search-icon">search</i></a>
+                <a href="{% url 'user:pesquisa' %}"><i class="material-icons blue search-icon">search</i></a>
             </div>
         </div>
     </div>
@@ -68,7 +65,7 @@
                     </div>
                 </div>
                 <div class="form-buttons">
-                    <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white"><a href="{% url "pesquisa" %}">Filtrar</a></button>
+                    <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white"><a href="{% url 'user:pesquisa' %}">Filtrar</a></button>
                 </div>
             </form>
         </div>
@@ -94,7 +91,7 @@
                         <p class="status-label-disponivel">Disponível</p>
                     </div>
                     <img src="https://m.media-amazon.com/images/I/81rvO7xcJOL.jpg" alt="Livro">
-                    <a href="{% url "books:detail-books" %}"><p class="h3 bold">Harry Potter e as Relíquias da Morte</p></a>
+                    <a href=""><p class="h3 bold">Harry Potter e as Relíquias da Morte</p></a>
                     <p class="h3 bold"></p>
                     <p>J.K. Rowling</p>
                     <div class="rating">
@@ -599,6 +596,5 @@
 </div>
 <script src="{% static '/js/filter.js' %}"></script>
 <script src="{% static '/js/home.js' %}"></script>
-<script> const userType = "user"; </script>
 
 {% endblock content %}

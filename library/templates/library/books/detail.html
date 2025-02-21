@@ -1,0 +1,64 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'library/css/detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content-detail">
+    <img src="{{ livro.capa.url }}" alt="Capa do livro {{ livro.titulo }}" class="book-cover">
+
+    <div class="book-detail">
+        <h1 class="h1">{{ livro.titulo }}</h1>
+        <h3 class="h3 bold">{{ livro.subtitulo }}</h3>
+        <p class="h3 bold">{{ livro.autor }}</p>
+        <p class="main-text">Ano: {{ livro.ano_publicacao }}</p>
+        <p class="main-text">ISBN: {{ livro.isbn }}</p>
+
+        <p class="main-text bold">Categoria:</p>
+        <div class="categorias">
+            <p>{{livro.categoria}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="text-synopsis">
+    <h3 class="h3">Sinopse</h3>
+    <hr>
+    <p class="main-text">{{ livro.descricao }}</p>
+</div>
+
+<div class="comments-section">
+    <h3 class="h3">Comentários (3)</h3>
+    <hr>
+
+    <div class="comment">
+        <div class="comment-header">
+            <img class="comment-author-image" src="{% static 'library/static/img/perfil.png' %}" alt="Imagem do autor">
+            <p class="comment-author main-text bold">Gustavo Torres de Almeida</p>
+            <span class="comment-rating">
+                <span class="main-text bold">4.0</span>
+                <span class="star-rating">★★★★☆</span>
+            </span>
+            <span class="comment-time secundary-text regular">2 meses atrás</span>
+        </div>
+        <p class="comment-text main-text">
+            Esse livro me fez sentir um mestre na investigação.
+        </p>
+        <hr>
+    </div>
+
+    <div class="comment">
+        <div class="comment-header">
+            <img class="comment-author-image" src="{% static 'library/static/img/perfil.png' %}" alt="Imagem do autor">
+            <p class="comment-author main-text bold">Gustavo Torres de Almeida</p>
+            <span class="comment-rating">
+                <span class="main-text bold">4.0</span>
+                <span class="star-rating">★★★★☆</span>
+            </span>
+            <span class="comment-time secundary-text regular">2 meses atrás</span>
+        </div>
+        <hr>
+    </div>
+</div>
+<script> const userType = "user"; </script>
+{% endblock %}
