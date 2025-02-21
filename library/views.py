@@ -2,7 +2,6 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .forms import *
 from .forms import EmprestimoForm
-from books.models import Livro, Categoria
 from user.models import MyUser
 from .models import Emprestimo
 from django.utils.timezone import now, timedelta

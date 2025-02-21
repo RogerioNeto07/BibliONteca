@@ -21,9 +21,9 @@ class LivroForm(forms.ModelForm):
 class EmprestimoForm(forms.ModelForm):
     class Meta:
         model = Emprestimo
-        fields = ['leitor', 'livro']
+        fields = ['usuario', 'livro']
         widgets = {
-            'leitor': forms.TextInput(attrs={
+            'usuario': forms.TextInput(attrs={
                 'class': 'input secundary-text bold',
                 'placeholder': '999.999.999-99'
             }),

@@ -1,6 +1,6 @@
 from django.db import models
 from user.models import MyUser 
-from datetime import date, timedelta
+from datetime import timedelta
     
 
 class Categoria(models.Model):
