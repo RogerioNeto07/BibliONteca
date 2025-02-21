@@ -6,40 +6,45 @@
 {% endblock %}
 {% block content %}
 <div class="content-detail">
-    <img src="{% static 'library/img/capa-harry-potter.png' %}" alt="Capa do livro Harry Potter" class="book-cover">
+    <img src="{{ livro.capa.url }}" alt="Capa do livro {{ livro.titulo }}" class="book-cover">
+
     <div class="book-detail">
-        <h1 class="h1">Harry Potter</h1>
-        <h3 class="h3 bold">HARRY POTTER E O PRISIONEIRO DE AZKABAN</h3>
-        <p class="h3 bold">J. K. Rowling</p>
-        <p class="main-text">Ano: 2017 | Páginas: 352</p>
-        <p class="main-text">ISBN: 9780751565362</p>
-        <p class="main-text">Data de Publicação: 00/00/0000</p>
-        <p class="main-text bold">Categorias:</p>
+        <h1 class="h1">{{ livro.titulo }}</h1>
+        <h3 class="h3 bold">{{ livro.subtitulo }}</h3>
+        <p class="h3 bold">{{ livro.autor }}</p>
+        <p class="main-text">Ano: {{ livro.ano_publicacao }}</p>
+        <p class="main-text">ISBN: {{ livro.isbn }}</p>
+
+        <p class="main-text bold">Categoria:</p>
         <div class="categorias">
-            <button class="bnt bnt-filter bg-dark-blue white">FICÇÃO</button>
-            <button class="bnt bnt-filter bg-dark-blue white">ROMANCE</button>
+            <p>{{livro.categoria}}</p>
         </div>
     </div>
 </div>
 
-<div class="content-feedback">
-    <h3 class="h3 bold">Avalie o Livro:</h3>
+<form action="{% url 'library:comments-book' livro.id %}" method="post">
+    {% csrf_token %}
+    <div class="content-feedback">
+        <h3 class="h3 bold">Avalie o Livro:</h3>
 
-    <div class="star-rating">
-        <span class="star" data-rating="1">&#9733;</span>
-        <span class="star" data-rating="2">&#9733;</span>
-        <span class="star" data-rating="3">&#9733;</span>
-        <span class="star" data-rating="4">&#9733;</span>
-        <span class="star" data-rating="5">&#9733;</span>
+        <div class="star-rating" id="star-rating">
+            <span class="star" data-rating="1">&#9733;</span>
+            <span class="star" data-rating="2">&#9733;</span>
+            <span class="star" data-rating="3">&#9733;</span>
+            <span class="star" data-rating="4">&#9733;</span>
+            <span class="star" data-rating="5">&#9733;</span>
+        </div>
+        <input type="hidden" name="star-rating" id="star-rating-input" value="0">
+
+        <p class="main-text comment">Comentário (Opcional):</p>
+        <div class="textarea-button-wrapper">
+            <textarea name="user-comment" id="add-comment"
+                placeholder="Escreva um comentário sobre o livro..."></textarea>
+            <button type="submit" id="submit-review" class="rate">Avaliar</button>
+        </div>
     </div>
-    <p class="main-text comment">Comentário (Opcional):</p>
-    <div class="textarea-button-wrapper">
-        <textarea name="user-comment" id="add-comment" placeholder="Escreva um comentário sobre o livro..."></textarea>
-        <button class="rate">Avaliar</button>
-    </div>
-</div>
+</form>
 
 
 <script src="{% static 'library/js/feedback.js' %}"></script>
-<script> const userType = "user"; </script>
 {% endblock %}

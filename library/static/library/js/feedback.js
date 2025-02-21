@@ -1,13 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
     const stars = document.querySelectorAll('.star-rating .star');
+    const ratingInput = document.getElementById('star-rating-input');
 
-    stars.forEach((star, index) => {
-        star.addEventListener('click', () => {
-            stars.forEach(s => s.classList.remove('selected'));
+    stars.forEach((star) => {
+        star.addEventListener('click', function () {
+            const rating = this.getAttribute('data-rating');
+            ratingInput.value = rating;
 
-            for (let i = 0; i <= index; i++) {
-                stars[i].classList.add('selected');
-            }
+            stars.forEach(s => {
+                const starRating = s.getAttribute('data-rating');
+                if (starRating <= rating) {
+                    s.classList.add('selected');
+                    s.style.color = 'gold';
+                } else {
+                    s.classList.remove('selected');
+                    s.style.color = 'gray';
+                }
+            });
         });
     });
 });
