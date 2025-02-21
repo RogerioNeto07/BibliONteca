@@ -59,13 +59,13 @@
         </tr>
     </thead>
     <tbody>
-        {% for leitor in leitores %}
+        {% for leitor in usuarios %}
         <tr>
             <td>
                 {% if leitor.foto_perfil %}
                     <img src="{{ leitor.foto_perfil.url }}" alt="" class="table-img">
                 {% else %}
-                    <span>Sem fotooo</span>
+                    <img src="{% static 'global/imgs/transferir.jpg' %}" alt="Foto padrão" class="table-img">
                 {% endif %}
             </td>
             <td>{{ leitor.nome }}</td>

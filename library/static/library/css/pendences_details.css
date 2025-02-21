@@ -46,6 +46,10 @@
     border-style: none;
 }
 
+.icon {
+    cursor: pointer;
+}
+
 .content-column-loan {
     display: grid;
     grid-template-columns: 300px 300px;

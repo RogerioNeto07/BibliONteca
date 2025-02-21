@@ -16,7 +16,7 @@
 
     {% endblock extra_css %}
     
-    <title>Document</title>
+    <title>BibliONteca</title>
 </head>
 <body>
     <div id='sidebar-menu' class="sidebar-menu bg-dark-blue">
@@ -170,11 +170,26 @@
             <div class="header-content">
                 <div></div>
                 <div class="user-content">
-                    <a href="{% url 'user:notifications' %}"><i class="header-icon-notifications fa-solid fa-bell" style="color: grey;"></i></a>
-                    <a href="{% url 'library:profile' %}"><div class="user-pic"></div></a>
-                    <p class="username secundary-text">NomeUser</p>
+                    <a href="{% url 'user:notifications' %}">
+                        <i class="header-icon-notifications fa-solid fa-bell" style="color: grey;"></i>
+                    </a>
+                    <a href="{% url 'user:profile-user' %}">
+                        <div class="user-pic">
+                            {% if request.user.foto_perfil %}
+                                <img src="{{ request.user.foto_perfil.url }}" alt="Foto de perfil" class="user-pic-img">
+                            {% else %}
+                                <img src="{% static 'global/imgs/transferir.jpg'%}" alt="Foto padrão" class="user-pic-img">
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% if request.user.nome %}
+                        <p class="username secundary-text">{{ request.user.nome }}</p>
+                    {% else %}
+                        <p class="username secundary-text">Deslogado</p>
+                    {% endif %}
                 </div>
             </div>
+            
             <div>
                 <hr class="line-divider bg-dark-blue">
             </div>

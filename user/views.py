@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from library.permissions import GroupRequiredMixin
+from django.views import View
+from django.http import HttpResponseBadRequest
 
 
 class LoginView(TemplateView):
@@ -28,9 +30,22 @@ class HomeView(TemplateView):
     template_name = "user/home.html"
 
 class PerfilView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
-    group_required = 'Bibliotecario'
-
     template_name = "user/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        usuario = self.request.user
+        context["usuario"] = usuario
+        return context
+    
+class AtualizarFotoPerfilView(LoginRequiredMixin, View):
+    def post(self, request):
+        usuario = request.user
+        if 'foto_perfil' in request.FILES:
+            usuario.foto_perfil = request.FILES['foto_perfil']
+            usuario.save()
+            return redirect('user:profile-user')
+        return HttpResponseBadRequest("Nenhuma imagem foi enviada.")
 
 class NotificationsView(LoginRequiredMixin, TemplateView):
     template_name = "user/notifications.html"
