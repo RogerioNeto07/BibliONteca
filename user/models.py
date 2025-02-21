@@ -15,7 +15,7 @@ class Leitor(AbstractUser):
     foto_perfil = models.ImageField(upload_to='perfil/', blank=True, null=True)
 
     def __str__(self):
-        return self.nome
+        return self.cpf + " - " + self.nome
 
     groups = models.ManyToManyField(
         'auth.Group',

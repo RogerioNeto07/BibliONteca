@@ -19,7 +19,7 @@ h1 {
     margin-right: auto;
 }
 
-.img-book {
+#capa-livro {
     background-color: gray;
     width: 15.625rem;
     height: 18.125rem;
@@ -59,7 +59,7 @@ button {
         width: 100%;
     }
 
-    .img-book {
+    #capa-livro {
         width: 12rem;
         height: 15rem;
     }

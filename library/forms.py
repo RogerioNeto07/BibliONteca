@@ -20,11 +20,51 @@ class EmprestimoForm(forms.ModelForm):
     class Meta:
         model = Emprestimo
         fields = ['leitor', 'livro']
-
-class DevolucaoForm(forms.Form):
-    nome = forms.CharField(label="Usuário", max_length=200, required=True)
-    isbn = forms.CharField(label="ISBN", max_length=13, required=True)
+        widgets = {
+            'leitor' : forms.TextInput(attrs={
+                'class' : 'input secundary-text bold',
+                'placeholder' : '999.999.999-99'
+            }),
+            'livro' : forms.TextInput(attrs={
+                'class' : 'input secundary-text bold',
+                'placeholder' : 'teste'
+            })
+        }
 
 class RenovarForm(forms.Form):
-    nome = forms.CharField(label="Nome do usuário", max_length=200, required=True)
-    isbn = forms.CharField(label="ISBN", max_length=13, required=True)
+    usuario = forms.ModelChoiceField(
+        queryset=Leitor.objects.all(),
+        label="Usuário",
+        required=True
+    )
+    emprestimo = forms.ModelChoiceField(
+        queryset=Emprestimo.objects.none(),
+        label="Selecione o Empréstimo",
+        required=True
+    )
+
+    def salvar(self):
+        emprestimo = self.cleaned_data['emprestimo']
+        if emprestimo.renovar():
+            emprestimo.save()
+            return True
+        return False
+
+
+class DevolucaoForm(forms.Form):
+    usuario = forms.ModelChoiceField(
+        queryset=Leitor.objects.all(),
+        label="Usuário",
+        required=True
+    )
+    emprestimo = forms.ModelChoiceField(
+        queryset=Emprestimo.objects.filter(status_ativo=False),
+        label="Selecione o Empréstimo",
+        required=True
+    )
+
+    def salvar(self):
+        emprestimo = self.cleaned_data['emprestimo']
+        emprestimo.devolver_livro()
+        emprestimo.save()
+
