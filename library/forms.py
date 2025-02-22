@@ -18,7 +18,7 @@ class LivroForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
             'subtitulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Sub-título'}),
-            'categoria': forms.Select(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Categoria' }),
+            'categoria': forms.Select(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Categoria'}),
             'autor': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Autor'}),
             'idioma': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Idioma'}),
             'capa': forms.ClearableFileInput(attrs={'class': 'input-form secundary-text bold'}),
@@ -37,11 +37,11 @@ class EmprestimoForm(forms.ModelForm):
         model = Emprestimo
         fields = ['usuario', 'livro']
         widgets = {
-            'usuario': forms.TextInput(attrs={
+            'usuario': forms.Select(attrs={
                 'class': 'input secundary-text bold',
                 'placeholder': '999.999.999-99'
             }),
-            'livro': forms.TextInput(attrs={
+            'livro': forms.Select(attrs={
                 'class': 'input secundary-text bold',
                 'placeholder': 'Código do livro'
             })

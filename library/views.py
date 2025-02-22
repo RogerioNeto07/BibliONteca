@@ -148,6 +148,7 @@ class ListBooksView(GroupRequiredMixin, LoginRequiredMixin, ListView):
             queryset = queryset.filter(categoria__nome__icontains=categoria)
         if ano:
             queryset = queryset.filter(ano_publicacao=ano)
+        
 
         return queryset
 
@@ -164,6 +165,7 @@ class AllLoansView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
         titulo = self.request.GET.get('titulo', '')
         usuario = self.request.GET.get('usuario', '')
+        status = self.request.GET.get('status', '')
 
         queryset = Emprestimo.objects.all()
 
@@ -172,7 +174,20 @@ class AllLoansView(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if usuario:
             queryset = queryset.filter(usuario__nome__icontains=usuario)
 
+        if status == 'atrasado':
+            queryset = queryset.filter(
+                data_devolucao__lt=timezone.now().date(), 
+                status_ativo=True
+            )
+        elif status == 'dentro_prazo':
+            queryset = queryset.filter(
+                previsao_devolucao__gte=timezone.now().date(), 
+                data_devolucao__isnull=True,
+                status_ativo=True
+            )
+
         return queryset
+
 
 class PendencesBookView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = 'Bibliotecario'

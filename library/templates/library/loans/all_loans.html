@@ -6,7 +6,7 @@
 
 {% block content %}
 <style>
-    .main-content{
+    .main-content {
         width: 950px;
     }
 </style>
@@ -34,11 +34,21 @@
                     <input type="text" id="userName" class="input-field" name="usuario" placeholder="Digite o nome do usuário">
                 </div>
             </div>
+            <!-- Campo de filtro para Status com a opção 'pendente' removida -->
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="status">Status do Empréstimo:</label>
+                    <select id="status" class="input-field" name="status">
+                        <option value="">Selecione o Status</option>
+                        <option value="atrasado">Em Atraso</option>
+                        <option value="dentro_prazo">Dentro do Prazo</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-buttons">
                 <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white">Filtrar</button>
             </div>
         </form>
-        
     </div>
 </div>
 
@@ -80,6 +90,5 @@
 
 <script> const userType = "library"; </script>
 <script src="{% static 'js/filter.js' %}"></script>
-
 
 {% endblock content %}
