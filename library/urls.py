@@ -21,5 +21,7 @@ urlpatterns = [
     path('detalhes-pendencias-usuarios/', views.DetailsPendencesUserView.as_view(), name="detailsPendencesUser"),
     path('detalhes-pendencias-livros/', views.DetailsPendencesBookView.as_view(), name="detailsPendencesBook"),
     path('perfil/', views.ProfileView.as_view(), name='profile'),
+    path('buscar-usuario/', views.searchUser, name="buscar-usuario"),
+    path("buscar-livro/", views.searchBook, name="buscar-livro"),
 ]
 

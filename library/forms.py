@@ -20,6 +20,16 @@ class EmprestimoForm(forms.ModelForm):
     class Meta:
         model = Emprestimo
         fields = ['usuario', 'livro']
+        widgets = {
+            'usuario': forms.TextInput(attrs={
+                'class': 'input secundary-text bold',
+                'placeholder': '999.999.999-99'
+            }),
+            'livro': forms.TextInput(attrs={
+                'class': 'input secundary-text bold',
+                'placeholder': 'Código do livro'
+            })
+        }
 
 class DevolucaoForm(forms.Form):
     nome = forms.CharField(label="Usuário", max_length=200, required=True)

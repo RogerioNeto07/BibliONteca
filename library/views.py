@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,7 +14,7 @@ from django.shortcuts import redirect
 from django.db.models import Count, Q
 from django.db.models import F, ExpressionWrapper, fields
 from django.db.models.functions import Now
-
+import re
 from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
 from .models import Livro, Categoria, Comentarios
 from .models import Emprestimo
@@ -268,3 +269,39 @@ def ViewComentarios(request, pk):
             messages.error(request, "Por favor, selecione uma avaliação válida de 1 a 5 estrelas.")
 
     return render(request, 'library/books/feedback.html', {'livro': livro, 'user': user})
+
+def searchUser(request):
+    if request.method == "GET": 
+        cpf = request.GET.get("usuario", "").strip()
+        
+        if not cpf:
+            return JsonResponse({"erro": "CPF não fornecido"}, status=400)
+        
+        cpf = re.sub(r'\D', '', cpf)
+
+        usuario = MyUser.objects.filter(cpf=cpf).first()
+        if usuario:
+            return JsonResponse({"nome": usuario.nome})
+        else:
+            return JsonResponse({"erro": "Usuário não encontrado"}, status=404)
+
+    return JsonResponse({"erro": "Método não permitido"}, status=405)
+
+def searchBook(request):
+    if request.method == "GET":
+        isbn = request.GET.get("isbn", "").strip()
+
+        if not isbn:
+            return JsonResponse({"erro": "ISBN não fornecido"}, status=400)
+
+        livro = Livro.objects.filter(isbn=isbn).first()
+
+        if livro:
+            return JsonResponse({
+                "titulo": livro.titulo,
+                "imagem": livro.capa.url if livro.capa else None 
+            })
+        else:
+            return JsonResponse({"erro": "Livro não encontrado"}, status=404)
+
+    return JsonResponse({"erro": "Método não permitido"}, status=405)
