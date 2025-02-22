@@ -32,9 +32,45 @@ class EmprestimoForm(forms.ModelForm):
         }
 
 class DevolucaoForm(forms.Form):
-    nome = forms.CharField(label="Usuário", max_length=200, required=True)
-    isbn = forms.CharField(label="ISBN", max_length=13, required=True)
+    nome = forms.CharField(
+        label="Usuário",
+        max_length=200,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'input secundary-text bold',
+                'placeholder': 'CPF'
+        })
+    )
+    isbn = forms.CharField(
+            label="ISBN",
+            max_length=13,
+            required=True,
+            widget=forms.TextInput(
+                attrs={
+                    'class': 'input secundary-text bold',
+                    'placeholder': 'ISBN'
+            })
+        )
 
 class RenovarForm(forms.Form):
-    nome = forms.CharField(label="Nome do usuário", max_length=200, required=True)
-    isbn = forms.CharField(label="ISBN", max_length=13, required=True)
+    nome = forms.CharField(
+                label="Usuário", 
+                max_length=200, 
+                required=True, 
+                widget=forms.TextInput(
+                attrs={
+                    'class': 'input secundary-text bold',
+                    'placeholder': 'CPF'
+            })
+        )
+    isbn = forms.CharField(
+                label="ISBN", 
+                max_length=13, 
+                required=True, 
+                widget=forms.TextInput(
+                attrs={
+                    'class': 'input secundary-text bold',
+                    'placeholder': 'ISBN'
+            })
+        )

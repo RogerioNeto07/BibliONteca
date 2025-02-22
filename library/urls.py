@@ -24,4 +24,3 @@ urlpatterns = [
     path('buscar-usuario/', views.searchUser, name="buscar-usuario"),
     path("buscar-livro/", views.searchBook, name="buscar-livro"),
 ]
-

@@ -108,7 +108,7 @@ body, main {
 }
 
 /* Formulários */
-input, textarea {
+input, textarea, select {
     height: var(--form-height);
     width: var(--form-width);
     border-radius: var(--border-radius);
