@@ -138,7 +138,7 @@ span.alert { color: var(--color-red); }
 span { color: var(--color-red); }
 
 .input-search { width: 21.875rem; margin: 0; }
-.input-form, select { width: 26rem; }
+.input-form { width: 26rem; }
 .tx-center { text-align: center; }
 .input-description{height: 200px;}
 input:focus, textarea:focus {

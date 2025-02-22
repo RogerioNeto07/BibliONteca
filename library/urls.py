@@ -15,7 +15,6 @@ urlpatterns = [
     path('renovar-livro/', views.RenewBookView.as_view(), name="renewBook"),
     path('listar-livros/', views.ListBooksView.as_view(), name="listBooks"),
     path('listar-usuarios/', views.ListUserView.as_view(), name="listUser"),
-    path('pendencias-usuarios/', views.PendenceUserView.as_view(), name="pendenceUser"),
     path('todos-emprestimos/', views.AllLoansView.as_view(), name="allLoans"),
     path('perfil/<int:usuario_id>/', views.PerfilUsuarioView.as_view(), name='perfil_usuario'),
     path('emprestimos-pendentes/', views.PendencesBookView.as_view(), name="pendencesBook"),

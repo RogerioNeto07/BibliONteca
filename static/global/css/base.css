@@ -198,10 +198,6 @@ footer {
         z-index: 10;
     }
 
-    body {
-        display: grid;
-        grid-template-columns: 24px auto;
-    }
 
     .main-content {
         position: absolute;
