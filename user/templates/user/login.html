@@ -22,6 +22,7 @@
             </button>
         </div>
         <div class="login-container-right">
+            <div>
             <p class="title-login h1 dark-blue">Login</p>
             <form action="{% url 'user:login' %}" method="POST" class="login">
                 {% csrf_token %}
@@ -39,6 +40,7 @@
                     <span class="main-text white">Login</span>
                 </button>
             </form>
+        </div>
         </div>
     </div>
 </body>

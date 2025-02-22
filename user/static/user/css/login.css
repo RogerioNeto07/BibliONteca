@@ -9,8 +9,14 @@ body {
     height: 100vh;
 }
 
-.login-container-left, .login-container-rigth {
+.login-container-left {
     padding: 140px 76px 0 76px;
+    text-align: center;
+}
+.login-container-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
