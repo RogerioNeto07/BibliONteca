@@ -12,10 +12,10 @@ class Categoria(models.Model):
 
 class Livro(models.Model):
     titulo = models.CharField(max_length=200, null=False, blank=False)
-    subtitulo = models.CharField(max_length=200)
+    subtitulo = models.CharField(max_length=200, blank=True, null=True)
     editora = models.CharField(max_length=50)
     autor = models.CharField(max_length=100, null=False, blank=False)
-    volume = models.IntegerField(null=False, blank=False)
+    volume = models.IntegerField(null=True, blank=True)
     idioma = models.CharField(max_length=20, null=False, blank=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default="")
     qntd_paginas = models.IntegerField(null=False, blank=False)
@@ -25,6 +25,7 @@ class Livro(models.Model):
     ano_publicacao = models.IntegerField(null=False, blank=False)
     capa = models.ImageField(upload_to="capas/", null=False, blank=False)
     data_cadastro = models.DateField(auto_now_add=True)
+    quantidade = models.IntegerField(default=1)
 
 
     def __str__(self):

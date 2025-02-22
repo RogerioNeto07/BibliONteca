@@ -13,8 +13,24 @@ class LivroForm(forms.ModelForm):
         fields = [
             'titulo', 'subtitulo', 'editora', 'autor', 'volume', 'idioma', 
             'categoria', 'qntd_paginas', 'classificacao', 'descricao', 'isbn', 
-            'ano_publicacao', 'capa'
+            'ano_publicacao', 'capa', 'quantidade'
         ]
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
+            'subtitulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Sub-título'}),
+            'categoria': forms.Select(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Categoria' }),
+            'autor': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Autor'}),
+            'idioma': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Idioma'}),
+            'capa': forms.ClearableFileInput(attrs={'class': 'input-form secundary-text bold'}),
+            'descricao': forms.Textarea(attrs={'class': 'input-form secundary-text bold input-description', 'placeholder': 'Descrição'}),
+            'classificacao': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-three', 'placeholder': 'Faixa Étaria'}),
+            'ano_publicacao': forms.NumberInput(attrs={'class': 'input-form secundary-text bold width-three', 'placeholder': 'Ano'}),
+            'qntd_paginas': forms.NumberInput(attrs={'class': 'input-form secundary-text bold width-three', 'placeholder': 'Quantidade'}),
+            'isbn': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-one', 'placeholder': 'ISBN'}),
+            'editora': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-one', 'placeholder': 'Editora'}),
+            'volume': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Volume'}),
+            'quantidade' : forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Quantidade'})
+        }
 
 class EmprestimoForm(forms.ModelForm):
     class Meta:

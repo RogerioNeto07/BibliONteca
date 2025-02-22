@@ -7,91 +7,83 @@
 
 {% block content %}
 
-    <!-- <h1 class="h1 regular tx-center">Cadastrar Livro</h1>
-    <div class="form-register-row">
-        <form class="form-register">
-            <div class="column-left-form-register" >
-                <div class="login-container-rigth">
-                    <div class="form-field">
-                        <label for="title" class="form-label secundary-text bold">Título:<span>*</span></label>
-                        <input type="text" class="input-form secundary-text bold" id="title" placeholder="Título">
-                    </div>
-                    <div class="form-field">
-                        <label for="sub-title" class="form-label secundary-text bold">Sub-Título:</label>
-                        <input type="text" class="input-form secundary-text bold" id="sub-title" placeholder="Sub-Título">
-                    </div>
-                    <div class="form-field-two">
-                        <div class="form-field f-width-one">
-                            <label for="publisher" class="form-label secundary-text bold">Editora:<span>*</span></label>
-                            <input type="text" class="input-form secundary-text bold width-one" id="publisher" placeholder="Editora">
-                        </div>
-                        <div class="form-field f-width-two">
-                            <label for="volume" class="form-label secundary-text bold">Volume:<span>*</span></label>
-                            <input type="text" class="input-form secundary-text bold width-two" id="volume" placeholder="Volume">
-                        </div>
-                    </div>
-                    <div class="form-field-two">
-                        <div class="form-field f-width-one">
-                            <label for="publisher" class="form-label secundary-text bold">ISBN:<span>*</span></label>
-                            <input type="text" class="input-form secundary-text bold width-one" id="publisher" placeholder="999-99-99-99999-9">
-                        </div>
-                        <div class="form-field f-width-two">
-                            <label for="amount" class="form-label secundary-text bold">Quantidade:<span>*</span></label>
-                            <input type="Number" class="input-form secundary-text bold width-two" id="amount" placeholder="Quantidade">
-                        </div>
-                    </div>
-                    <div class="form-field">
-                        <label for="category" class="form-label secundary-text bold">Categoria:<span>*</span></label>
-                        <input type="text" class="input-form secundary-text bold" id="category" placeholder="Categoria">
-                    </div>
-                </div>
-                <div class="form-field-three">
-                    <div class="form-field f-width-three">
-                        <label for="number-house" class="form-label secundary-text bold">Páginas:<span>*</span></label>
-                        <input type="number" class="input-form secundary-text bold width-three" id="number-house" placeholder="Quantidade">
-                    </div>
-                    <div class="form-field f-width-three">
-                        <label for="number-house" class="form-label secundary-text bold">Publicação:<span>*</span></label>
-                        <input type="number" class="input-form secundary-text bold width-three" id="number-house" placeholder="Ano">
-                    </div>
-                    <div class="form-field f-width-three">
-                        <label for="number-house" class="form-label secundary-text bold">Faixa Etária:<span>*</span></label>
-                        <input type="number" class="input-form secundary-text bold width-three" id="number-house" placeholder="Idade">
-                    </div>
-                </div>
-            </div>
-            <div class="column-rigth-form-register">
-                <div class="login-container-rigth">
-                    <div class="form-field">
-                        <label for="author" class="form-label secundary-text bold">Autor:<span>*</span></label>
-                        <input type="text" class="input-form secundary-text bold" id="author" placeholder="Autor">
-                    </div>
-                    <div class="form-field">
-                        <label for="language" class="form-label secundary-text bold">Idioma:<span>*</span></label>
-                        <input type="text" class="input-form secundary-text bold" id="language" placeholder="Autor">
-                    </div>
-                    <div class="form-field">
-                        <label for="image" class="form-label secundary-text bold">Imagem:<span>*</span></label>
-                        <input type="file" class="input-form secundary-text bold " style="line-height: 40px;" id="image">
-                    </div>
-                    <div class="form-field">
-                        <label for="description" class="form-label secundary-text bold">Descrição:<span>*</span></label>
-                        <textarea type="text" class="input-form secundary-text bold" id="description" placeholder="Descrição"></textarea>
-                    </div>
-                </div>  
-            </div>
-        </form>
-        <div class="buttons-form">
-            <button class="bnt bg-red white">Cancelar</button>
-            <button class="bnt bg-green white">Cadastrar</button>
-        </div>
-    </div>
-    <script> const userType = "library"; </script> -->
-    <h1 class="h1 regular tx-center">Cadastrar Livro</h1>
+<h1 class="h1 regular tx-center">Cadastrar Livro</h1>
 <div class="form-register-row">
-    <form class="form-register" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-register">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="column-left-form-register">
+            <div class="login-container-rigth">
+                <div class="form-field">
+                    <label for="{{ form.titulo.id_for_label }}" class="form-label secundary-text bold">Título:<span>*</span></label>
+                    {{ form.titulo }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.subtitulo.id_for_label }}" class="form-label secundary-text bold">Sub-Título:</label>
+                    {{ form.subtitulo }}
+                </div>
+                <div class="form-field-two">
+                    <div class="form-field f-width-one">
+                        <label for="{{ form.editora.id_for_label }}" class="form-label secundary-text bold">Editora:<span>*</span></label>
+                        {{ form.editora }}
+                    </div>
+                    <div class="form-field f-width-two">
+                        <label for="{{ form.volume.id_for_label }}" class="form-label secundary-text bold">Volume:<span>*</span></label>
+                        {{ form.volume }}
+                    </div>
+                </div>
+                <div class="form-field-two">
+                    <div class="form-field f-width-one">
+                        <label for="{{ form.isbn.id_for_label }}" class="form-label secundary-text bold">ISBN:<span>*</span></label>
+                        {{ form.isbn }}
+                    </div>
+                    <div class="form-field f-width-two">
+                        <label for="{{ form.quantidade.id_for_label }}" class="form-label secundary-text bold">Quantidade:<span>*</span></label>
+                        {{form.quantidade}}
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.categoria.id_for_label }}" class="form-label secundary-text bold">Categoria:<span>*</span></label>
+                    {{ form.categoria }}
+                </div>
+            </div>
+            <div class="form-field-three">
+                <div class="form-field f-width-three">
+                    <label for="{{ form.qntd_paginas.id_for_label }}" class="form-label secundary-text bold">Páginas:<span>*</span></label>
+                    {{ form.qntd_paginas }}
+                </div>
+                <div class="form-field f-width-three">
+                    <label for="{{ form.ano_publicacao.id_for_label }}" class="form-label secundary-text bold">Publicação:<span>*</span></label>
+                    {{ form.ano_publicacao }}
+                </div>
+                <div class="form-field f-width-three">
+                    <label for="{{ form.classificacao.id_for_label }}" class="form-label secundary-text bold">Classificação:<span>*</span></label>
+                    {{ form.classificacao }}
+                </div>
+            </div>
+        </div>
+        <div class="column-rigth-form-register">
+            <div class="login-container-rigth">
+                <div class="form-field">
+                    <label for="{{ form.autor.id_for_label }}" class="form-label secundary-text bold">Autor:<span>*</span></label>
+                    {{ form.autor }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.idioma.id_for_label }}" class="form-label secundary-text bold">Idioma:<span>*</span></label>
+                    {{ form.idioma }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.capa.id_for_label }}" class="form-label secundary-text bold">Capa:<span>*</span></label>
+                    {{ form.capa }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.descricao.id_for_label }}" class="form-label secundary-text bold">Descrição:<span>*</span></label>
+                    {{ form.descricao }}
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Botões -->
         <div class="buttons-form">
             <button type="button" class="bnt bg-red white" onclick="window.history.back()">Cancelar</button>
             <button type="submit" class="bnt bg-green white">Cadastrar</button>

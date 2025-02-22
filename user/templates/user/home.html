@@ -86,20 +86,22 @@
             <button class="carousel-btn prev-btn">❮</button>
             <div class="carousel-track">
                 {% for livro in livros_chegados  %}
-                    <div class="book-card">
-                        <div class="status-wrapper">
-                            <span class="status-dot-green"></span>
-                            <p class="status-label-disponivel">Disponível</p>
+                    <a href="{% url 'library:detail-books' livro.id %}">
+                        <div class="book-card">
+                            <div class="status-wrapper">
+                                <span class="status-dot-green"></span>
+                                <p class="status-label-disponivel">Disponível</p>
+                            </div>
+                            <img src="{{livro.capa.url}}"
+                                alt="Livro">
+                            <p class="h3 bold">{{livro.titulo}} - {{livro.subtitulo}}</p>
+                            <p>{{livro.autor}}</p>
+                            <div class="rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="review-count">(10)</span>
+                            </div>
                         </div>
-                        <img src="{{livro.capa.url}}"
-                            alt="Livro">
-                        <p class="h3 bold">{{livro.titulo}} - {{livro.subtitulo}}</p>
-                        <p>{{livro.autor}}</p>
-                        <div class="rating">
-                            <span class="stars">★★★★☆</span>
-                            <span class="review-count">(10)</span>
-                        </div>
-                    </div>
+                    </a>
                 {% endfor %}
             </div>
             <button class="carousel-btn next-btn">❯</button>
