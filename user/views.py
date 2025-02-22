@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from library.permissions import GroupRequiredMixin
 from django.views import View
 from django.http import HttpResponseBadRequest
+from library.models import Emprestimo
 
 
 class LoginView(TemplateView):
@@ -55,3 +56,9 @@ class SearchView(LoginRequiredMixin, TemplateView):
 
 class BookHistoryView(LoginRequiredMixin, TemplateView):
     template_name = "user/bookhistory.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['emprestimos'] = Emprestimo.objects.filter(usuario=self.request.user)
+        return context
+

@@ -5,9 +5,10 @@
 {% endblock %}
 {% block content %}
 <div class="header-content-filter">
-    <h1 class="h1 regular">Listagem dos Livros</h1>
+    <h1 class="h1 regular">Meus empréstimos</h1>
     <div class="content-filter-right">
-        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">Filtrar<i class="material-icons">filter_alt</i>
+        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">Filtrar<i
+                class="material-icons">filter_alt</i>
         </button>
         <div class="input-coat">
             <input type="text" placeholder="Pesquisar" class="input-search">
@@ -108,26 +109,37 @@
         </tr>
     </thead>
     <tbody>
+        {% for emprestimo in emprestimos %}
         <tr>
-            <td><img src="https://m.media-amazon.com/images/I/91r5G8RxqfL._SY425_.jpg" alt="" class="table-img"></td>
-            <td>É assim que acaba</td>
-            <td>Colleen Hoover</td>
-            <td>Devolvido</td>
             <td>
-                <a href="{% url 'library:feedback-book' livro.id %}"><i class="fa-regular fa-star" style="color: #43AA8B;"></i></a>
+                {% if emprestimo.livro.capa %}
+                <img src="{{ emprestimo.livro.capa.url }}" alt="{{ emprestimo.livro.titulo }}" class="table-img">
+                {% else %}
+                <span>Sem capa</span>
+                {% endif %}
+            </td>
+            <td>{{ emprestimo.livro.titulo }}</td>
+            <td>{{ emprestimo.livro.autor }}</td>
+            <td>
+                {% if emprestimo.data_devolucao %}
+                Devolvido
+                {% else %}
+                Emprestado
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'library:feedback-book' emprestimo.livro.id %}">
+                    <i class="fa-regular fa-star" style="color: #43AA8B;"></i>
+                </a>
                 <i class="fa-solid fa-repeat" style="color: #F77F00"></i>
             </td>
         </tr>
+        {% empty %}
         <tr>
-            <td><img src="https://m.media-amazon.com/images/I/91r5G8RxqfL._SY425_.jpg" alt="" class="table-img"></td>
-            <td>É assim que acaba</td>
-            <td>Colleen Hoover</td>
-            <td>Devolvido</td>
-            <td>
-                <a href="{% url 'library:feedback-book' livro.id %}"><i class="fa-regular fa-star" style="color: #43AA8B;"></i></a>
-                <i class="fa-solid fa-repeat" style="color: #F77F00"></i>
-            </td>
+            <td colspan="5" class="tx-center">Nenhum empréstimo encontrado.</td>
         </tr>
+        {% endfor %}
+
     </tbody>
 </table>
 
