@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from library.permissions import GroupRequiredMixin
+from library.models import Livro, Categoria
 
 
 class LoginView(TemplateView):
@@ -25,7 +26,23 @@ class LoginView(TemplateView):
             return HttpResponse('Usuário ou senha inválidos.', status=401)
         
 class HomeView(TemplateView):
+    model = Livro
     template_name = "user/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['livros'] = Livro.objects.all()
+        context['livros_chegados'] = Livro.objects.all().order_by('-data_cadastro')[:10]
+
+        categorias = Categoria.objects.all()
+        livros_por_categoria = {}
+        for categoria in categorias:
+            livros = Livro.objects.filter(categoria=categoria)
+            if livros.exists():
+                livros_por_categoria[categoria.nome] = livros
+        context['livros_por_categoria'] = livros_por_categoria
+        
+        return context
 
 class PerfilView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     group_required = 'Bibliotecario'

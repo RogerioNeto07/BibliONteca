@@ -24,6 +24,7 @@ class Livro(models.Model):
     isbn = models.CharField(max_length=13, unique=True, null=False, blank=False)
     ano_publicacao = models.IntegerField(null=False, blank=False)
     capa = models.ImageField(upload_to="capas/", null=False, blank=False)
+    data_cadastro = models.DateField(auto_now_add=True)
 
 
     def __str__(self):
