@@ -65,6 +65,25 @@ class AtualizarFotoPerfilView(LoginRequiredMixin, View):
             return redirect('user:profile-user')
         return HttpResponseBadRequest("Nenhuma imagem foi enviada.")
 
+class AtualizarEnderecoView(LoginRequiredMixin, View):
+    def post(self, request):
+        usuario = request.user
+
+        numero = request.POST.get('numero')
+        rua = request.POST.get('rua')
+        bairro = request.POST.get('bairro')
+
+        if numero and rua and bairro:
+            usuario.numero = numero
+            usuario.rua = rua
+            usuario.bairro = bairro
+            usuario.save()
+
+            return redirect('user:perfil')
+
+        return HttpResponseBadRequest("Todos os campos do endereço devem ser preenchidos.")
+
+
 class NotificationsView(LoginRequiredMixin, TemplateView):
     template_name = "user/notifications.html"
 

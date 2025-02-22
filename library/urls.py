@@ -17,6 +17,7 @@ urlpatterns = [
     path('listar-usuarios/', views.ListUserView.as_view(), name="listUser"),
     path('pendencias-usuarios/', views.PendenceUserView.as_view(), name="pendenceUser"),
     path('todos-emprestimos/', views.AllLoansView.as_view(), name="allLoans"),
+    path('perfil/<int:usuario_id>/', views.PerfilUsuarioView.as_view(), name='perfil_usuario'),
     path('emprestimos-pendentes/', views.PendencesBookView.as_view(), name="pendencesBook"),
     path('detalhes-pendencias-usuarios/', views.DetailsPendencesUserView.as_view(), name="detailsPendencesUser"),
     path('detalhes-pendencias-livros/', views.DetailsPendencesBookView.as_view(), name="detailsPendencesBook"),

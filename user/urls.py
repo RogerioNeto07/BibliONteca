@@ -13,5 +13,6 @@ urlpatterns = [
     path('pesquisa/', views.SearchView.as_view(), name='pesquisa'),
     path('history', views.BookHistoryView.as_view(), name='history'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('atualizar_endereco/', views.AtualizarEnderecoView.as_view(), name='atualizar_endereco'),
     path('perfil/atualizar-foto/', views.AtualizarFotoPerfilView.as_view(), name='atualizar_foto'),
 ]

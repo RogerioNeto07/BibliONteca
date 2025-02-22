@@ -1,0 +1,94 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "library/css/pendences_details.css" %}">
+{% endblock extra_css %}
+{% block content %}
+
+    <h1 class="h1 regular tx-center">Usuário</h1>
+    <div class="content-pendences-details-columns">
+        <div class="column-left-details">
+
+            {% if usuario.foto_perfil %}
+                <img class="img-details-pendences-user" src="{{ usuario.foto_perfil.url }}" alt="Foto de perfil">
+            {% else %}
+                <img class="img-details-pendences-user" src="{% static 'global/imgs/transferir.jpg' %}" alt="Foto padrão">
+            {% endif %}
+        </div>
+        <div class="column-left-details">
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <div class="row-flex">
+                        <h1 class="h3 dark-grey bold">Dados do Usuário</h1>
+                    </div>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Nome: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.nome }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Email: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.email }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Data de Nascimento: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.data_nascimento|date:"d/m/Y" }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">CPF: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.cpf }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Telefone: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.telefone }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="column-right-details">
+            <div class="row-column-buttom-details">
+                <div class="header-pendence-details">
+                    <h1 class="h3 dark-grey bold">Endereço</h1>
+                    <hr class="header-line-pendence bg-dark-blue">
+                </div>
+                <div class="content-column-loan">
+                    <div class="column-loan-left">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Número: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.numero }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                        <div class="content-column">
+                            <p class="main-text bold grey">Rua: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.rua }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                    <div class="column-loan-right">
+                        <div class="content-column">
+                            <p class="main-text bold grey">Bairro: </p>
+                            <p class="main-text bold dark-grey">{{ usuario.bairro }}</p>
+                            <hr class="line-content-column bg-dark-grey">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script> 
+const userType = "user"; 
+
+
+</script>
+
+{% endblock content %}
