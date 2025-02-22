@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from library.permissions import GroupRequiredMixin
@@ -35,6 +35,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['livros'] = Livro.objects.all()
         context['livros_chegados'] = Livro.objects.all().order_by('-data_cadastro')[:10]
+        context['categorias'] = Categoria.objects.all()
 
         categorias = Categoria.objects.all()
         livros_por_categoria = {}
@@ -67,8 +68,32 @@ class AtualizarFotoPerfilView(LoginRequiredMixin, View):
 class NotificationsView(LoginRequiredMixin, TemplateView):
     template_name = "user/notifications.html"
 
-class SearchView(LoginRequiredMixin, TemplateView):
-    template_name = "user/search.html"
+class SearchView(TemplateView):
+    template_name = 'user/search.html'
+
+    def get(self, request, *args, **kwargs):
+
+        categoria = request.GET.get('categoria')
+        titulo = request.GET.get('titulo')
+        autor = request.GET.get('autor')
+
+        livros = Livro.objects.all()
+
+        if categoria:
+            livros = livros.filter(categoria_id=categoria)
+
+        if titulo:
+            livros = livros.filter(titulo__icontains=titulo)
+
+        if autor:
+            livros = livros.filter(autor__icontains=autor)
+
+        return self.render_to_response({'livros': livros})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categorias"] = Categoria.objects.all()
+        return context
 
 class BookHistoryView(LoginRequiredMixin, TemplateView):
     template_name = "user/bookhistory.html"
