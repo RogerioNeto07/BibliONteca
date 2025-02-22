@@ -1,14 +1,14 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model, login
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.utils.timezone import now, timedelta
 from django.utils import timezone
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect
 from django.db.models import Count, Q
@@ -151,6 +151,7 @@ class ListBooksView(GroupRequiredMixin, LoginRequiredMixin, ListView):
             queryset = queryset.filter(categoria__nome__icontains=categoria)
         if ano:
             queryset = queryset.filter(ano_publicacao=ano)
+        
 
         return queryset
 
@@ -167,6 +168,7 @@ class AllLoansView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
         titulo = self.request.GET.get('titulo', '')
         usuario = self.request.GET.get('usuario', '')
+        status = self.request.GET.get('status', '')
 
         queryset = Emprestimo.objects.all()
 
@@ -175,7 +177,20 @@ class AllLoansView(GroupRequiredMixin, LoginRequiredMixin, ListView):
         if usuario:
             queryset = queryset.filter(usuario__nome__icontains=usuario)
 
+        if status == 'atrasado':
+            queryset = queryset.filter(
+                data_devolucao__lt=timezone.now().date(), 
+                status_ativo=True
+            )
+        elif status == 'dentro_prazo':
+            queryset = queryset.filter(
+                previsao_devolucao__gte=timezone.now().date(), 
+                data_devolucao__isnull=True,
+                status_ativo=True
+            )
+
         return queryset
+
 
 class PendencesBookView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = 'Bibliotecario'
@@ -221,6 +236,18 @@ class ProfileView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["usuario"] = self.request.user
         return context
+
+class PerfilUsuarioView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = MyUser
+    template_name = 'library/users/user.html'
+    context_object_name = 'usuario'
+    
+    def test_func(self):
+        return self.request.user.groups.filter(name='Bibliotecario').exists()
+
+    def get_object(self, queryset=None):
+        usuario_id = self.kwargs.get('usuario_id')
+        return get_object_or_404(MyUser, id=usuario_id)
 
 
 def ViewDetailBook(request, pk):

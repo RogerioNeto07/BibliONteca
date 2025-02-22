@@ -1,19 +1,16 @@
-//Filtro
 const openFilterBtn = document.getElementById('openFilterBtn');
 const closeFilterBtn = document.getElementById('closeFilterBtn');
 const filterOverlay = document.getElementById('filterOverlay');
+const genreSelect = document.getElementById("genre");
+const availabilitySelect = document.getElementById("availability");
 
 openFilterBtn.addEventListener('click', () => {
-    filterOverlay.classList.add('show'); 
+    filterOverlay.classList.add('show');
 });
 
 closeFilterBtn.addEventListener('click', () => {
-    filterOverlay.classList.remove('show'); 
+    filterOverlay.classList.remove('show');
 });
-
-//SELECT
-const genreSelect = document.getElementById("genre");
-const availabilitySelect = document.getElementById("availability");
 
 genreSelect.addEventListener("change", function () {
     if (genreSelect.value === "") {
@@ -29,4 +26,21 @@ availabilitySelect.addEventListener("change", function () {
     } else {
         availabilitySelect.style.color = "black";
     }
+});
+
+const filterForm = document.getElementById('filterForm');
+filterForm.addEventListener('submit', function (e) {
+    const genre = genreSelect.value;
+    const availability = availabilitySelect.value;
+
+    let url = new URL(window.location.href);
+    
+    // Filtro de gênero
+    if (genre) url.searchParams.set('genre', genre);
+    
+    // Filtro de disponibilidade
+    if (availability) url.searchParams.set('availability', availability);
+
+    window.location.href = url.toString();
+    e.preventDefault();
 });

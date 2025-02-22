@@ -19,7 +19,7 @@ class LivroForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
             'subtitulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Sub-título'}),
-            'categoria': forms.Select(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Categoria' }),
+            'categoria': forms.Select(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Categoria'}),
             'autor': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Autor'}),
             'idioma': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Idioma'}),
             'capa': forms.ClearableFileInput(attrs={'class': 'input-form secundary-text bold'}),
