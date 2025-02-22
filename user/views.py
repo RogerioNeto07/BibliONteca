@@ -9,7 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from library.permissions import GroupRequiredMixin
 from django.views import View
 from django.http import HttpResponseBadRequest
-from library.models import Emprestimo
+from library.models import Emprestimo, Categoria, Livro
 
 
 class LoginView(TemplateView):
@@ -28,7 +28,23 @@ class LoginView(TemplateView):
             return HttpResponse('Usuário ou senha inválidos.', status=401)
         
 class HomeView(TemplateView):
+    model = Livro
     template_name = "user/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['livros'] = Livro.objects.all()
+        context['livros_chegados'] = Livro.objects.all().order_by('-data_cadastro')[:10]
+
+        categorias = Categoria.objects.all()
+        livros_por_categoria = {}
+        for categoria in categorias:
+            livros = Livro.objects.filter(categoria=categoria)
+            if livros.exists():
+                livros_por_categoria[categoria.nome] = livros
+        context['livros_por_categoria'] = livros_por_categoria
+        
+        return context
 
 class PerfilView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "user/profile.html"
