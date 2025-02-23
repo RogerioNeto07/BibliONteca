@@ -13,83 +13,90 @@
 <div class="form-register-row">
     <form method="POST" enctype="multipart/form-data">
         <div class="form-register">
-        {% csrf_token %}
-        <div class="column-left-form-register">
-            <div class="login-container-rigth">
-                <div class="form-field">
-                    <label for="{{ form.titulo.id_for_label }}" class="form-label secundary-text bold">Título:<span>*</span></label>
-                    {{ form.titulo }}
-                </div>
-                <div class="form-field">
-                    <label for="{{ form.subtitulo.id_for_label }}" class="form-label secundary-text bold">Sub-Título:</label>
-                    {{ form.subtitulo }}
-                </div>
-                <div class="form-field-two">
-                    <div class="form-field f-width-one">
-                        <label for="{{ form.editora.id_for_label }}" class="form-label secundary-text bold">Editora:<span>*</span></label>
-                        {{ form.editora }}
+            {% csrf_token %}
+            <div class="column-left-form-register">
+                <div class="login-container-rigth">
+                    <div class="form-field">
+                        <label for="{{ form.titulo.id_for_label }}" class="form-label secundary-text bold">Título:<span>*</span></label>
+                        {{ form.titulo }}
                     </div>
-                    <div class="form-field f-width-two">
-                        <label for="{{ form.volume.id_for_label }}" class="form-label secundary-text bold">Volume:<span>*</span></label>
-                        {{ form.volume }}
+                    <div class="form-field">
+                        <label for="{{ form.subtitulo.id_for_label }}" class="form-label secundary-text bold">Sub-Título:</label>
+                        {{ form.subtitulo }}
+                    </div>
+                    <div class="form-field-two">
+                        <div class="form-field f-width-one">
+                            <label for="{{ form.editora.id_for_label }}" class="form-label secundary-text bold">Editora:<span>*</span></label>
+                            {{ form.editora }}
+                        </div>
+                        <div class="form-field f-width-two">
+                            <label for="{{ form.volume.id_for_label }}" class="form-label secundary-text bold">Volume:<span>*</span></label>
+                            {{ form.volume }}
+                        </div>
+                    </div>
+                    <div class="form-field-two">
+                        <div class="form-field f-width-one">
+                            <label for="{{ form.isbn.id_for_label }}" class="form-label secundary-text bold">ISBN:<span>*</span></label>
+                            {{ form.isbn }}
+                        </div>
+                        <div class="form-field f-width-two">
+                            <label for="{{ form.quantidade.id_for_label }}" class="form-label secundary-text bold">Quantidade:<span>*</span></label>
+                            {{ form.quantidade }}
+                        </div>
+                    </div>
+                    <div class="form-field-two">
+                        <div class="form-field f-width-one">
+                            <label for="{{ form.disponivel.id_for_label }}" class="form-label secundary-text bold">Disponível:</label>
+                            {{ form.disponivel }}
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.categoria.id_for_label }}" class="form-label secundary-text bold">Categoria:<span>*</span></label>
+                        {{ form.categoria }}
                     </div>
                 </div>
-                <div class="form-field-two">
-                    <div class="form-field f-width-one">
-                        <label for="{{ form.isbn.id_for_label }}" class="form-label secundary-text bold">ISBN:<span>*</span></label>
-                        {{ form.isbn }}
+                <div class="form-field-three">
+                    <div class="form-field f-width-three">
+                        <label for="{{ form.qntd_paginas.id_for_label }}" class="form-label secundary-text bold">Páginas:<span>*</span></label>
+                        {{ form.qntd_paginas }}
                     </div>
-                    <div class="form-field f-width-two">
-                        <label for="{{ form.quantidade.id_for_label }}" class="form-label secundary-text bold">Quantidade:<span>*</span></label>
-                        {{form.quantidade}}
+                    <div class="form-field f-width-three">
+                        <label for="{{ form.ano_publicacao.id_for_label }}" class="form-label secundary-text bold">Publicação:<span>*</span></label>
+                        {{ form.ano_publicacao }}
                     </div>
-                </div>
-                <div class="form-field">
-                    <label for="{{ form.categoria.id_for_label }}" class="form-label secundary-text bold">Categoria:<span>*</span></label>
-                    {{ form.categoria }}
+                    <div class="form-field f-width-three">
+                        <label for="{{ form.classificacao.id_for_label }}" class="form-label secundary-text bold">Classificação:<span>*</span></label>
+                        {{ form.classificacao }}
+                    </div>
                 </div>
             </div>
-            <div class="form-field-three">
-                <div class="form-field f-width-three">
-                    <label for="{{ form.qntd_paginas.id_for_label }}" class="form-label secundary-text bold">Páginas:<span>*</span></label>
-                    {{ form.qntd_paginas }}
-                </div>
-                <div class="form-field f-width-three">
-                    <label for="{{ form.ano_publicacao.id_for_label }}" class="form-label secundary-text bold">Publicação:<span>*</span></label>
-                    {{ form.ano_publicacao }}
-                </div>
-                <div class="form-field f-width-three">
-                    <label for="{{ form.classificacao.id_for_label }}" class="form-label secundary-text bold">Classificação:<span>*</span></label>
-                    {{ form.classificacao }}
-                </div>
-            </div>
-        </div>
-        <div class="column-rigth-form-register">
-            <div class="login-container-rigth">
-                <div class="form-field">
-                    <label for="{{ form.autor.id_for_label }}" class="form-label secundary-text bold">Autor:<span>*</span></label>
-                    {{ form.autor }}
-                </div>
-                <div class="form-field">
-                    <label for="{{ form.idioma.id_for_label }}" class="form-label secundary-text bold">Idioma:<span>*</span></label>
-                    {{ form.idioma }}
-                </div>
-                <div class="form-field">
-                    <label for="{{ form.capa.id_for_label }}" class="form-label secundary-text bold">Capa:<span>*</span></label>
-                    {{ form.capa }}
-                </div>
-                <div class="form-field">
-                    <label for="{{ form.descricao.id_for_label }}" class="form-label secundary-text bold">Descrição:<span>*</span></label>
-                    {{ form.descricao }}
+            <div class="column-rigth-form-register">
+                <div class="login-container-rigth">
+                    <div class="form-field">
+                        <label for="{{ form.autor.id_for_label }}" class="form-label secundary-text bold">Autor:<span>*</span></label>
+                        {{ form.autor }}
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.idioma.id_for_label }}" class="form-label secundary-text bold">Idioma:<span>*</span></label>
+                        {{ form.idioma }}
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.capa.id_for_label }}" class="form-label secundary-text bold">Capa:<span>*</span></label>
+                        {{ form.capa }}
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.descricao.id_for_label }}" class="form-label secundary-text bold">Descrição:<span>*</span></label>
+                        {{ form.descricao }}
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="buttons-form">
             <button type="button" class="bnt bg-red white" onclick="window.history.back()">Cancelar</button>
             <button type="submit" class="bnt bg-green white">Salvar Alterações</button>
         </div>
     </form>
+    
 </div>
 <script> const userType = "library"; </script>
 

@@ -26,6 +26,7 @@ class Livro(models.Model):
     capa = models.ImageField(upload_to="capas/", null=False, blank=False)
     data_cadastro = models.DateField(auto_now_add=True)
     quantidade = models.IntegerField(default=1)
+    disponivel = models.BooleanField(default=True)
 
 
     def __str__(self):

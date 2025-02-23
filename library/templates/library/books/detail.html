@@ -20,7 +20,11 @@
         <p class="h3 bold">{{ livro.autor }}</p>
         <p class="main-text">Ano: {{ livro.ano_publicacao }}</p>
         <p class="main-text">ISBN: {{ livro.isbn }}</p>
-
+        {% if livro.disponivel %}
+        <p class="main-text">Disponível</p>
+        {% else %}
+        <p class="main-text">Inisponível</p>
+        {% endif %}
         <p class="main-text bold">Categoria: {{livro.categoria}}</p>
     </div>
 </div>
