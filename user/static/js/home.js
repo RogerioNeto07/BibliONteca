@@ -1,4 +1,3 @@
-//Carrosel
 document.querySelectorAll('.book-section').forEach((section) => {
     const prevBtn = section.querySelector('.prev-btn');
     const nextBtn = section.querySelector('.next-btn');

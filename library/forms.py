@@ -15,7 +15,7 @@ class LivroForm(forms.ModelForm):
         fields = [
             'titulo', 'subtitulo', 'editora', 'autor', 'volume', 'idioma', 
             'categoria', 'qntd_paginas', 'classificacao', 'descricao', 'isbn', 
-            'ano_publicacao', 'capa', 'quantidade'
+            'ano_publicacao', 'capa', 'quantidade', 'disponivel'
         ]
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
@@ -31,7 +31,8 @@ class LivroForm(forms.ModelForm):
             'isbn': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-one', 'placeholder': 'ISBN'}),
             'editora': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-one', 'placeholder': 'Editora'}),
             'volume': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Volume'}),
-            'quantidade' : forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Quantidade'})
+            'quantidade' : forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Quantidade'}),
+            'disponivel': forms.CheckboxInput(attrs={'class': 'input-form secundary-text bold width-two'}) 
         }
 
 class EmprestimoForm(forms.ModelForm):

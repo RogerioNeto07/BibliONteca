@@ -62,10 +62,17 @@
                 {% for livro in livros_chegados  %}
                     <a href="{% url 'library:detail-books' livro.id %}">
                         <div class="book-card">
+                            {% if livro.disponivel %}
+                                <div class="status-wrapper">
+                                    <span class="status-dot-green"></span>
+                                    <p class="status-label-disponivel">Disponível</p>
+                                </div>
+                            {% else %}
                             <div class="status-wrapper">
-                                <span class="status-dot-green"></span>
-                                <p class="status-label-disponivel">Disponível</p>
+                                <span class="status-dot borrowed"></span>
+                                <p class="status-label">Indisponível</p>
                             </div>
+                            {% endif %}
                             <img src="{{livro.capa.url}}"
                                 alt="Livro">
                                 {% if livro.subtitulo %}
@@ -80,6 +87,8 @@
                             </div>
                         </div>
                     </a>
+                {% empty %}
+                    <p class="h3 bold" >Nenhum livro encontrado.</p>
                 {% endfor %}
             </div>
             <button class="carousel-btn next-btn">❯</button>
@@ -92,11 +101,19 @@
             <button class="carousel-btn prev-btn">❮</button>
             <div class="carousel-track">
                 {% for livro in livros %}
+                <a href="{% url 'library:detail-books' livro.id %}">
                     <div class="book-card">
-                        <div class="status-wrapper">
-                            <span class="status-dot-green"></span>
-                            <p class="status-label-disponivel">Disponível</p>
-                        </div>
+                        {% if livro.disponivel %}
+                                <div class="status-wrapper">
+                                    <span class="status-dot-green"></span>
+                                    <p class="status-label-disponivel">Disponível</p>
+                                </div>
+                            {% else %}
+                            <div class="status-wrapper">
+                                <span class="status-dot borrowed"></span>
+                                <p class="status-label">Indisponível</p>
+                            </div>
+                            {% endif %}
                         <img src="{{ livro.capa.url }}" alt="Livro">
                         <p class="h3 bold">{{ livro.titulo }} - {{ livro.subtitulo }}</p>
                         <p>{{ livro.autor }}</p>
@@ -105,6 +122,7 @@
                             <span class="review-count">(10)</span>
                         </div>
                     </div>
+                   </a>
                 {% endfor %}
             </div>
             <button class="carousel-btn next-btn">❯</button>

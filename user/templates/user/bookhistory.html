@@ -6,50 +6,32 @@
 {% block content %}
 {% include "library/messages/messages_sucess.html" %}
 <div class="header-content-filter">
-    <h1 class="h1 regular">Meus empréstimos</h1>
+    <h1 class="h1 regular">Listagem dos Empréstimos</h1>
     <div class="content-filter-right">
-        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">Filtrar<i
-                class="material-icons">filter_alt</i>
+        <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">
+            Filtrar<i class="material-icons">filter_alt</i>
         </button>
-        <div class="input-coat">
-            <input type="text" placeholder="Pesquisar" class="input-search">
-            <i class="material-icons blue search-icon">search</i>
-        </div>
     </div>
 </div>
 <div id="filterOverlay" class="filter-overlay hidden">
     <div class="filter-content">
         <button id="closeFilterBtn" class="close-btn">&times;</button>
         <h2 class="filter-title">Encontre seu Livro!</h2>
-        <form id="filterForm">
+        <form id="filterForm" method="GET">
             <div class="form-group-row">
                 <div class="form-group">
                     <label for="bookName">Nome do Livro:</label>
-                    <input type="text" id="bookName" class="input-field" placeholder="Digite o nome do livro">
-                </div>
-                <div class="form-group">
-                    <label for="authorName">Nome do Autor:</label>
-                    <input type="text" id="authorName" class="input-field" placeholder="Digite o nome do autor">
+                    <input type="text" id="bookName" class="input-field" name="titulo" placeholder="Digite o nome do livro">
                 </div>
             </div>
             <div class="form-group-row">
                 <div class="form-group">
-                    <label for="genre">Gênero:</label>
-                    <select id="genre" class="input-field">
-                        <option value="" disabled selected>Selecione o gênero</option>
-                        <option value="ficcao">Ficção</option>
-                        <option value="fantasia">Fantasia</option>
-                        <option value="romance">Romance</option>
-                        <option value="suspense">Suspense</option>
-                        <option value="aventura">Aventura</option>
-                        <option value="ciencia">Ciência</option>
-                        <option value="outro">Outro</option>
+                    <label for="status">Status do Empréstimo:</label>
+                    <select id="status" class="input-field" name="status">
+                        <option value="">Selecione o Status</option>
+                        <option value="atrasado">Em Atraso</option>
+                        <option value="dentro_prazo">Dentro do Prazo</option>
                     </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="year">Ano de Publicação:</label>
-                    <input type="text" class="input-field" maxlength="4" pattern="\d*" placeholder="Digite o ano" />
                 </div>
             </div>
             <div class="form-buttons">
@@ -58,47 +40,7 @@
         </form>
     </div>
 </div>
-<div id="filterOverlay" class="filter-overlay hidden">
-    <div class="filter-content">
-        <button id="closeFilterBtn" class="close-btn">&times;</button>
-        <h2 class="filter-title">Encontre seu Livro!</h2>
-        <form id="filterForm">
-            <div class="form-group-row">
-                <div class="form-group">
-                    <label for="bookName">Nome do Livro:</label>
-                    <input type="text" id="bookName" class="input-field" placeholder="Digite o nome do livro">
-                </div>
-                <div class="form-group">
-                    <label for="authorName">Nome do Autor:</label>
-                    <input type="text" id="authorName" class="input-field" placeholder="Digite o nome do autor">
-                </div>
-            </div>
-            <div class="form-group-row">
-                <div class="form-group">
-                    <label for="genre">Gênero:</label>
-                    <select id="genre" class="input-field">
-                        <option value="" disabled selected>Selecione o gênero</option>
-                        <option value="ficcao">Ficção</option>
-                        <option value="fantasia">Fantasia</option>
-                        <option value="romance">Romance</option>
-                        <option value="suspense">Suspense</option>
-                        <option value="aventura">Aventura</option>
-                        <option value="ciencia">Ciência</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="year">Ano de Publicação:</label>
-                    <input type="text" class="input-field" maxlength="4" pattern="\d*" placeholder="Digite o ano" />
-                </div>
-            </div>
-            <div class="form-buttons">
-                <button type="submit" id="bnt-filtro" class="bnt bnt-filtro bg-dark-blue white">Filtrar</button>
-            </div>
-        </form>
-    </div>
-</div>
 <table class="table-list bg-blue" style="width: 100%;">
     <thead>
         <tr>

@@ -21,10 +21,17 @@
             {% for livro in livros %}
             <a href="{% url 'library:detail-books' livro.id %}">
                 <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
+                    {% if livro.disponivel %}
+                                <div class="status-wrapper">
+                                    <span class="status-dot-green"></span>
+                                    <p class="status-label-disponivel">Disponível</p>
+                                </div>
+                            {% else %}
+                            <div class="status-wrapper">
+                                <span class="status-dot borrowed"></span>
+                                <p class="status-label">Indisponível</p>
+                            </div>
+                            {% endif %}
                     <img src="{{livro.capa.url}}"
                         alt="Livro">
                         {% if livro.subtitulo %}
@@ -40,7 +47,7 @@
                 </div>
             </a>
             {% empty %}
-                <p>Nenhum livro encontrado.</p>
+                <p class="h3 bold" >Nenhum livro encontrado.</p>
             {% endfor %}
         </div>
     </section>
