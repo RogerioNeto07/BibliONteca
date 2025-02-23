@@ -14,6 +14,7 @@ from .utils import verificar_emprestimos_vencidos
 from .models import Notificacao, MyUser
 from django.contrib import messages
 from user.utils import adicionar_notificacao
+from django.utils import timezone
 
 
 class LoginView(TemplateView):
