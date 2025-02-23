@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Variáveis */
 :root {
     --color-white: #F1FAEE;
     --color-dark-blue: #1D3557;
@@ -35,7 +34,6 @@
     --font-regular: 300;
 }
 
-/* Tipografia */
 h1, h2, h3, p, a, ul {
     margin: 0;
     text-decoration: none;
@@ -71,7 +69,6 @@ body, main {
 .bold { font-weight: var(--font-bold); }
 .regular { font-weight: var(--font-regular); }
 
-/* Cores */
 .white { color: var(--color-white); }
 .red { color: var(--color-red); }
 .yellow { color: var(--color-yellow); }
@@ -85,7 +82,6 @@ body, main {
 .bg-red { background-color: var(--color-red); }
 .bg-green { background-color: var(--color-green); }
 
-/* Botões */
 .bnt {
     width: var(--button-width);
     height: var(--button-height);
@@ -107,7 +103,6 @@ body, main {
     border-radius: 0.75rem;
 }
 
-/* Formulários */
 input, textarea, select {
     height: var(--form-height);
     width: var(--form-width);

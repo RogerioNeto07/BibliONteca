@@ -10,7 +10,7 @@
 {% endblock extra_css %}
 
 {% block content %}
-    <h1 class="h1 regular tx-center">Cadastrar Usuário</h1>
+    <h1 class="h1 regular tx-center">Editar Usuário</h1>
     {% if form.errors %}
     <div class="error">
         <ul>
@@ -29,7 +29,7 @@
             <div class="column-left-form-register">
                 <div class="login-container-rigth">
                     <div class="form-field">
-                        <label for="{{ form.nome.id_for_label }}" class="form-label secundary-text bold">Nome:<span>*</span></label>
+                        <label for="{{ form.nome.id_for_label }}" class="form-label secundary-text bold">Nome de Usuário:<span>*</span></label>
                         {{ form.nome }}
                     </div>
                     <div class="form-field">
@@ -44,15 +44,6 @@
                         <label for="{{ form.data_nascimento.id_for_label }}" class="form-label secundary-text bold">Data de Nascimento:<span>*</span></label>
                         {{ form.data_nascimento }}
                     </div>
-                    <div class="form-field">
-                        <label for="{{ form.password1.id_for_label }}" class="form-label secundary-text bold">Senha:<span>*</span></label>
-                        {{ form.password1 }}
-                    </div>
-                    <div class="form-field">
-                        <label for="{{ form.password2.id_for_label }}" class="form-label secundary-text bold">Confirmar senha:<span>*</span></label>
-                        {{ form.password2 }}
-                    </div>
-                    
                 </div>
             </div>
             <div class="column-rigth-form-register">
@@ -77,8 +68,8 @@
             </div>
             </div>
             <div class="buttons-form">
-                <button type="reset" class="bnt bg-red white">Cancelar</button>
-                <button type="submit" class="bnt bg-green white">Cadastrar</button>
+                <button type="button" class="bnt bg-red white" onclick="window.history.back()">Cancelar</button>
+                <button type="submit" class="bnt bg-green white">Salvar Alterações</button>
             </div>
         </form>
     </div>

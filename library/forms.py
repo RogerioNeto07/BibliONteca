@@ -1,5 +1,6 @@
 from django import forms
 from .models import Livro, Categoria, Emprestimo
+from django.contrib.auth.forms import UserChangeForm
 from user.models import MyUser
 from django.core.exceptions import ValidationError
 
@@ -89,6 +90,7 @@ class DevolucaoForm(forms.Form):
             })
         )
 
+
     def clean_usuario(self):
         cpf = self.cleaned_data['usuario'].strip()
         
@@ -137,3 +139,11 @@ class RenovarForm(forms.Form):
         codigo = self.cleaned_data['livro'].strip()
         livro = Livro.objects.get(isbn=codigo)
         return livro
+    
+        
+class UsuarioUpdateForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = MyUser
+        fields = ['nome', 'cpf', 'email', 'data_nascimento', 'telefone', 'bairro', 'rua', 'numero']
