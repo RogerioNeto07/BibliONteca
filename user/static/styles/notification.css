@@ -2,10 +2,9 @@
     display: flex;
     gap: 15px;
     margin-top: 25px;
+    margin-bottom: 10px;
 }
-#general{
-    border-bottom: 5px solid #457B9D;
-}
+
 .notif-container{
     border-bottom: 1px solid;
 }
@@ -24,4 +23,17 @@
 .notif-title{
     display: flex;
     gap: 8px;
+}
+
+.notif-filter p.active {
+    border-bottom: 2px solid #3498db;
+    color: #3498db;
+}
+
+.notif-filter p {
+    display: inline-block;
+    margin: 0 15px 0 0;
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-weight: 500;
 }

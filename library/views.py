@@ -80,7 +80,16 @@ class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("library:listBooks")
 
     def form_valid(self, form):
+        livro = form.save()
         messages.success(self.request, "Cadastro realizado com sucesso!")
+
+        for usuario in MyUser.objects.all():
+            adicionar_notificacao(
+                usuario,
+                f"Novo livro '{livro.titulo}' chegou!",
+                "novidade"
+        )
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
