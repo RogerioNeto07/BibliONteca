@@ -3,57 +3,37 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/notification.css' %}">
-
 {% endblock %}
 
 {% block content-header %}
-
-    <div class="header-content">
-        <div></div>
-        <div class="user-content">
-            <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
-            <div class="user-pic"></div>
-            <p class="username secundary-text">NomeUser</p>
-        </div>
+<div class="header-content">
+    <div></div>
+    <div class="user-content">
+        <img src="{% static 'global/imgs/icon-home.png' %}" alt="" class="header-icon-notifications">
+        <div class="user-pic"></div>
+        <p class="username secundary-text">{{ request.user.nome }}</p>
     </div>
+</div>
 {% endblock content-header %}
 
-{% block content %} 
-<div class="notif-container">
-<h1>Notificações</h1>
-<div class="notif-filter">
-    <p id="general">Geral</p><p id="pending">Pendências</p><p id="news">Novidades</p>
-</div>
-</div>
-<div class="notif-item">
-    <h4><span class="blue-circle">•</span>O Livro Harry Potter e o Prisioneiro de Azkabam entrará em pendência amanhã</h4>
-    <div class="sent">
-        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i><p>Recebida 13 horas atrás</p>
-    </div>
-</div>
+{% block content %}
+{% if notificacoes %}
+{% for notificacao in notificacoes %}
 <div class="notif-item">
     <div class="notif-title">
-        <h4><span class="blue-circle">•</span>O Livro Harry Potter e o Prisioneiro de Azkabam entrará em pendência amanhã</h4>
+        <h4><span class="blue-circle">•</span>{{ notificacao.mensagem }}</h4>
     </div>
     <div class="sent">
-        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i><p>Recebida 13 horas atrás</p>
+        {% if notificacao.tipo == 'geral' or notificacao.tipo == 'pendencia' %}
+        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i>
+        {% elif notificacao.tipo == 'novidade' %}
+        <i class="fa-regular fa-star" style="color: #43AA8B;"></i>
+        {% endif %}
+        <p>Recebida {{ notificacao.data_envio|timesince }} atrás</p>
     </div>
 </div>
-<div class="notif-item">
-    <div class="notif-title">
-        <h4><span class="blue-circle">•</span>Novidade: O livro A Culpa É Das Estrelas entrou em nosso catálogo</h4>
-    </div>
-    <div class="sent">
-        <i class="fa-regular fa-star" style="color: #43AA8B;"></i><p>Recebida 13 horas atrás</p>
-    </div>
-</div>
-<div class="notif-item">
-    <div class="notif-title">
-        <h4><span class="blue-circle">•</span>Novidade: O livro A Culpa É Das Estrelas entrou em nosso catálogo</h4>
-    </div>
-    <div class="sent">
-        <i class="fa-regular fa-star" style="color: #43AA8B;"></i><p>Recebida 13 horas atrás</p>
-    </div>
-</div>
-<script> const userType = "user"; </script>
+{% endfor %}
+{% else %}
+<p>Você não tem notificações.</p>
+{% endif %}
 {% endblock content %}

@@ -3,13 +3,16 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from library.permissions import GroupRequiredMixin
 from django.views import View
 from django.http import HttpResponseBadRequest
 from library.models import Emprestimo, Categoria, Livro
+from .utils import verificar_emprestimos_vencidos
+from .models import Notificacao
+
 
 
 class LoginView(TemplateView):
@@ -46,6 +49,11 @@ class HomeView(TemplateView):
         context['livros_por_categoria'] = livros_por_categoria
         
         return context
+    
+    def get(self, request, *args, **kwargs):
+        verificar_emprestimos_vencidos()
+
+        return super().get(request, *args, **kwargs)
 
 class PerfilView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "user/profile.html"
@@ -84,9 +92,6 @@ class AtualizarEnderecoView(LoginRequiredMixin, View):
         return HttpResponseBadRequest("Todos os campos do endereço devem ser preenchidos.")
 
 
-class NotificationsView(LoginRequiredMixin, TemplateView):
-    template_name = "user/notifications.html"
-
 class SearchView(TemplateView):
     template_name = 'user/search.html'
 
@@ -121,4 +126,12 @@ class BookHistoryView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['emprestimos'] = Emprestimo.objects.filter(usuario=self.request.user)
         return context
+
+
+def notificacoes_view(request):
+    notificacoes = Notificacao.objects.filter(usuario=request.user).order_by('-data_envio')
+
+    return render(request, 'user/notifications.html', {'notificacoes': notificacoes})
+
+
 

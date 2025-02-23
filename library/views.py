@@ -22,6 +22,7 @@ from user.forms import UserRegisterForm
 from user.models import MyUser
 from .permissions import GroupRequiredMixin
 from django.shortcuts import render, get_object_or_404
+from user.utils import adicionar_notificacao
 
 
 User = get_user_model()
@@ -87,6 +88,7 @@ class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         context["categorias"] = Categoria.objects.all()
         return context
 
+from user.utils import adicionar_notificacao 
 class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     form_class = EmprestimoForm
     group_required = 'Bibliotecario'
@@ -94,8 +96,26 @@ class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        messages.success(self.request, "Cadastro realizado com sucesso!")
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+        livro = form.cleaned_data['livro']
+        usuario = form.cleaned_data['usuario']
+        bibliotecario = self.request.user
+
+        adicionar_notificacao(
+            bibliotecario,
+            f"Você realizou o empréstimo do livro '{livro.titulo}' para {usuario.nome}.",
+            "geral"
+        )
+
+        adicionar_notificacao(
+            usuario,
+            f"Você pegou emprestado o livro '{livro.titulo}'.",
+            "geral"
+        )
+
+        messages.success(self.request, "Empréstimo realizado com sucesso!")
+        return response
 
 class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     template_name = "library/books/return_book.html"
@@ -104,17 +124,28 @@ class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        usuario_valor = form.cleaned_data["usuario"]
-        livro_valor = form.cleaned_data["livro"]
-
-        usuario = get_object_or_404(MyUser, cpf=usuario_valor)
-        livro = get_object_or_404(Livro, isbn=livro_valor)
+        usuario = form.cleaned_data["usuario"]
+        livro = form.cleaned_data["livro"]
+        bibliotecario = self.request.user
 
         emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
         emprestimo.status_ativo = False
         emprestimo.data_devolucao = now().date()
         emprestimo.save()
 
+        adicionar_notificacao(
+            bibliotecario,
+            f"Você registrou a devolução do livro '{livro.titulo}' de {usuario.nome}.",
+            "geral"
+        )
+
+        adicionar_notificacao(
+            usuario,
+            f"Você devolveu o livro '{livro.titulo}'. Obrigado!",
+            "geral"
+        )
+
+        messages.success(self.request, "Devolução registrada com sucesso!")
         return super().form_valid(form)
 
 
@@ -125,19 +156,33 @@ class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        usuario = form.cleaned_data["usuario"]  
-        livro = form.cleaned_data["livro"]       
+        usuario = form.cleaned_data["usuario"]
+        livro = form.cleaned_data["livro"]
+        bibliotecario = self.request.user
 
         emprestimos = Emprestimo.objects.filter(livro=livro, usuario=usuario, status_ativo=True)
 
         if emprestimos.count() == 1:
-            emprestimo = emprestimos.first()  
+            emprestimo = emprestimos.first()
         else:
             return self.form_invalid(form)
 
         emprestimo.previsao_devolucao += timedelta(days=15)
         emprestimo.save()
 
+        adicionar_notificacao(
+            bibliotecario,
+            f"Você renovou o empréstimo do livro '{livro.titulo}' de {usuario.nome}.",
+            "geral"
+        )
+
+        adicionar_notificacao(
+            usuario,
+            f"O empréstimo do livro '{livro.titulo}' foi renovado.",
+            "geral"
+        )
+
+        messages.success(self.request, "Renovação realizada com sucesso!")
         return super().form_valid(form)
 
 class LivroUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
