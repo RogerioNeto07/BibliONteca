@@ -36,7 +36,6 @@ tr {
     border-bottom: solid 1px #DAD0D0;
 }
 
-/* Classes reutilizáveis para colunas */
 .table-column-small {
     width: 10%;
 }
@@ -53,7 +52,6 @@ tr {
     width: 30%;
 }
 
-/* Aplicação das classes reutilizáveis */
 th:nth-child(1),
 td:nth-child(1) {
     width: 10%;
@@ -73,7 +71,6 @@ td:nth-child(5) {
     width: 20%;
 }
 
-/* Ajustes específicos para `.user` */
 .user th:nth-child(1),
 .user td:nth-child(1) {
     width: 10%;
@@ -96,7 +93,6 @@ td:nth-child(5) {
     width: 15%;
 }
 
-/* Ajustes específicos para `.loan` */
 .loan th:nth-child(1),
 .loan td:nth-child(1) {
     width: 10%;
@@ -118,14 +114,12 @@ td:nth-child(5) {
     width: 15%;
 }
 
-/* Imagens */
 .table-img,
 .table-img-loans {
     height: 48px;
     border-radius: 50%;
 }
 
-/* Header de filtros */
 .header-content-filter {
     display: flex;
     justify-content: space-between;

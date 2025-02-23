@@ -3,11 +3,13 @@
 
 {% block content-header %} <header-home></header-home>{% endblock content-header %}
 
-{% block extra_css %}<link rel="stylesheet" href="{% static 'library/css/register.css' %}">{% endblock extra_css %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'library/css/register.css' %}">
+{% endblock extra_css %}
 
 {% block content %}
 
-<h1 class="h1 regular tx-center">Cadastrar Livro</h1>
+<h1 class="h1 regular tx-center">Editar Livro</h1>
 <div class="form-register-row">
     <form method="POST" enctype="multipart/form-data">
         <div class="form-register">
@@ -85,9 +87,10 @@
         </div>
         <div class="buttons-form">
             <button type="button" class="bnt bg-red white" onclick="window.history.back()">Cancelar</button>
-            <button type="submit" class="bnt bg-green white">Cadastrar</button>
+            <button type="submit" class="bnt bg-green white">Salvar Alterações</button>
         </div>
     </form>
 </div>
 <script> const userType = "library"; </script>
+
 {% endblock content %}

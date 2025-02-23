@@ -8,14 +8,14 @@ from django.contrib.auth.models import Group
 from django.utils.timezone import now, timedelta
 from django.utils import timezone
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, DetailView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect
 from django.db.models import Count, Q
 from django.db.models import F, ExpressionWrapper, fields
 from django.db.models.functions import Now
 import re
-from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
+from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm, UsuarioUpdateForm
 from .models import Livro, Categoria, Comentarios
 from .models import Emprestimo
 from user.forms import UserRegisterForm
@@ -59,7 +59,18 @@ class ListUserView(GroupRequiredMixin, LoginRequiredMixin, ListView):
             queryset = queryset.filter(cpf__icontains=cpf)
         
         return queryset
+    
+class UsuarioUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    model = MyUser
+    form_class = UsuarioUpdateForm
+    group_required = 'Bibliotecario'
+    template_name = 'library/users/edituser.html'
+    context_object_name = 'usuario'
 
+    def get_success_url(self):
+        return reverse_lazy('library:listUser')
+
+    
 class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     model = Livro
     group_required = 'Bibliotecario'
@@ -126,6 +137,16 @@ class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         emprestimo.save()
 
         return super().form_valid(form)
+
+class LivroUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    model = Livro
+    form_class = LivroForm
+    group_required = 'Bibliotecario'
+    template_name = 'library/books/editbook.html'
+    context_object_name = 'livro'
+    
+    def get_success_url(self):
+        return reverse_lazy('library:detail-books', kwargs={'pk': self.object.pk})
 
 class ListBooksView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Livro

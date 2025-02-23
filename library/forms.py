@@ -1,5 +1,7 @@
 from django import forms
 from .models import Livro, Categoria
+from django.contrib.auth.forms import UserChangeForm
+from user.models import MyUser
 
 from .models import Emprestimo
 
@@ -90,3 +92,12 @@ class RenovarForm(forms.Form):
                     'placeholder': 'ISBN'
             })
         )
+    
+class UsuarioUpdateForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = MyUser
+        fields = ['nome', 'cpf', 'email', 'data_nascimento', 'telefone', 'bairro', 'rua', 'numero']
+
+
