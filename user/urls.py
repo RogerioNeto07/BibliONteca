@@ -15,4 +15,5 @@ urlpatterns = [
     path('atualizar_endereco/', views.AtualizarEnderecoView.as_view(), name='atualizar_endereco'),
     path('perfil/atualizar-foto/', views.AtualizarFotoPerfilView.as_view(), name='atualizar_foto'),
     path('notificacoes/', views.notificacoes_view, name='notifications'),
+    path('solicitar-renovacao/<int:pk>/', views.renewal_request, name='solicitar-renovacao'),
 ]
