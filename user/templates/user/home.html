@@ -115,7 +115,11 @@
                             </div>
                             {% endif %}
                         <img src="{{ livro.capa.url }}" alt="Livro">
-                        <p class="h3 bold">{{ livro.titulo }} - {{ livro.subtitulo }}</p>
+                        {% if livro.subtitulo %}
+                            <p class="h3 bold">{{livro.titulo}} - {{livro.subtitulo}}</p>
+                                {% else %}
+                            <p class="h3 bold">{{livro.titulo}}</p>
+                                {% endif %}
                         <p>{{ livro.autor }}</p>
                         <div class="rating">
                             <span class="stars">★★★★☆</span>
