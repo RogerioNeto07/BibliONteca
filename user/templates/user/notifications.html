@@ -35,7 +35,21 @@
     {% for notificacao in notificacoes %}
     <div class="notif-item" data-type="{{ notificacao.tipo }}">
         <div class="notif-title">
+            {% if notificacao.tipo == 'pendencia' %}
+            <h4><span class="blue-circle">•</span>
+                {% if user_group == "Bibliotecario" %}
+                <a href="{% url 'library:renewBook' %}" class="notif-link">
+                    {{ notificacao.mensagem }}
+                </a>
+                {% else %}
+                <a href="{% url 'user:history' %}" class="notif-link">
+                    {{ notificacao.mensagem }}
+                </a>
+                {% endif %}
+            </h4>
+            {% else %}
             <h4><span class="blue-circle">•</span>{{ notificacao.mensagem }}</h4>
+            {% endif %}
         </div>
         <div class="sent">
             {% if notificacao.tipo == 'pendencia' %}

@@ -11,9 +11,10 @@ from django.views import View
 from django.http import HttpResponseBadRequest
 from library.models import Emprestimo, Categoria, Livro
 from .utils import verificar_emprestimos_vencidos
-from .models import Notificacao
+from .models import Notificacao, MyUser
+from django.contrib import messages
+from user.utils import adicionar_notificacao
 from django.utils import timezone
-
 
 
 class LoginView(TemplateView):
@@ -23,14 +24,22 @@ class LoginView(TemplateView):
         form = AuthenticationForm(data=request.POST)
         
         if form.is_valid():
-            email = form.cleaned_data['username']  
+            email = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=email, password=password)
-            login(request, user)
-            return redirect('user:home')
+            
+            if user is not None:
+                login(request, user)
+                return redirect('user:home')
+            else:
+                form.errors.clear()
+                form.add_error(None, "Usuário ou senha inválidos.")
         else:
-            return HttpResponse('Usuário ou senha inválidos.', status=401)
-        
+            form.errors.clear()  
+            form.add_error(None, "Por favor, entre com um email e senha corretos.")
+
+        return render(request, self.template_name, {'form': form})
+    
 class HomeView(TemplateView):
     model = Livro
     template_name = "user/home.html"
@@ -152,6 +161,30 @@ def notificacoes_view(request):
     notificacoes = Notificacao.objects.filter(usuario=request.user).order_by('-data_envio')
 
     return render(request, 'user/notifications.html', {'notificacoes': notificacoes})
+
+def renewal_request(request, pk):
+    emprestimo = Emprestimo.objects.get(pk=pk)
+    livro = emprestimo.livro
+
+    for usuario in MyUser.objects.all():
+        if usuario.groups.filter(name="Bibliotecario").exists():
+            adicionar_notificacao(
+                usuario,
+                f"'{request.user.nome}' está solicitando a renovação do livro {livro.titulo}.",
+                "pendencia"
+            )
+    adicionar_notificacao(
+                request.user,
+                f"Você solicitou a renovação do livro {livro.titulo}.",
+                "geral"
+            )
+
+    messages.success(request, "Solicitação de renovação enviada com sucesso!")
+    return redirect('user:history')
+
+
+
+
 
 
 

@@ -37,3 +37,11 @@
     cursor: pointer;
     font-weight: 500;
 }
+
+a{
+    color: #4a4a4a;
+}
+
+.notif-link:hover {
+    text-decoration: underline;
+}

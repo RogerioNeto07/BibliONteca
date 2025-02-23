@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'library/css/filter/filter.css' %}">
 {% endblock %}
 {% block content %}
+{% include "library/messages/messages_sucess.html" %}
 <div class="header-content-filter">
     <h1 class="h1 regular">Listagem dos Empréstimos</h1>
     <div class="content-filter-right">
@@ -73,7 +74,11 @@
                 <a href="{% url 'library:feedback-book' emprestimo.livro.id %}">
                     <i class="fa-regular fa-star" style="color: #43AA8B;"></i>
                 </a>
-                <i class="fa-solid fa-repeat" style="color: #F77F00"></i>
+                <a href="{% url 'user:solicitar-renovacao' emprestimo.id %}" class="btn-renovar"
+                    style="background: none; border: none; cursor: pointer;">
+                    <i class="fa-solid fa-repeat" style="color: #F77F00;"></i>
+                </a>
+
             </td>
         </tr>
         {% empty %}

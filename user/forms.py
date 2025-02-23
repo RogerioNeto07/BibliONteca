@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import MyUser
+from django.contrib.auth import authenticate
 
 class UserRegisterForm(UserCreationForm):
         password1 = forms.CharField(
@@ -27,3 +28,16 @@ class UserRegisterForm(UserCreationForm):
 
 class UserLoginForm(AuthenticationForm):
     username = forms.EmailField(label='Email')
+    
+    def clean(self):
+        cleaned_data = super().clean()
+
+        email = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if email and password:
+            user = authenticate(username=email, password=password)
+            if user is None:
+                self.add_error(None, "Email ou senha inválidos.")
+        
+        return cleaned_data
