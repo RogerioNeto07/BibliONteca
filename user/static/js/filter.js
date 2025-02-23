@@ -35,10 +35,8 @@ filterForm.addEventListener('submit', function (e) {
 
     let url = new URL(window.location.href);
     
-    // Filtro de gênero
     if (genre) url.searchParams.set('genre', genre);
     
-    // Filtro de disponibilidade
     if (availability) url.searchParams.set('availability', availability);
 
     window.location.href = url.toString();

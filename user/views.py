@@ -12,6 +12,7 @@ from django.http import HttpResponseBadRequest
 from library.models import Emprestimo, Categoria, Livro
 from .utils import verificar_emprestimos_vencidos
 from .models import Notificacao
+from django.utils import timezone
 
 
 
@@ -124,8 +125,27 @@ class BookHistoryView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['emprestimos'] = Emprestimo.objects.filter(usuario=self.request.user)
+        
+        titulo = self.request.GET.get("titulo", "").strip()
+        usuario = self.request.GET.get("usuario", "").strip()
+        status = self.request.GET.get("status", "")
+
+        emprestimos = Emprestimo.objects.filter(usuario=self.request.user)
+
+        if titulo:
+            emprestimos = emprestimos.filter(livro__titulo__icontains=titulo)
+
+        if usuario:
+            emprestimos = emprestimos.filter(usuario__username__icontains=usuario)
+
+        if status == "atrasado":
+            emprestimos = emprestimos.filter(previsao_devolucao__lt=timezone.now(), status_ativo=True)
+        elif status == "dentro_prazo":
+            emprestimos = emprestimos.filter(previsao_devolucao__gte=timezone.now(), status_ativo=True)
+
+        context["emprestimos"] = emprestimos
         return context
+
 
 
 def notificacoes_view(request):

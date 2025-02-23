@@ -43,7 +43,6 @@
             {% elif notificacao.tipo == 'novidade' %}
             <i class="fa-regular fa-star" style="color: #43AA8B;"></i>
             {% else %}
-            <!-- Caso "geral" ou outros, você pode definir um ícone padrão se desejar -->
             {% endif %}
             <p>Recebida {{ notificacao.data_envio|timesince }} atrás</p>
         </div>
@@ -61,9 +60,7 @@
 
         filters.forEach(filter => {
             filter.addEventListener("click", function () {
-                // Remove a classe active de todos os filtros
                 filters.forEach(f => f.classList.remove("active"));
-                // Adiciona active ao filtro clicado
                 this.classList.add("active");
 
                 let filterType = this.getAttribute("data-type");
