@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="h1 regular tx-center marg-title">Renovar Livro</h1>
+    <h1 class="h1 regular tx-center marg-title">Finalizar Empréstimo</h1>
     
     <div class="form-columns">
         <div class="column-left-form">
@@ -20,7 +20,7 @@
                         CPF:<span>*</span>
                     </label>
                     {{ form.usuario }}
-                    <p class="secundary-text p-mrg">CPF do Usuário: <span id="nome"></span></p>
+                    <p class="secundary-text p-mrg">Nome do Usuário: <span id="nome"></span></p>
                 </div>
 
                 <div class="form-field">
@@ -29,13 +29,9 @@
                     </label>
                     {{ form.livro }}
                 </div>
-
                 <div class="buttons-form">
-                    <p class="main-text date-delivery red">
-                        Novo prazo para devolução - <span class="date"></span>
-                    </p>
                     <button type="button" class="bnt bg-red white" onclick="window.history.back();">Cancelar</button>
-                    <button type="submit" class="bnt bg-green white">Renovar</button>
+                    <button type="submit" class="bnt bg-green white">Finalizar</button>
                 </div>
             </form>
         </div>

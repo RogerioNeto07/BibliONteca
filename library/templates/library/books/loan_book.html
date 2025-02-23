@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="h1 regular tx-center marg-title">Renovar Livro</h1>
+<h1 class="h1 regular tx-center marg-title">Emprestar Livro</h1>
 
 <div class="form-columns">
     <div class="column-left-form">
@@ -32,10 +32,10 @@
 
             <div class="buttons-form">
                 <p class="main-text date-delivery red">
-                    Novo prazo para devolução - <span class="date"></span>
+                    Prazo para devolução - <span class="date"></span>
                 </p>
                 <button type="button" class="bnt bg-red white" onclick="window.history.back();">Cancelar</button>
-                <button type="submit" class="bnt bg-green white">Renovar</button>
+                <button type="submit" class="bnt bg-green white">Cadastrar</button>
             </div>
         </form>
     </div>
@@ -49,6 +49,5 @@
 <script src="{% static 'library/js/deliveryDate.js' %}"></script>
 <script src="{% static 'library/js/userReturn.js' %}"></script>
 <script src="{% static 'library/js/bookReturn.js' %}"></script>
-<script> const userType = "library"; </script>
 
 {% endblock content %}
