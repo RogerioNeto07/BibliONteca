@@ -41,4 +41,22 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []  
 
     def __str__(self):
-        return self.email
+        return self.cpf
+
+class Notificacao(models.Model):
+    TIPOS = [
+        ("geral", "Geral"),
+        ("pendencia", "Pendência"),
+        ("novidade", "Novidade"),
+    ]
+
+    usuario = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="notificacoes")
+    mensagem = models.TextField()
+    tipo = models.CharField(max_length=10, choices=TIPOS, default="geral")
+    lida = models.BooleanField(default=False)
+    data_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Notificação para {self.usuario.email} - {self.tipo}"
+
+

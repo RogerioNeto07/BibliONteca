@@ -94,8 +94,6 @@ class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        emprestimo = form.save(commit=False)
-        emprestimo.save()
         messages.success(self.request, "Cadastro realizado com sucesso!")
         return super().form_valid(form)
 
@@ -106,11 +104,11 @@ class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        nome = form.cleaned_data["nome"]
-        isbn = form.cleaned_data["isbn"]
+        usuario_valor = form.cleaned_data["usuario"]
+        livro_valor = form.cleaned_data["livro"]
 
-        usuario = get_object_or_404(MyUser, nome=nome)
-        livro = get_object_or_404(Livro, isbn=isbn)
+        usuario = get_object_or_404(MyUser, cpf=usuario_valor)
+        livro = get_object_or_404(Livro, isbn=livro_valor)
 
         emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
         emprestimo.status_ativo = False
@@ -119,6 +117,7 @@ class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
 
         return super().form_valid(form)
 
+
 class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     template_name = "library/books/renew_book.html"
     group_required = 'Bibliotecario'
@@ -126,13 +125,16 @@ class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        nome = form.cleaned_data["nome"]
-        isbn = form.cleaned_data["isbn"]
+        usuario = form.cleaned_data["usuario"]  
+        livro = form.cleaned_data["livro"]       
 
-        usuario = get_object_or_404(MyUser, nome=nome)
-        livro = get_object_or_404(Livro, isbn=isbn)
+        emprestimos = Emprestimo.objects.filter(livro=livro, usuario=usuario, status_ativo=True)
 
-        emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
+        if emprestimos.count() == 1:
+            emprestimo = emprestimos.first()  
+        else:
+            return self.form_invalid(form)
+
         emprestimo.previsao_devolucao += timedelta(days=15)
         emprestimo.save()
 
