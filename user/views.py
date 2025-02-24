@@ -103,13 +103,14 @@ class AtualizarEnderecoView(LoginRequiredMixin, View):
 
 
 class SearchView(TemplateView):
-    template_name = 'user/search.html'
+    template_name = "user/search.html"
 
-    def get(self, request, *args, **kwargs):
-
-        categoria = request.GET.get('categoria')
-        titulo = request.GET.get('titulo')
-        autor = request.GET.get('autor')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        categoria = self.request.GET.get("categoria", "")
+        titulo = self.request.GET.get("titulo", "").strip()
+        autor = self.request.GET.get("autor", "").strip()
 
         livros = Livro.objects.all()
 
@@ -122,12 +123,16 @@ class SearchView(TemplateView):
         if autor:
             livros = livros.filter(autor__icontains=autor)
 
-        return self.render_to_response({'livros': livros})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context["livros"] = livros
         context["categorias"] = Categoria.objects.all()
+        context["filtros"] = {
+            "categoria": categoria,
+            "titulo": titulo,
+            "autor": autor,
+        }
+
         return context
+
 
 class BookHistoryView(LoginRequiredMixin, TemplateView):
     template_name = "user/bookhistory.html"

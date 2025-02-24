@@ -13,37 +13,36 @@
         <h1 class="h1 regular">Livros</h1>
         <div class="content-filter-right">
             <button id="openFilterBtn" class="bnt bnt-filter bg-dark-blue white">
-                Pesquisa<i class="fa-solid fa-magnifying-glass" style="color: #ffffff; padding-left: 5px;"></i>
+                Filtrar<i class="material-icons">filter_alt</i>
             </button>
+            <div class="input-coat">
+                <form id="searchForm" action="{% url 'user:pesquisa' %}" method="GET">
+                    <input type="text" name="titulo" placeholder="Pesquisar livro" class="input-search" value="{{ request.GET.titulo }}">
+                    <a href="javascript:void(0);" onclick="document.getElementById('searchForm').submit();">
+                        <i class="material-icons blue search-icon" style="cursor: pointer;">search</i>
+                    </a>
+                    
+                </form>
+            </div>
         </div>
     </div>
+    
     <div id="filterOverlay" class="filter-overlay hidden">
         <div class="filter-content">
             <button id="closeFilterBtn" class="close-btn">&times;</button>
-            <h2 class="filter-title">Encontre seu Livro!</h2>
+            <h2 class="filter-title">Filtrar por categoria</h2>
             <form action="{% url 'user:pesquisa' %}" method="GET">
                 <label for="categoria">Categoria:</label>
                 <select name="categoria" id="categoria">
                     <option value="">Todas as categorias</option>
                     {% for categoria in categorias %}
-                        <option value="{{ categoria.id }}" {% if categoria.id == request.GET.categoria|default:'' %}selected{% endif %}>{{ categoria.nome }}</option>
+                        <option value="{{ categoria.id }}" {% if categoria.id == request.GET.categoria %}selected{% endif %}>{{ categoria.nome }}</option>
                     {% endfor %}
                 </select>
-            
-                <br>
-                <label for="titulo">Título:</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Digite o título..." value="{{ request.GET.titulo }}">
-            
-                <br>
-                <label for="autor">Autor:</label>
-                <input type="text" name="autor" id="autor" placeholder="Digite o autor..." value="{{ request.GET.autor }}">
-            
-                <br>
-                <button type="submit" class="bnt bnt-filtro bg-dark-blue white">Pesquisar</button>
+                <button type="submit" class="bnt bnt-filtro bg-dark-blue white">Filtrar</button>
             </form>
-            
-        </div>
     </div>
+</div>
     <div class="indicadores-line">
         <hr class="line-separator">
         <p class="indicadores-label">Indicadores:</p>
