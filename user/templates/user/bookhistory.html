@@ -71,8 +71,10 @@
             <td>
                 {% if emprestimo.data_devolucao %}
                 Devolvido
-                {% else %}
-                Emprestado
+                {% elif emprestimo.previsao_devolucao <= today %} 
+                Pendente 
+                {% else %} 
+                Emprestado 
                 {% endif %}
             </td>
             <td>

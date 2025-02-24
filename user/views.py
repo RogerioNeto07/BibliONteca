@@ -158,6 +158,7 @@ class BookHistoryView(LoginRequiredMixin, TemplateView):
             emprestimos = emprestimos.filter(previsao_devolucao__gte=timezone.now(), status_ativo=True)
 
         context["emprestimos"] = emprestimos
+        context["today"] = timezone.now().date()
         return context
 
 
