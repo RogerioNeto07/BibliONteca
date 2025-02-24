@@ -70,9 +70,9 @@
             <td>{{ leitor.rua }}</td>
             <td>
                 <a href="{% url 'library:perfil_usuario' usuario_id=leitor.id %}">
-                    <span class="material-icons blue tab-icon">visibility</span>
+                    <span class="material-icons blue tab-icon" title="Ver Usuário">visibility</span>
                 </a>
-                <a href="{% url 'library:edit-user' pk=leitor.id %}"><span class="material-icons yellow tab-icon">edit_note</span></a>
+                <a href="{% url 'library:edit-user' pk=leitor.id %}"><span class="material-icons yellow tab-icon" title="Editar Usuário">edit_note</span></a>
             </td>
         </tr>
         {% empty %}
