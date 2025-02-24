@@ -18,6 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative;
 }
 
 .logo-login {
@@ -38,32 +39,99 @@ body {
 .bnt-login {
     margin-top: 44px;
 }
+.error-message{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+}
+.highlight-error{
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    background-color: red;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width: 1024px) {
+    .teste{
+        height: 50px;
+    }
+    .login-container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .login-container-left {
+        padding: 80px 20px;
+    }
+    .login-container-right {
+        padding: 20px;
+    }
+
+    .logo-login {
+        max-width: 200px;
+    }
+}
 
 @media (max-width: 768px) {
     .login-container {
         grid-template-columns: 1fr;
         height: auto;
     }
+    .login-container-left, .login-container-right {
+        padding: 30px 20px;
+    }
+    .login-container-right{
+        padding-top: 70px;
 
-    .login-container-left, .login-container-rigth {
-        padding: 40px 20px;
     }
 
     .logo-login {
-        max-width: 200px;
+        max-width: 180px;
     }
 
     .margin-text {
-        margin: 16px 0;
+        margin: 14px 0;
+        font-size: 12px;
+    }
+
+    .title-login {
+        margin-bottom: 24px;
+        font-size: 16px;
+    }
+
+    .bnt-login {
+        margin-top: 24px;
+        font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
-    .login-container-left, .login-container-rigth {
+    .login-container-left, .login-container-right {
         padding: 20px;
+    }
+    .login-container-right{
+        padding-top: 60px;
+
     }
 
     .logo-login {
-        max-width: 150px;
+        max-width: 140px;
+    }
+
+    .title-login {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .bnt-login {
+        margin-top: 20px;
+        font-size: 12px;
     }
 }

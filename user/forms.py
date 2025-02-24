@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import MyUser
+from django.contrib.auth import authenticate
 
 class UserRegisterForm(UserCreationForm):
         password1 = forms.CharField(
@@ -14,16 +15,29 @@ class UserRegisterForm(UserCreationForm):
             model = MyUser
             fields = ['email', 'nome', 'cpf', 'data_nascimento', 'telefone', 'bairro', 'rua', 'numero', 'foto_perfil', 'password1', 'password2']
             widgets = {
-                'email': forms.EmailInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
-                'nome': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
-                'cpf': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
+                'email': forms.EmailInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'E-mail'}),
+                'nome': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Nome'}),
+                'cpf': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': '999.888.777-66'}),
                 'data_nascimento': forms.DateInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título', 'type': 'date'}),
-                'telefone': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
-                'bairro': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
-                'rua': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
-                'numero': forms.NumberInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
+                'telefone': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': '(99) 99999-9999'}),
+                'bairro': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Bairro'}),
+                'rua': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Rua'}),
+                'numero': forms.NumberInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Numero'}),
                 'foto_perfil': forms.FileInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
             }
 
 class UserLoginForm(AuthenticationForm):
     username = forms.EmailField(label='Email')
+    
+    def clean(self):
+        cleaned_data = super().clean()
+
+        email = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if email and password:
+            user = authenticate(username=email, password=password)
+            if user is None:
+                self.add_error(None, "Email ou senha inválidos.")
+        
+        return cleaned_data

@@ -3,19 +3,22 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/notification.css' %}">
-
+<style>
+    .main-content {
+        width: 800px;
+    }
+</style>
 {% endblock %}
 
 {% block content-header %}
-
-    <div class="header-content">
-        <div></div>
-        <div class="user-content">
-            <img src="{% static "global/imgs/icon-home.png" %}" alt="" class="header-icon-notifications">
-            <div class="user-pic"></div>
-            <p class="username secundary-text">NomeUser</p>
-        </div>
+<div class="header-content">
+    <div></div>
+    <div class="user-content">
+        <img src="{% static 'global/imgs/icon-home.png' %}" alt="" class="header-icon-notifications">
+        <div class="user-pic"></div>
+        <p class="username secundary-text">{{ request.user.nome }}</p>
     </div>
+</div>
 {% endblock content-header %}
 
 {% block content %} 
@@ -24,41 +27,73 @@
         width: 950px;
     }
 </style>
+{% block content %}
 <div class="notif-container">
-<h1>Notificações</h1>
-<div class="notif-filter">
-    <p id="general">Geral</p><p id="pending">Pendências</p><p id="news">Novidades</p>
-</div>
-</div>
-<div class="notif-item">
-    <h4><span class="blue-circle">•</span>O Livro Harry Potter e o Prisioneiro de Azkabam entrará em pendência amanhã</h4>
-    <div class="sent">
-        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i><p>Recebida 13 horas atrás</p>
+    <h1>Notificações</h1>
+    <div class="notif-filter">
+        <p id="general" class="filter-btn active" data-type="all">Geral</p>
+        <p id="pending" class="filter-btn" data-type="pendencia">Pendências</p>
+        <p id="news" class="filter-btn" data-type="novidade">Novidades</p>
     </div>
 </div>
-<div class="notif-item">
-    <div class="notif-title">
-        <h4><span class="blue-circle">•</span>O Livro Harry Potter e o Prisioneiro de Azkabam entrará em pendência amanhã</h4>
+{% if notificacoes %}
+<div id="notifications-list">
+    {% for notificacao in notificacoes %}
+    <div class="notif-item" data-type="{{ notificacao.tipo }}">
+        <div class="notif-title">
+            {% if notificacao.tipo == 'pendencia' %}
+            <h4><span class="blue-circle">•</span>
+                {% if user_group == "Bibliotecario" %}
+                <a href="{% url 'library:renewBook' %}" class="notif-link">
+                    {{ notificacao.mensagem }}
+                </a>
+                {% else %}
+                <a href="{% url 'user:history' %}" class="notif-link">
+                    {{ notificacao.mensagem }}
+                </a>
+                {% endif %}
+            </h4>
+            {% else %}
+            <h4><span class="blue-circle">•</span>{{ notificacao.mensagem }}</h4>
+            {% endif %}
+        </div>
+        <div class="sent">
+            {% if notificacao.tipo == 'pendencia' %}
+            <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i>
+            {% elif notificacao.tipo == 'novidade' %}
+            <i class="fa-regular fa-star" style="color: #43AA8B;"></i>
+            {% else %}
+            {% endif %}
+            <p>Recebida {{ notificacao.data_envio|timesince }} atrás</p>
+        </div>
     </div>
-    <div class="sent">
-        <i class="fa-solid fa-circle-exclamation" style="color: #D62828;"></i><p>Recebida 13 horas atrás</p>
-    </div>
+    {% endfor %}
 </div>
-<div class="notif-item">
-    <div class="notif-title">
-        <h4><span class="blue-circle">•</span>Novidade: O livro A Culpa É Das Estrelas entrou em nosso catálogo</h4>
-    </div>
-    <div class="sent">
-        <i class="fa-regular fa-star" style="color: #43AA8B;"></i><p>Recebida 13 horas atrás</p>
-    </div>
-</div>
-<div class="notif-item">
-    <div class="notif-title">
-        <h4><span class="blue-circle">•</span>Novidade: O livro A Culpa É Das Estrelas entrou em nosso catálogo</h4>
-    </div>
-    <div class="sent">
-        <i class="fa-regular fa-star" style="color: #43AA8B;"></i><p>Recebida 13 horas atrás</p>
-    </div>
-</div>
-<script> const userType = "user"; </script>
+{% else %}
+<p>Você não tem notificações.</p>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filters = document.querySelectorAll(".notif-filter p.filter-btn");
+        const notifications = document.querySelectorAll(".notif-item");
+
+        filters.forEach(filter => {
+            filter.addEventListener("click", function () {
+                filters.forEach(f => f.classList.remove("active"));
+                this.classList.add("active");
+
+                let filterType = this.getAttribute("data-type");
+
+                notifications.forEach(notif => {
+                    if (filterType === "all" || notif.getAttribute("data-type") === filterType) {
+                        notif.style.display = "block";
+                    } else {
+                        notif.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+</script>
 {% endblock content %}

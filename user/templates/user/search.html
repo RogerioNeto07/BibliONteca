@@ -14,159 +14,43 @@
 
 <main class="main-content">
     <div class="cabecalho">
-        <h2>Resultados da pesquisa "Harry Potter"</h2>
+        <h2>Resultados da pesquisa:</h2>
     </div>
     <section class="book-section">
         <div class="book-carousel">
-            <div class="book-card">
-                <div class="status-wrapper">
-                    <span class="status-dot-green"></span>
-                    <p class="status-label-disponivel">Disponível</p>
-                </div>
-                <img src="https://m.media-amazon.com/images/I/81rvO7xcJOL.jpg" alt="Livro">
-                <p class="h3 bold">Harry Potter e as Relíquias da Morte</p>
-                <p class="h3 bold"></p>
-                <p>J.K. Rowling</p>
-                <div class="rating">
-                    <span class="stars">★★★★☆</span>
-                    <span class="review-count">(10)</span>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="status-wrapper">
-                    <span class="status-dot-green"></span>
-                    <p class="status-label-disponivel">Disponível</p>
-                </div>
-                <img src="https://m.media-amazon.com/images/I/81rvO7xcJOL.jpg" alt="Livro">
-                <p class="h3 bold">Harry Potter e as Relíquias da Morte</p>
-                <p class="h3 bold"></p>
-                <p>J.K. Rowling</p>
-                <div class="rating">
-                    <span class="stars">★★★★☆</span>
-                    <span class="review-count">(10)</span>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="status-wrapper">
-                    <span class="status-dot-green"></span>
-                    <p class="status-label-disponivel">Disponível</p>
-                </div>
-                <img src="https://m.media-amazon.com/images/I/51M9IbBqxCL.jpg" alt="Livro">
-                <p class="h3 bold">A Culpa é das Estrelas</p>
-                <p>John Green</p>
-                <div class="rating">
-                    <span class="stars">★★★★☆</span>
-                    <span class="review-count">(10)</span>
-                </div>
-            </div>
+            {% for livro in livros %}
+            <a href="{% url 'library:detail-books' livro.id %}">
                 <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/51M9IbBqxCL.jpg" alt="Livro">
-                    <p class="h3 bold">A Culpa é das Estrelas</p>
-                    <p>John Green</p>
+                    {% if livro.disponivel %}
+                                <div class="status-wrapper">
+                                    <span class="status-dot-green"></span>
+                                    <p class="status-label-disponivel">Disponível</p>
+                                </div>
+                            {% else %}
+                            <div class="status-wrapper">
+                                <span class="status-dot borrowed"></span>
+                                <p class="status-label">Indisponível</p>
+                            </div>
+                            {% endif %}
+                    <img src="{{livro.capa.url}}"
+                        alt="Livro">
+                        {% if livro.subtitulo %}
+                    <p class="h3 bold">{{livro.titulo}} - {{livro.subtitulo}}</p>
+                        {% else %}
+                    <p class="h3 bold">{{livro.titulo}}</p>
+                        {% endif %}
+                    <p>{{livro.autor}}</p>
                     <div class="rating">
                         <span class="stars">★★★★☆</span>
                         <span class="review-count">(10)</span>
                     </div>
                 </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/51M9IbBqxCL.jpg" alt="Livro">
-                    <p class="h3 bold">A Culpa é das Estrelas</p>
-                    <p>John Green</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/61GFsO7j0ZL._AC_UF1000,1000_QL80_.jpg" alt="Livro">
-                    <p class="h3 bold">Sherlock Holmes - Um estudo em vermelho</p>
-                    <p>J.K. Rowling</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/61GFsO7j0ZL._AC_UF1000,1000_QL80_.jpg" alt="Livro">
-                    <p class="h3 bold">Sherlock Holmes - Um estudo em vermelho</p>
-                    <p>J.K. Rowling</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/61GFsO7j0ZL._AC_UF1000,1000_QL80_.jpg" alt="Livro">
-                    <p class="h3 bold">Sherlock Holmes - Um estudo em vermelho</p>
-                    <p>J.K. Rowling</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/81rvO7xcJOL.jpg" alt="Livro">
-                    <p class="h3 bold">Harry Potter e as Relíquias da Morte</p>
-                    <p class="h3 bold"></p>
-                    <p>J.K. Rowling</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/81rvO7xcJOL.jpg" alt="Livro">
-                    <p class="h3 bold">Harry Potter e as Relíquias da Morte</p>
-                    <p class="h3 bold"></p>
-                    <p>J.K. Rowling</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="status-wrapper">
-                        <span class="status-dot-green"></span>
-                        <p class="status-label-disponivel">Disponível</p>
-                    </div>
-                    <img src="https://m.media-amazon.com/images/I/81rvO7xcJOL.jpg" alt="Livro">
-                    <p class="h3 bold">Harry Potter e as Relíquias da Morte</p>
-                    <p class="h3 bold"></p>
-                    <p>J.K. Rowling</p>
-                    <div class="rating">
-                        <span class="stars">★★★★☆</span>
-                        <span class="review-count">(10)</span>
-                    </div>
-                </div>
+            </a>
+            {% empty %}
+                <p class="h3 bold" >Nenhum livro encontrado.</p>
+            {% endfor %}
         </div>
     </section>
+</main>
     <script> const userType = "user"; </script>
 {% endblock content %}

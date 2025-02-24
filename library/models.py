@@ -26,17 +26,18 @@ class Livro(models.Model):
     capa = models.ImageField(upload_to="capas/", null=False, blank=False)
     data_cadastro = models.DateField(auto_now_add=True)
     quantidade = models.IntegerField(default=1)
+    disponivel = models.BooleanField(default=True)
 
 
     def __str__(self):
-        return self.titulo
+        return self.isbn
     
 
 class Emprestimo(models.Model):
     usuario = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="emprestimos")  
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE, related_name="emprestimos")
     data_emprestimo = models.DateField(default=date.today)
-    previsao_devolucao = models.DateField(null=False, blank=False)
+    previsao_devolucao = models.DateField(null=False, blank=True)
     data_devolucao = models.DateField(null=True, blank=True)
     status_ativo = models.BooleanField(default=True)
 
@@ -46,7 +47,7 @@ class Emprestimo(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.usuario.email} - {self.livro.titulo}"  
+        return f"{self.usuario.cpf} - {self.livro.isbn}"  
 
 
 class Comentarios(models.Model):

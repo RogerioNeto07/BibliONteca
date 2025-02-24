@@ -5,20 +5,15 @@
 {% endblock extra_css %}
 {% block content %}
 
-    <h1 class="h1 regular tx-center">Perfil</h1>
+    <h1 class="h1 regular tx-center">Usuário</h1>
     <div class="content-pendences-details-columns">
         <div class="column-left-details">
-            <form id="fotoForm" method="POST" enctype="multipart/form-data" action="{% url 'user:atualizar_foto' %}">
-                {% csrf_token %}
-                <input type="file" id="fotoInput" name="foto_perfil" accept="image/*" style="display: none;" onchange="document.getElementById('fotoForm').submit()">
-            </form>
 
             {% if usuario.foto_perfil %}
                 <img class="img-details-pendences-user" src="{{ usuario.foto_perfil.url }}" alt="Foto de perfil">
             {% else %}
                 <img class="img-details-pendences-user" src="{% static 'global/imgs/transferir.jpg' %}" alt="Foto padrão">
             {% endif %}
-            <i class="fa-regular fa-pen-to-square" id="editarFoto" style="color: #4e80a6; cursor: pointer;"></i>
         </div>
         <div class="column-left-details">
             <div class="row-column-buttom-details">
@@ -32,29 +27,29 @@
                     <div class="column-loan-left">
                         <div class="content-column">
                             <p class="main-text bold grey">Nome: </p>
-                            <p class="main-text bold dark-grey">{{ user.nome }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.nome }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                         <div class="content-column">
                             <p class="main-text bold grey">Email: </p>
-                            <p class="main-text bold dark-grey">{{ user.email }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.email }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                         <div class="content-column">
                             <p class="main-text bold grey">Data de Nascimento: </p>
-                            <p class="main-text bold dark-grey">{{ user.data_nascimento|date:"d/m/Y" }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.data_nascimento|date:"d/m/Y" }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                     </div>
                     <div class="column-loan-right">
                         <div class="content-column">
                             <p class="main-text bold grey">CPF: </p>
-                            <p class="main-text bold dark-grey">{{ user.cpf }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.cpf }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                         <div class="content-column">
                             <p class="main-text bold grey">Telefone: </p>
-                            <p class="main-text bold dark-grey">{{ user.telefone }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.telefone }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                     </div>
@@ -70,19 +65,19 @@
                     <div class="column-loan-left">
                         <div class="content-column">
                             <p class="main-text bold grey">Número: </p>
-                            <p class="main-text bold dark-grey">{{ user.numero }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.numero }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                         <div class="content-column">
                             <p class="main-text bold grey">Rua: </p>
-                            <p class="main-text bold dark-grey">{{ user.rua }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.rua }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                     </div>
                     <div class="column-loan-right">
                         <div class="content-column">
                             <p class="main-text bold grey">Bairro: </p>
-                            <p class="main-text bold dark-grey">{{ user.bairro }}</p>
+                            <p class="main-text bold dark-grey">{{ usuario.bairro }}</p>
                             <hr class="line-content-column bg-dark-grey">
                         </div>
                     </div>
@@ -92,9 +87,6 @@
     </div>
 <script> 
 const userType = "user"; 
-    document.getElementById('editarFoto').addEventListener('click', function() {
-        document.getElementById('fotoInput').click();
-    });
 
 
 </script>

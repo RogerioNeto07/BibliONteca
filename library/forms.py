@@ -1,7 +1,9 @@
 from django import forms
-from .models import Livro, Categoria
+from .models import Livro, Categoria, Emprestimo
+from django.contrib.auth.forms import UserChangeForm
+from user.models import MyUser
+from django.core.exceptions import ValidationError
 
-from .models import Emprestimo
 
 class LivroForm(forms.ModelForm):
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
@@ -13,7 +15,7 @@ class LivroForm(forms.ModelForm):
         fields = [
             'titulo', 'subtitulo', 'editora', 'autor', 'volume', 'idioma', 
             'categoria', 'qntd_paginas', 'classificacao', 'descricao', 'isbn', 
-            'ano_publicacao', 'capa', 'quantidade'
+            'ano_publicacao', 'capa', 'quantidade', 'disponivel'
         ]
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'input-form secundary-text bold', 'placeholder': 'Título'}),
@@ -29,48 +31,46 @@ class LivroForm(forms.ModelForm):
             'isbn': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-one', 'placeholder': 'ISBN'}),
             'editora': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-one', 'placeholder': 'Editora'}),
             'volume': forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Volume'}),
-            'quantidade' : forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Quantidade'})
+            'quantidade' : forms.TextInput(attrs={'class': 'input-form secundary-text bold width-two', 'placeholder': 'Quantidade'}),
+            'disponivel': forms.CheckboxInput(attrs={'class': 'input-form secundary-text bold width-two'}) 
         }
 
 class EmprestimoForm(forms.ModelForm):
     class Meta:
         model = Emprestimo
         fields = ['usuario', 'livro']
-        widgets = {
-            'usuario': forms.Select(attrs={
-                'class': 'input secundary-text bold',
-                'placeholder': '999.999.999-99'
-            }),
-            'livro': forms.Select(attrs={
-                'class': 'input secundary-text bold',
-                'placeholder': 'Código do livro'
-            })
-        }
 
-class DevolucaoForm(forms.Form):
-    nome = forms.CharField(
-        label="Usuário",
-        max_length=200,
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'input secundary-text bold',
-                'placeholder': 'CPF'
+    usuario = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class': 'input secundary-text bold',
+            'placeholder': '999.999.999-99'
         })
     )
-    isbn = forms.CharField(
-            label="ISBN",
-            max_length=13,
-            required=True,
-            widget=forms.TextInput(
-                attrs={
-                    'class': 'input secundary-text bold',
-                    'placeholder': 'ISBN'
-            })
-        )
 
-class RenovarForm(forms.Form):
-    nome = forms.CharField(
+    livro = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class': 'input secundary-text bold',
+            'placeholder': 'Código do livro'
+        })
+    )
+
+    def clean_usuario(self):
+        cpf = self.cleaned_data['usuario'].strip()
+        
+        usuario = MyUser.objects.get(cpf=cpf)
+        return usuario
+
+    def clean_livro(self):
+        codigo = self.cleaned_data['livro'].strip()
+        livro = Livro.objects.get(isbn=codigo)
+        return livro
+
+class DevolucaoForm(forms.Form):
+    class Meta:
+        model = Emprestimo
+        fields = ['usuario', 'livro']
+    
+    usuario = forms.CharField(
                 label="Usuário", 
                 max_length=200, 
                 required=True, 
@@ -80,7 +80,7 @@ class RenovarForm(forms.Form):
                     'placeholder': 'CPF'
             })
         )
-    isbn = forms.CharField(
+    livro = forms.CharField(
                 label="ISBN", 
                 max_length=13, 
                 required=True, 
@@ -90,3 +90,61 @@ class RenovarForm(forms.Form):
                     'placeholder': 'ISBN'
             })
         )
+
+
+    def clean_usuario(self):
+        cpf = self.cleaned_data['usuario'].strip()
+        
+        usuario = MyUser.objects.get(cpf=cpf)
+        return usuario
+
+    def clean_livro(self):
+        codigo = self.cleaned_data['livro'].strip()
+        livro = Livro.objects.get(isbn=codigo)
+        return livro
+
+
+class RenovarForm(forms.Form):
+    class Meta:
+        model = Emprestimo
+        fields = ['usuario', 'livro']
+    
+    usuario = forms.CharField(
+                label="Usuário", 
+                max_length=200, 
+                required=True, 
+                widget=forms.TextInput(
+                attrs={
+                    'class': 'input secundary-text bold',
+                    'placeholder': 'CPF'
+            })
+        )
+    livro = forms.CharField(
+                label="ISBN", 
+                max_length=13, 
+                required=True, 
+                widget=forms.TextInput(
+                attrs={
+                    'class': 'input secundary-text bold',
+                    'placeholder': 'ISBN'
+            })
+        )
+
+    def clean_usuario(self):
+        cpf = self.cleaned_data['usuario'].strip()
+        
+        usuario = MyUser.objects.get(cpf=cpf)
+        return usuario
+
+    def clean_livro(self):
+        codigo = self.cleaned_data['livro'].strip()
+        livro = Livro.objects.get(isbn=codigo)
+        return livro
+    
+        
+class UsuarioUpdateForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = MyUser
+        fields = ['nome', 'cpf', 'email', 'data_nascimento', 'telefone', 'bairro', 'rua', 'numero']

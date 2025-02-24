@@ -34,7 +34,6 @@
                     <input type="text" id="userName" class="input-field" name="usuario" placeholder="Digite o nome do usuário">
                 </div>
             </div>
-            <!-- Campo de filtro para Status com a opção 'pendente' removida -->
             <div class="form-group-row">
                 <div class="form-group">
                     <label for="status">Status do Empréstimo:</label>
@@ -60,7 +59,6 @@
             <th>Usuário</th>
             <th>Empréstimo</th>
             <th>Dias em Atraso</th>
-            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -75,10 +73,6 @@
             <td> {{ emprestimo.usuario.nome }} </td>
             <td> {{ emprestimo.data_emprestimo }}</td>
             <td> - </td>
-            <td>
-                <a href=""><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href=""><span class="material-icons green tab-icon">edit_note</span></a>
-            </td>
         </tr>
         {% empty %}
         <tr>

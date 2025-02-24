@@ -1,27 +1,28 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model, login
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.utils.timezone import now, timedelta
 from django.utils import timezone
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect
 from django.db.models import Count, Q
 from django.db.models import F, ExpressionWrapper, fields
 from django.db.models.functions import Now
 import re
-from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm
+from .forms import EmprestimoForm, LivroForm, DevolucaoForm, RenovarForm, UsuarioUpdateForm
 from .models import Livro, Categoria, Comentarios
 from .models import Emprestimo
 from user.forms import UserRegisterForm
 from user.models import MyUser
 from .permissions import GroupRequiredMixin
 from django.shortcuts import render, get_object_or_404
+from user.utils import adicionar_notificacao
 
 
 User = get_user_model()
@@ -59,7 +60,18 @@ class ListUserView(GroupRequiredMixin, LoginRequiredMixin, ListView):
             queryset = queryset.filter(cpf__icontains=cpf)
         
         return queryset
+    
+class UsuarioUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    model = MyUser
+    form_class = UsuarioUpdateForm
+    group_required = 'Bibliotecario'
+    template_name = 'library/users/edituser.html'
+    context_object_name = 'usuario'
 
+    def get_success_url(self):
+        return reverse_lazy('library:listUser')
+
+    
 class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     model = Livro
     group_required = 'Bibliotecario'
@@ -68,7 +80,16 @@ class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("library:listBooks")
 
     def form_valid(self, form):
+        livro = form.save()
         messages.success(self.request, "Cadastro realizado com sucesso!")
+
+        for usuario in MyUser.objects.all():
+            adicionar_notificacao(
+                usuario,
+                f"Novo livro '{livro.titulo}' chegou!",
+                "novidade"
+        )
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -76,6 +97,7 @@ class RegisterBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         context["categorias"] = Categoria.objects.all()
         return context
 
+from user.utils import adicionar_notificacao 
 class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     form_class = EmprestimoForm
     group_required = 'Bibliotecario'
@@ -83,10 +105,26 @@ class LoanBookView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        emprestimo = form.save(commit=False)
-        emprestimo.save()
-        messages.success(self.request, "Cadastro realizado com sucesso!")
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+        livro = form.cleaned_data['livro']
+        usuario = form.cleaned_data['usuario']
+        bibliotecario = self.request.user
+
+        adicionar_notificacao(
+            bibliotecario,
+            f"Você realizou o empréstimo do livro '{livro.titulo}' para {usuario.nome}.",
+            "geral"
+        )
+
+        adicionar_notificacao(
+            usuario,
+            f"Você pegou emprestado o livro '{livro.titulo}'.",
+            "geral"
+        )
+
+        messages.success(self.request, "Empréstimo realizado com sucesso!")
+        return response
 
 class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     template_name = "library/books/return_book.html"
@@ -95,18 +133,30 @@ class ReturnBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        nome = form.cleaned_data["nome"]
-        isbn = form.cleaned_data["isbn"]
-
-        usuario = get_object_or_404(MyUser, nome=nome)
-        livro = get_object_or_404(Livro, isbn=isbn)
+        usuario = form.cleaned_data["usuario"]
+        livro = form.cleaned_data["livro"]
+        bibliotecario = self.request.user
 
         emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
         emprestimo.status_ativo = False
         emprestimo.data_devolucao = now().date()
         emprestimo.save()
 
+        adicionar_notificacao(
+            bibliotecario,
+            f"Você registrou a devolução do livro '{livro.titulo}' de {usuario.nome}.",
+            "geral"
+        )
+
+        adicionar_notificacao(
+            usuario,
+            f"Você devolveu o livro '{livro.titulo}'. Obrigado!",
+            "geral"
+        )
+
+        messages.success(self.request, "Devolução registrada com sucesso!")
         return super().form_valid(form)
+
 
 class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     template_name = "library/books/renew_book.html"
@@ -115,17 +165,44 @@ class RenewBookView(GroupRequiredMixin, LoginRequiredMixin, FormView):
     success_url = reverse_lazy("library:allLoans")
 
     def form_valid(self, form):
-        nome = form.cleaned_data["nome"]
-        isbn = form.cleaned_data["isbn"]
+        usuario = form.cleaned_data["usuario"]
+        livro = form.cleaned_data["livro"]
+        bibliotecario = self.request.user
 
-        usuario = get_object_or_404(MyUser, nome=nome)
-        livro = get_object_or_404(Livro, isbn=isbn)
+        emprestimos = Emprestimo.objects.filter(livro=livro, usuario=usuario, status_ativo=True)
 
-        emprestimo = get_object_or_404(Emprestimo, livro=livro, usuario=usuario, status_ativo=True)
+        if emprestimos.count() == 1:
+            emprestimo = emprestimos.first()
+        else:
+            return self.form_invalid(form)
+
         emprestimo.previsao_devolucao += timedelta(days=15)
         emprestimo.save()
 
+        adicionar_notificacao(
+            bibliotecario,
+            f"Você renovou o empréstimo do livro '{livro.titulo}' de {usuario.nome}.",
+            "geral"
+        )
+
+        adicionar_notificacao(
+            usuario,
+            f"O empréstimo do livro '{livro.titulo}' foi renovado.",
+            "geral"
+        )
+
+        messages.success(self.request, "Renovação realizada com sucesso!")
         return super().form_valid(form)
+
+class LivroUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    model = Livro
+    form_class = LivroForm
+    group_required = 'Bibliotecario'
+    template_name = 'library/books/editbook.html'
+    context_object_name = 'livro'
+    
+    def get_success_url(self):
+        return reverse_lazy('library:detail-books', kwargs={'pk': self.object.pk})
 
 class ListBooksView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Livro
@@ -233,6 +310,18 @@ class ProfileView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["usuario"] = self.request.user
         return context
+
+class PerfilUsuarioView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = MyUser
+    template_name = 'library/users/user.html'
+    context_object_name = 'usuario'
+    
+    def test_func(self):
+        return self.request.user.groups.filter(name='Bibliotecario').exists()
+
+    def get_object(self, queryset=None):
+        usuario_id = self.kwargs.get('usuario_id')
+        return get_object_or_404(MyUser, id=usuario_id)
 
 
 def ViewDetailBook(request, pk):

@@ -26,6 +26,15 @@
             <p class="title-login h1 dark-blue">Login</p>
             <form action="{% url 'user:login' %}" method="POST" class="login">
                 {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="error-message">
+                    {% for error in form.non_field_errors %}
+                    <div class="highlight-error">
+                        <p class="error-text">{{ error }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 <div class="form-field">
                     <label for="email" class="form-label secundary-text bold">Login:<span>*</span></label>
                     <input type="email" name="username" class="secundary-text bold" id="email" placeholder="Email"
