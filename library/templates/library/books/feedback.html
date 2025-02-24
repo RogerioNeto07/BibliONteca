@@ -4,7 +4,14 @@
 <link rel="stylesheet" href="{% static 'library/css/detail.css' %}">
 <link rel="stylesheet" href="{% static 'library/css/feedback.css' %}">
 {% endblock %}
+
 {% block content %}
+<style>
+    .main-content {
+        width: 950px;
+    }
+</style>
+{% include "library/messages/messages_error.html" %}
 <div class="content-detail">
     <img src="{{ livro.capa.url }}" alt="Capa do livro {{ livro.titulo }}" class="book-cover">
 

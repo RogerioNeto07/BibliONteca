@@ -349,6 +349,10 @@ def ViewComentarios(request, pk):
     user = request.user
 
     if request.method == "POST":
+        if Comentarios.objects.filter(livro=livro, usuario=user).exists():
+            messages.error(request, "Você já avaliou este livro.")
+            return redirect('library:feedback-book', pk=livro.id)
+
         comentario_text = request.POST.get('user-comment', '')
         star_rating = request.POST.get('star-rating')
 

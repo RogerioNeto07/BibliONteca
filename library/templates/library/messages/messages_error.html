@@ -1,0 +1,17 @@
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'library/css/messages_error.css' %}">
+{% endblock %}
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <div class="alert alert-error">
+        <span class="-texmessaget">{{ message }}</span>
+        <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

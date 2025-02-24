@@ -74,8 +74,8 @@
             <td>{{ livro.isbn }}</td>
             <td>{{ livro.autor }}</td>
             <td>
-                <a href="{% url 'library:detail-books' livro.id %}"><span class="material-icons blue tab-icon">visibility</span></a>
-                <a href="{% url 'library:edit-book' livro.id %}"><span class="material-icons yellow tab-icon">edit_note</span></a>
+                <a href="{% url 'library:detail-books' livro.id %}"><span class="material-icons blue tab-icon"title="Detalhar livro">visibility</span></a>
+                <a href="{% url 'library:edit-book' livro.id %}"><span class="material-icons yellow tab-icon"title="Editar livro">edit_note</span></a>
             </td>
         </tr>
         {% empty %}

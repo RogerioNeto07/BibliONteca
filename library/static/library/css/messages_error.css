@@ -1,0 +1,32 @@
+.messages {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alert-error {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.-texmessaget {
+    color: #856404 !important;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: inherit;
+    cursor: pointer;
+}
